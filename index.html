@@ -25,7 +25,7 @@
   .mono{font-family:'IBM Plex Mono',monospace;}
   a{color:inherit;}
   ::selection{background:var(--gold);color:var(--ink);}
- 
+
   /* ---------- Nav ---------- */
   nav{
     display:flex;align-items:center;justify-content:space-between;
@@ -38,7 +38,7 @@
   .navlinks{display:flex;gap:32px;font-size:14px;color:var(--text-dim);}
   .navlinks a{text-decoration:none;transition:color .2s;}
   .navlinks a:hover{color:var(--gold-bright);}
- 
+
   /* ---------- Ticker marquee ---------- */
   .ticker-wrap{
     border-bottom:1px solid var(--line);
@@ -49,7 +49,7 @@
   .ticker span{display:inline-flex;align-items:center;gap:8px;margin-right:48px;font-size:13px;}
   .ticker .sym{color:var(--gold-bright);font-weight:600;}
   @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
- 
+
   /* ---------- Hero ---------- */
   .hero{padding:120px 6vw 90px;max-width:1180px;margin:0 auto;position:relative;}
   .eyebrow{
@@ -70,14 +70,14 @@
   .btn.primary:hover{background:var(--parchment);}
   .btn.ghost{border-color:var(--line);color:var(--parchment);}
   .btn.ghost:hover{border-color:var(--gold);color:var(--gold-bright);}
- 
+
   /* ---------- Greek letter signature strip ---------- */
   .letters{display:flex;gap:0;position:absolute;right:6vw;top:130px;opacity:0.9;}
   .letters .col{display:flex;flex-direction:column;align-items:center;margin-left:26px;}
   .letters .g{font-family:'Fraunces',serif;font-size:44px;color:var(--gold);opacity:0.55;}
   .letters .label{font-size:10px;letter-spacing:0.12em;color:var(--text-dim);margin-top:4px;text-transform:uppercase;}
   @media(max-width:900px){.letters{display:none;}}
- 
+
   /* ---------- Section shell ---------- */
   section{padding:70px 6vw;max-width:1180px;margin:0 auto;}
   .section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px;border-bottom:1px solid var(--line);padding-bottom:22px;}
@@ -86,7 +86,7 @@
   .section-head .status{margin-left:auto;font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:6px;}
   .dot{width:6px;height:6px;border-radius:50%;background:var(--gain);}
   .dot.demo{background:var(--gold);}
- 
+
   /* ---------- Market panels ---------- */
   .panels{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
   @media(max-width:900px){.panels{grid-template-columns:1fr;}}
@@ -112,7 +112,7 @@
   .vol-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;}
   .vol-value{font-family:'IBM Plex Mono',monospace;font-size:26px;margin-top:6px;}
   .vol-tag{display:inline-block;margin-top:10px;font-size:11px;padding:4px 10px;border:1px solid var(--line);color:var(--text-dim);}
- 
+
   /* ---------- Teach / Greeks section ---------- */
   .greeks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
   @media(max-width:900px){.greeks-grid{grid-template-columns:repeat(2,1fr);}}
@@ -120,7 +120,7 @@
   .gcard .glyph{font-family:'Fraunces',serif;font-size:42px;color:var(--gold-bright);}
   .gcard h4{margin-top:14px;font-size:15px;font-weight:600;font-family:'Inter',sans-serif;}
   .gcard p{margin-top:10px;font-size:13px;line-height:1.55;color:var(--text-dim);}
- 
+
   /* ---------- Newsletter ---------- */
   .newsletter{
     border:1px solid var(--line);padding:56px 6vw;text-align:left;
@@ -139,7 +139,7 @@
   }
   form.signup button:hover{background:var(--parchment);}
   .form-note{font-size:11px;color:var(--text-dim);margin-top:10px;}
- 
+
   /* ---------- Footer / disclaimer ---------- */
   footer{border-top:1px solid var(--line);padding:44px 6vw;}
   .disclaimer{max-width:820px;font-size:12px;line-height:1.7;color:var(--text-dim);}
@@ -148,7 +148,7 @@
 </style>
 </head>
 <body>
- 
+
 <nav>
   <div class="brand">
     <svg width="26" height="26" viewBox="0 0 90 90" style="flex-shrink:0;">
@@ -166,13 +166,13 @@
     <a href="#newsletter">Newsletter</a>
   </div>
 </nav>
- 
+
 <div class="ticker-wrap">
   <div class="ticker mono" id="tickerStrip">
     <span class="loading-row">Loading market strip…</span>
   </div>
 </div>
- 
+
 <div class="hero">
   <div class="eyebrow"><span class="rule"></span>Options &amp; Risk, Explained Plainly</div>
   <h1>Patience is <em>a position.</em></h1>
@@ -187,7 +187,7 @@
     <div class="col"><span class="g">Γ</span><span class="label">Gamma</span></div>
   </div>
 </div>
- 
+
 <section id="markets">
   <div class="section-head">
     <span class="g">Α</span>
@@ -208,7 +208,7 @@
       <div id="bluechip"><div class="loading-row">Fetching…</div></div>
     </div>
   </div>
- 
+
   <div class="panels" style="grid-template-columns:1fr 2fr;margin-top:1px;">
     <div class="panel">
       <h3>Volatility</h3>
@@ -220,7 +220,7 @@
     </div>
   </div>
 </section>
- 
+
 <section id="learn">
   <div class="section-head">
     <span class="g">Β</span>
@@ -233,7 +233,7 @@
     <div class="gcard"><span class="glyph">Ρ</span><h4>Rho</h4><p>Sensitivity to interest rates — smaller day-to-day, but part of why longer-dated pricing shifts with rate expectations.</p></div>
   </div>
 </section>
- 
+
 <section id="newsletter">
   <div class="newsletter">
     <div>
@@ -249,7 +249,7 @@
     </div>
   </div>
 </section>
- 
+
 <footer>
   <div class="disclaimer">
     <strong>Educational purposes only.</strong> TheGreeksDesk publishes general market commentary and options education. Nothing here is personalised financial advice, and no content should be read as a recommendation to buy or sell any security or derivative. Trading options carries substantial risk, including loss of principal. Market data shown is delayed/indicative and for illustration only. Always do your own research or consult a regulated financial adviser before making investment decisions.
@@ -259,7 +259,7 @@
     <span id="lastUpdated" class="mono"></span>
   </div>
 </footer>
- 
+
 <script>
 const SYMS = {
   indices: [
@@ -285,7 +285,7 @@ const SYMS = {
     {s:'HD', name:'Home Depot'},
   ]
 };
- 
+
 // Fallback sample data (used if live fetch fails — clearly labeled as demo)
 const FALLBACK = {
   'SPY': {price:641.2, chg:0.42}, 'QQQ': {price:568.4, chg:0.61}, 'DIA': {price:448.2, chg:-0.12},
@@ -294,12 +294,12 @@ const FALLBACK = {
   'JPM': {price:268.1, chg:0.2}, 'JNJ': {price:162.4, chg:-0.1}, 'PG': {price:171.8, chg:0.15},
   'V': {price:342.6, chg:0.5}, 'KO': {price:71.2, chg:0.1}, 'HD': {price:398.3, chg:0.6}
 };
- 
+
 function fmtChg(c){
   const sign = c >= 0 ? '+' : '';
   return `${sign}${c.toFixed(2)}%`;
 }
- 
+
 function renderList(elId, list, data){
   const el = document.getElementById(elId);
   el.innerHTML = list.map(item => {
@@ -311,7 +311,7 @@ function renderList(elId, list, data){
     </a>`;
   }).join('');
 }
- 
+
 function renderTicker(data){
   const all = [...SYMS.indices, ...SYMS.mag7];
   const items = all.map(item => {
@@ -321,7 +321,7 @@ function renderTicker(data){
   }).join('');
   document.getElementById('tickerStrip').innerHTML = items + items; // duplicate for seamless scroll
 }
- 
+
 async function fetchQuote(symbol){
   // Calls our own serverless function (/api/quote.js), which holds the Finnhub
   // API key server-side and is never exposed to the browser.
@@ -331,12 +331,12 @@ async function fetchQuote(symbol){
   if(json.error) throw new Error(json.error);
   return {price: json.price, chg: json.chg};
 }
- 
+
 async function loadMarketData(){
   const allSyms = [...SYMS.indices, ...SYMS.mag7, ...SYMS.bluechip].map(x => x.s);
   const data = {};
   let liveCount = 0;
- 
+
   await Promise.all(allSyms.map(async (s) => {
     try{
       data[s] = await fetchQuote(s);
@@ -345,12 +345,12 @@ async function loadMarketData(){
       // leave it out — fallback will be used at render time
     }
   }));
- 
+
   renderList('indices', SYMS.indices, data);
   renderList('mag7', SYMS.mag7, data);
   renderList('bluechip', SYMS.bluechip, data);
   renderTicker(data);
- 
+
   const dot = document.getElementById('statusDot');
   const text = document.getElementById('statusText');
   if(liveCount > allSyms.length / 2){
@@ -362,7 +362,7 @@ async function loadMarketData(){
   }
   document.getElementById('lastUpdated').textContent = 'Updated ' + new Date().toLocaleTimeString();
 }
- 
+
 async function loadVolatility(){
   const el = document.getElementById('volatility');
   try{
@@ -374,7 +374,7 @@ async function loadVolatility(){
     renderVol(el, 15.8, -2.1, true);
   }
 }
- 
+
 function renderVol(el, price, chg, isDemo){
   const cls = chg >= 0 ? 'up' : 'down';
   const regime = price < 15 ? 'Low' : price < 25 ? 'Elevated' : 'High';
@@ -384,7 +384,7 @@ function renderVol(el, price, chg, isDemo){
     <div class="vol-tag">${regime} volatility regime</div>
   `;
 }
- 
+
 async function loadNews(){
   const el = document.getElementById('newsPanel');
   try{
@@ -402,7 +402,7 @@ async function loadNews(){
     el.innerHTML = `<div class="loading-row">Headlines unavailable right now.</div>`;
   }
 }
- 
+
 loadMarketData();
 loadVolatility();
 loadNews();
@@ -410,7 +410,6 @@ setInterval(loadMarketData, 60000);
 setInterval(loadVolatility, 60000);
 setInterval(loadNews, 120000);
 </script>
- 
+
 </body>
 </html>
- 
