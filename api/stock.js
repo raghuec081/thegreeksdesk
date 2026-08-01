@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheGreeksDesk</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1220;
+    --ink-2:#111B2E;
+    --parchment:#F3EFE7;
+    --gold:#B08D57;
+    --gold-bright:#D8B876;
+    --gain:#3E8E75;
+    --loss:#B5432F;
+    --line: rgba(243,239,231,0.10);
+    --text-dim: rgba(243,239,231,0.62);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--ink);color:var(--parchment);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;margin:0;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  ::selection{background:var(--gold);color:var(--ink);}
+
+  /* ---------- Nav ---------- */
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 6vw;position:sticky;top:0;z-index:50;
+    background:rgba(11,18,32,0.85);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:20px;letter-spacing:0.02em;}
+  .brand .glyph{color:var(--gold-bright);font-size:22px;}
+  .navlinks{display:flex;gap:32px;font-size:14px;color:var(--text-dim);}
+  .navlinks a{text-decoration:none;transition:color .2s;}
+  .navlinks a:hover{color:var(--gold-bright);}
+
+  /* ---------- Ticker marquee ---------- */
+  .ticker-wrap{
+    border-bottom:1px solid var(--line);
+    overflow:hidden;white-space:nowrap;padding:10px 0;
+    background:var(--ink-2);
+  }
+  .ticker{display:inline-block;animation:scroll 32s linear infinite;}
+  .ticker span{display:inline-flex;align-items:center;gap:8px;margin-right:48px;font-size:13px;}
+  .ticker .sym{color:var(--gold-bright);font-weight:600;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:120px 6vw 90px;max-width:1180px;margin:0 auto;position:relative;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--gold-bright);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    margin-bottom:28px;
+  }
+  .eyebrow .rule{width:28px;height:1px;background:var(--gold);display:inline-block;}
+  .hero h1{font-size:clamp(38px,6vw,74px);line-height:1.06;max-width:820px;letter-spacing:-0.01em;}
+  .hero h1 em{font-style:italic;color:var(--gold-bright);}
+  .hero p{margin-top:26px;max-width:560px;font-size:17px;line-height:1.6;color:var(--text-dim);}
+  .hero .actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
+  .btn{
+    padding:14px 26px;border-radius:2px;font-size:14px;font-weight:600;
+    text-decoration:none;transition:all .2s;display:inline-block;border:1px solid transparent;
+  }
+  .btn.primary{background:var(--gold-bright);color:var(--ink);}
+  .btn.primary:hover{background:var(--parchment);}
+  .btn.ghost{border-color:var(--line);color:var(--parchment);}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold-bright);}
+
+  /* ---------- Greek letter signature strip ---------- */
+  .letters{display:flex;gap:0;position:absolute;right:6vw;top:130px;opacity:0.9;}
+  .letters .col{display:flex;flex-direction:column;align-items:center;margin-left:26px;}
+  .letters .g{font-family:'Fraunces',serif;font-size:44px;color:var(--gold);opacity:0.55;}
+  .letters .label{font-size:10px;letter-spacing:0.12em;color:var(--text-dim);margin-top:4px;text-transform:uppercase;}
+  @media(max-width:900px){.letters{display:none;}}
+
+  /* ---------- Section shell ---------- */
+  section{padding:70px 6vw;max-width:1180px;margin:0 auto;}
+  .section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px;border-bottom:1px solid var(--line);padding-bottom:22px;}
+  .section-head .g{font-family:'Fraunces',serif;font-size:26px;color:var(--gold-bright);}
+  .section-head h2{font-size:28px;}
+  .section-head .status{margin-left:auto;font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:6px;}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--gain);}
+  .dot.demo{background:var(--gold);}
+
+  /* ---------- Market panels ---------- */
+  .panels{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:900px){.panels{grid-template-columns:1fr;}}
+  .panel{background:var(--ink);padding:26px 26px 10px;}
+  .panel h3{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:18px;font-family:'Inter',sans-serif;font-weight:600;}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;text-decoration:none;transition:background .15s;}
+  .row:last-child{border-bottom:none;}
+  a.row{display:flex;cursor:pointer;}
+  a.row:hover{background:rgba(216,184,118,0.06);}
+  .row .name{color:var(--parchment);}
+  .row .sub{color:var(--text-dim);font-size:11px;margin-left:8px;}
+  .row .right{text-align:right;}
+  .row .price{font-family:'IBM Plex Mono',monospace;}
+  .chg{font-family:'IBM Plex Mono',monospace;font-size:12px;margin-left:10px;}
+  .chg.up{color:var(--gain);}
+  .chg.down{color:var(--loss);}
+  .loading-row{color:var(--text-dim);font-size:13px;padding:20px 0;}
+  .news-item{padding:11px 0;border-bottom:1px solid var(--line);}
+  .news-item:last-child{border-bottom:none;}
+  .news-item a{color:var(--parchment);text-decoration:none;font-size:13px;line-height:1.4;display:block;}
+  .news-item a:hover{color:var(--gold-bright);}
+  .news-item .meta{color:var(--text-dim);font-size:11px;margin-top:4px;}
+  .vol-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;}
+  .vol-value{font-family:'IBM Plex Mono',monospace;font-size:26px;margin-top:6px;}
+  .vol-tag{display:inline-block;margin-top:10px;font-size:11px;padding:4px 10px;border:1px solid var(--line);color:var(--text-dim);}
+
+  /* ---------- Teach / Greeks section ---------- */
+  .greeks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:900px){.greeks-grid{grid-template-columns:repeat(2,1fr);}}
+  .gcard{background:var(--ink);padding:34px 24px;}
+  .gcard .glyph{font-family:'Fraunces',serif;font-size:42px;color:var(--gold-bright);}
+  .gcard h4{margin-top:14px;font-size:15px;font-weight:600;font-family:'Inter',sans-serif;}
+  .gcard p{margin-top:10px;font-size:13px;line-height:1.55;color:var(--text-dim);}
+
+  /* ---------- Newsletter ---------- */
+  .newsletter{
+    border:1px solid var(--line);padding:56px 6vw;text-align:left;
+    display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+  }
+  .newsletter h2{font-size:30px;max-width:420px;}
+  .newsletter p{color:var(--text-dim);margin-top:10px;font-size:14px;max-width:420px;}
+  form.signup{display:flex;gap:0;border:1px solid var(--line);min-width:340px;}
+  form.signup input{
+    flex:1;background:transparent;border:none;padding:16px;color:var(--parchment);font-size:14px;font-family:'Inter',sans-serif;
+  }
+  form.signup input:focus{outline:none;}
+  form.signup button{
+    background:var(--gold-bright);color:var(--ink);border:none;padding:0 22px;font-weight:600;font-size:13px;cursor:pointer;
+  }
+  form.signup button:hover{background:var(--parchment);}
+  .form-note{font-size:11px;color:var(--text-dim);margin-top:10px;}
+
+  /* ---------- Footer / disclaimer ---------- */
+  footer{border-top:1px solid var(--line);padding:44px 6vw;}
+  .disclaimer{max-width:820px;font-size:12px;line-height:1.7;color:var(--text-dim);}
+  .disclaimer strong{color:var(--parchment);}
+  .foot-bottom{display:flex;justify-content:space-between;margin-top:30px;font-size:12px;color:var(--text-dim);flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#D8B876" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#D8B876" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#D8B876" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#D8B876" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#D8B876" stroke-width="7"/>
+    </svg>
+    TheGreeksDesk
+  </div>
+  <div class="navlinks">
+    <a href="#markets">Markets</a>
+    <a href="#learn">Learn</a>
+    <a href="#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<div class="ticker-wrap">
+  <div class="ticker mono" id="tickerStrip">
+    <span class="loading-row">Loading market strip…</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="eyebrow"><span class="rule"></span>Options &amp; Risk, Explained Plainly</div>
+  <h1>Patience is <em>a position.</em></h1>
+  <p>Trade breakdowns, risk frameworks, and market structure — read by people who sell premium and manage risk for a living. Educational only, never personalised advice.</p>
+  <div class="actions">
+    <a href="#newsletter" class="btn primary">Join the newsletter</a>
+    <a href="#markets" class="btn ghost">See today's markets</a>
+  </div>
+  <div class="letters">
+    <div class="col"><span class="g">Δ</span><span class="label">Delta</span></div>
+    <div class="col"><span class="g">Θ</span><span class="label">Theta</span></div>
+    <div class="col"><span class="g">Γ</span><span class="label">Gamma</span></div>
+  </div>
+</div>
+
+<section id="markets">
+  <div class="section-head">
+    <span class="g">Α</span>
+    <h2>Live Market Pulse</h2>
+    <span class="status"><span class="dot" id="statusDot"></span><span id="statusText">Connecting…</span></span>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <h3>Major Indices</h3>
+      <div id="indices"><div class="loading-row">Fetching…</div></div>
+    </div>
+    <div class="panel">
+      <h3>Magnificent 7</h3>
+      <div id="mag7"><div class="loading-row">Fetching…</div></div>
+    </div>
+    <div class="panel">
+      <h3>Blue Chips</h3>
+      <div id="bluechip"><div class="loading-row">Fetching…</div></div>
+    </div>
+  </div>
+
+  <div class="panels" style="grid-template-columns:1fr 2fr;margin-top:1px;">
+    <div class="panel">
+      <h3>Volatility</h3>
+      <div id="volatility"><div class="loading-row">Fetching…</div></div>
+    </div>
+    <div class="panel">
+      <h3>Market Headlines</h3>
+      <div id="newsPanel"><div class="loading-row">Fetching…</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="learn">
+  <div class="section-head">
+    <span class="g">Β</span>
+    <h2>The Greeks, in plain English</h2>
+  </div>
+  <div class="greeks-grid">
+    <div class="gcard"><span class="glyph">Δ</span><h4>Delta</h4><p>How much an option's price moves when the underlying moves $1. The closest thing options have to "directional exposure."</p></div>
+    <div class="gcard"><span class="glyph">Θ</span><h4>Theta</h4><p>Time decay — what a premium seller is paid to wait. The engine behind most of TheGreeksDesk's content.</p></div>
+    <div class="gcard"><span class="glyph">Γ</span><h4>Gamma</h4><p>How fast Delta changes. The reason short-dated options can turn against a position quickly near expiry.</p></div>
+    <div class="gcard"><span class="glyph">Ρ</span><h4>Rho</h4><p>Sensitivity to interest rates — smaller day-to-day, but part of why longer-dated pricing shifts with rate expectations.</p></div>
+  </div>
+</section>
+
+<section id="newsletter">
+  <div class="newsletter">
+    <div>
+      <h2>One email a week. No signals, no noise.</h2>
+      <p>Trade breakdowns, a market stat worth knowing, and one Greeks concept explained properly. Educational content only.</p>
+    </div>
+    <div>
+      <form class="signup" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed ✓';">
+        <input type="email" placeholder="you@email.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="form-note">Free. Unsubscribe anytime.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> TheGreeksDesk publishes general market commentary and options education. Nothing here is personalised financial advice, and no content should be read as a recommendation to buy or sell any security or derivative. Trading options carries substantial risk, including loss of principal. Market data shown is delayed/indicative and for illustration only. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 TheGreeksDesk</span>
+    <span id="lastUpdated" class="mono"></span>
+  </div>
+</footer>
+
+<script>
+const SYMS = {
+  indices: [
+    {s:'SPY', name:'S&P 500', sub:'via SPY'},
+    {s:'QQQ', name:'Nasdaq 100', sub:'via QQQ'},
+    {s:'DIA', name:'Dow Jones', sub:'via DIA'},
+  ],
+  mag7: [
+    {s:'AAPL', name:'Apple'},
+    {s:'MSFT', name:'Microsoft'},
+    {s:'GOOGL', name:'Alphabet'},
+    {s:'AMZN', name:'Amazon'},
+    {s:'NVDA', name:'Nvidia'},
+    {s:'META', name:'Meta'},
+    {s:'TSLA', name:'Tesla'},
+  ],
+  bluechip: [
+    {s:'JPM', name:'JPMorgan'},
+    {s:'JNJ', name:'Johnson & Johnson'},
+    {s:'PG', name:'Procter & Gamble'},
+    {s:'V', name:'Visa'},
+    {s:'KO', name:'Coca-Cola'},
+    {s:'HD', name:'Home Depot'},
+  ]
+};
+
+// Fallback sample data (used if live fetch fails — clearly labeled as demo)
+const FALLBACK = {
+  'SPY': {price:641.2, chg:0.42}, 'QQQ': {price:568.4, chg:0.61}, 'DIA': {price:448.2, chg:-0.12},
+  'AAPL': {price:231.4, chg:0.8}, 'MSFT': {price:512.2, chg:0.3}, 'GOOGL': {price:198.6, chg:1.2},
+  'AMZN': {price:228.9, chg:-0.4}, 'NVDA': {price:178.3, chg:2.1}, 'META': {price:712.5, chg:0.9}, 'TSLA': {price:322.7, chg:-1.6},
+  'JPM': {price:268.1, chg:0.2}, 'JNJ': {price:162.4, chg:-0.1}, 'PG': {price:171.8, chg:0.15},
+  'V': {price:342.6, chg:0.5}, 'KO': {price:71.2, chg:0.1}, 'HD': {price:398.3, chg:0.6}
+};
+
+function fmtChg(c){
+  const sign = c >= 0 ? '+' : '';
+  return `${sign}${c.toFixed(2)}%`;
+}
+
+function renderList(elId, list, data){
+  const el = document.getElementById(elId);
+  el.innerHTML = list.map(item => {
+    const d = data[item.s] || FALLBACK[item.s];
+    const cls = d.chg >= 0 ? 'up' : 'down';
+    return `<a class="row" href="stock.html?symbol=${encodeURIComponent(item.s)}">
+      <span class="name">${item.name}<span class="sub">${item.sub || item.s}</span></span>
+      <span class="right"><span class="price">${d.price.toFixed(2)}</span><span class="chg ${cls}">${fmtChg(d.chg)}</span></span>
+    </a>`;
+  }).join('');
+}
+
+function renderTicker(data){
+  const all = [...SYMS.indices, ...SYMS.mag7];
+  const items = all.map(item => {
+    const d = data[item.s] || FALLBACK[item.s];
+    const cls = d.chg >= 0 ? 'up' : 'down';
+    return `<span><span class="sym">${item.s.replace('^','')}</span> ${d.price.toFixed(2)} <span class="chg ${cls}">${fmtChg(d.chg)}</span></span>`;
+  }).join('');
+  document.getElementById('tickerStrip').innerHTML = items + items; // duplicate for seamless scroll
+}
+
+async function fetchQuote(symbol){
+  // Calls our own serverless function (/api/quote.js), which holds the Finnhub
+  // API key server-side and is never exposed to the browser.
+  const res = await fetch(`/api/quote?symbol=${encodeURIComponent(symbol)}`);
+  if(!res.ok) throw new Error('bad response');
+  const json = await res.json();
+  if(json.error) throw new Error(json.error);
+  return {price: json.price, chg: json.chg};
+}
+
+async function loadMarketData(){
+  const allSyms = [...SYMS.indices, ...SYMS.mag7, ...SYMS.bluechip].map(x => x.s);
+  const data = {};
+  let liveCount = 0;
+
+  await Promise.all(allSyms.map(async (s) => {
+    try{
+      data[s] = await fetchQuote(s);
+      liveCount++;
+    }catch(e){
+      // leave it out — fallback will be used at render time
+    }
+  }));
+
+  renderList('indices', SYMS.indices, data);
+  renderList('mag7', SYMS.mag7, data);
+  renderList('bluechip', SYMS.bluechip, data);
+  renderTicker(data);
+
+  const dot = document.getElementById('statusDot');
+  const text = document.getElementById('statusText');
+  if(liveCount > allSyms.length / 2){
+    dot.classList.remove('demo');
+    text.textContent = 'Live data';
+  } else {
+    dot.classList.add('demo');
+    text.textContent = 'Demo data (live feed unavailable)';
+  }
+  document.getElementById('lastUpdated').textContent = 'Updated ' + new Date().toLocaleTimeString();
+}
+
+async function loadVolatility(){
+  const el = document.getElementById('volatility');
+  try{
+    // VIX is an index, not a stock — Finnhub's coverage of index quotes varies by plan,
+    // so this may fall back to demo data if the free tier doesn't return it.
+    const d = await fetchQuote('^VIX');
+    renderVol(el, d.price, d.chg, false);
+  }catch(e){
+    renderVol(el, 15.8, -2.1, true);
+  }
+}
+
+function renderVol(el, price, chg, isDemo){
+  const cls = chg >= 0 ? 'up' : 'down';
+  const regime = price < 15 ? 'Low' : price < 25 ? 'Elevated' : 'High';
+  el.innerHTML = `
+    <div class="vol-label">VIX ${isDemo ? '(demo)' : ''}</div>
+    <div class="vol-value">${price.toFixed(2)} <span class="chg ${cls}">${fmtChg(chg)}</span></div>
+    <div class="vol-tag">${regime} volatility regime</div>
+  `;
+}
+
+async function loadNews(){
+  const el = document.getElementById('newsPanel');
+  try{
+    const res = await fetch('/api/news');
+    if(!res.ok) throw new Error('bad response');
+    const json = await res.json();
+    if(!json.headlines || json.headlines.length === 0) throw new Error('empty');
+    el.innerHTML = json.headlines.map(n => `
+      <div class="news-item">
+        <a href="${n.url}" target="_blank" rel="noopener">${n.headline}</a>
+        <div class="meta">${n.source} · ${new Date(n.datetime * 1000).toLocaleDateString()}</div>
+      </div>
+    `).join('');
+  }catch(e){
+    el.innerHTML = `<div class="loading-row">Headlines unavailable right now.</div>`;
+  }
+}
+
+loadMarketData();
+loadVolatility();
+loadNews();
+setInterval(loadMarketData, 60000);
+setInterval(loadVolatility, 60000);
+setInterval(loadNews, 120000);
+</script>
+
+</body>
+</html>
