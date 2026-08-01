@@ -263,9 +263,10 @@
 <script>
 const SYMS = {
   indices: [
-    {s:'SPY', name:'S&P 500', sub:'via SPY'},
-    {s:'QQQ', name:'Nasdaq 100', sub:'via QQQ'},
-    {s:'DIA', name:'Dow Jones', sub:'via DIA'},
+    {s:'NDX', name:'Nasdaq 100'},
+    {s:'SPX', name:'S&P 500'},
+    {s:'DJI', name:'Dow Jones'},
+    {s:'RUT', name:'Russell 2000'},
   ],
   mag7: [
     {s:'AAPL', name:'Apple'},
@@ -288,12 +289,14 @@ const SYMS = {
 
 // Fallback sample data (used if live fetch fails — clearly labeled as demo)
 const FALLBACK = {
-  'SPY': {price:641.2, chg:0.42}, 'QQQ': {price:568.4, chg:0.61}, 'DIA': {price:448.2, chg:-0.12},
+  'NDX': {price:23108.6, chg:0.61}, 'SPX': {price:6412.3, chg:0.42}, 'DJI': {price:44820.1, chg:-0.12}, 'RUT': {price:2384.7, chg:0.28},
   'AAPL': {price:231.4, chg:0.8}, 'MSFT': {price:512.2, chg:0.3}, 'GOOGL': {price:198.6, chg:1.2},
   'AMZN': {price:228.9, chg:-0.4}, 'NVDA': {price:178.3, chg:2.1}, 'META': {price:712.5, chg:0.9}, 'TSLA': {price:322.7, chg:-1.6},
   'JPM': {price:268.1, chg:0.2}, 'JNJ': {price:162.4, chg:-0.1}, 'PG': {price:171.8, chg:0.15},
   'V': {price:342.6, chg:0.5}, 'KO': {price:71.2, chg:0.1}, 'HD': {price:398.3, chg:0.6}
 };
+
+const INDEX_SET = new Set(SYMS.indices.map(x => x.s));
 
 function fmtChg(c){
   const sign = c >= 0 ? '+' : '';
@@ -305,7 +308,8 @@ function renderList(elId, list, data){
   el.innerHTML = list.map(item => {
     const d = data[item.s] || FALLBACK[item.s];
     const cls = d.chg >= 0 ? 'up' : 'down';
-    return `<a class="row" href="stock.html?symbol=${encodeURIComponent(item.s)}">
+    const type = INDEX_SET.has(item.s) ? 'index' : 'stock';
+    return `<a class="row" href="stock.html?symbol=${encodeURIComponent(item.s)}&type=${type}">
       <span class="name">${item.name}<span class="sub">${item.sub || item.s}</span></span>
       <span class="right"><span class="price">${d.price.toFixed(2)}</span><span class="chg ${cls}">${fmtChg(d.chg)}</span></span>
     </a>`;
@@ -317,14 +321,14 @@ function renderTicker(data){
   const items = all.map(item => {
     const d = data[item.s] || FALLBACK[item.s];
     const cls = d.chg >= 0 ? 'up' : 'down';
-    return `<span><span class="sym">${item.s.replace('^','')}</span> ${d.price.toFixed(2)} <span class="chg ${cls}">${fmtChg(d.chg)}</span></span>`;
+    return `<span><span class="sym">${item.s}</span> ${d.price.toFixed(2)} <span class="chg ${cls}">${fmtChg(d.chg)}</span></span>`;
   }).join('');
   document.getElementById('tickerStrip').innerHTML = items + items; // duplicate for seamless scroll
 }
 
 async function fetchQuote(symbol){
   // Calls our own serverless function (/api/quote.js), which holds the Finnhub
-  // API key server-side and is never exposed to the browser.
+  // API key server-side and is never exposed to the browser. Used for individual stocks.
   const res = await fetch(`/api/quote?symbol=${encodeURIComponent(symbol)}`);
   if(!res.ok) throw new Error('bad response');
   const json = await res.json();
@@ -332,19 +336,31 @@ async function fetchQuote(symbol){
   return {price: json.price, chg: json.chg};
 }
 
+async function fetchIndexQuote(symbol){
+  // Calls /api/index-quote.js (Twelve Data) — used for real index tickers, since
+  // Finnhub's free tier doesn't reliably support raw index quotes.
+  const res = await fetch(`/api/index-quote?symbol=${encodeURIComponent(symbol)}`);
+  if(!res.ok) throw new Error('bad response');
+  const json = await res.json();
+  if(json.error) throw new Error(json.error);
+  return {price: json.price, chg: json.changePct};
+}
+
 async function loadMarketData(){
-  const allSyms = [...SYMS.indices, ...SYMS.mag7, ...SYMS.bluechip].map(x => x.s);
+  const stockSyms = [...SYMS.mag7, ...SYMS.bluechip].map(x => x.s);
+  const indexSyms = SYMS.indices.map(x => x.s);
   const data = {};
   let liveCount = 0;
+  const total = stockSyms.length + indexSyms.length;
 
-  await Promise.all(allSyms.map(async (s) => {
-    try{
-      data[s] = await fetchQuote(s);
-      liveCount++;
-    }catch(e){
-      // leave it out — fallback will be used at render time
-    }
-  }));
+  await Promise.all([
+    ...stockSyms.map(async (s) => {
+      try{ data[s] = await fetchQuote(s); liveCount++; }catch(e){ /* fallback used at render */ }
+    }),
+    ...indexSyms.map(async (s) => {
+      try{ data[s] = await fetchIndexQuote(s); liveCount++; }catch(e){ /* fallback used at render */ }
+    }),
+  ]);
 
   renderList('indices', SYMS.indices, data);
   renderList('mag7', SYMS.mag7, data);
@@ -353,7 +369,7 @@ async function loadMarketData(){
 
   const dot = document.getElementById('statusDot');
   const text = document.getElementById('statusText');
-  if(liveCount > allSyms.length / 2){
+  if(liveCount > total / 2){
     dot.classList.remove('demo');
     text.textContent = 'Live data';
   } else {
@@ -366,9 +382,7 @@ async function loadMarketData(){
 async function loadVolatility(){
   const el = document.getElementById('volatility');
   try{
-    // VIX is an index, not a stock — Finnhub's coverage of index quotes varies by plan,
-    // so this may fall back to demo data if the free tier doesn't return it.
-    const d = await fetchQuote('^VIX');
+    const d = await fetchIndexQuote('VIX');
     renderVol(el, d.price, d.chg, false);
   }catch(e){
     renderVol(el, 15.8, -2.1, true);
