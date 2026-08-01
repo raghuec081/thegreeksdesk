@@ -101,6 +101,7 @@
 <script>
 const params = new URLSearchParams(window.location.search);
 const symbol = (params.get('symbol') || '').toUpperCase();
+const type = (params.get('type') || 'stock').toLowerCase(); // 'stock' or 'index'
 
 function fmtChg(c){
   const sign = c >= 0 ? '+' : '';
@@ -112,6 +113,18 @@ function rangePercent(value, low, high){
   return Math.max(0, Math.min(100, ((value - low) / (high - low)) * 100));
 }
 
+async function fetchChart(sym){
+  try{
+    const res = await fetch(`/api/chart?symbol=${encodeURIComponent(sym)}`);
+    if(!res.ok) return null;
+    const json = await res.json();
+    if(json.error || !json.closes || json.closes.length < 2) return null;
+    return json;
+  }catch(e){
+    return null;
+  }
+}
+
 async function load(){
   const main = document.getElementById('main');
   if(!symbol){
@@ -119,20 +132,40 @@ async function load(){
     return;
   }
   try{
-    const res = await fetch(`/api/stock?symbol=${encodeURIComponent(symbol)}`);
-    if(!res.ok) throw new Error('bad response');
-    const d = await res.json();
+    const mainEndpoint = type === 'index'
+      ? `/api/index-quote?symbol=${encodeURIComponent(symbol)}`
+      : `/api/stock?symbol=${encodeURIComponent(symbol)}`;
+
+    const [mainRes, chart] = await Promise.all([
+      fetch(mainEndpoint),
+      fetchChart(symbol),
+    ]);
+
+    if(!mainRes.ok) throw new Error('bad response');
+    const d = await mainRes.json();
     if(d.error) throw new Error(d.error);
-    render(d);
+
+    // Index quotes don't include company news — fall back to general market headlines instead.
+    if(type === 'index' && (!d.news || d.news.length === 0)){
+      try{
+        const newsRes = await fetch('/api/news');
+        if(newsRes.ok){
+          const newsJson = await newsRes.json();
+          d.news = newsJson.headlines || [];
+        }
+      }catch(e){ d.news = []; }
+    }
+
+    render(d, chart);
   }catch(e){
     main.innerHTML = `<div class="loading">Couldn't load data for ${symbol} right now.<br><span style="font-size:12px;">${e.message}</span></div>`;
   }
 }
 
-function render(d){
+function render(d, chart){
   const cls = d.change >= 0 ? 'up' : 'down';
-  const dayPct = rangePercent(d.price, d.dayLow, d.dayHigh);
   const week52Pct = rangePercent(d.price, d.week52Low, d.week52High);
+  const newsHeading = type === 'index' ? 'Market Headlines' : 'Related News';
 
   document.getElementById('main').innerHTML = `
     <div class="header-row">
@@ -163,7 +196,7 @@ function render(d){
     </div>
 
     <div class="news-section">
-      <div class="section-head"><span class="g">Ν</span><h2>Related News</h2></div>
+      <div class="section-head"><span class="g">Ν</span><h2>${newsHeading}</h2></div>
       <div id="newsList">${
         d.news && d.news.length
           ? d.news.map(n => `
@@ -171,20 +204,20 @@ function render(d){
               <a href="${n.url}" target="_blank" rel="noopener">${n.headline}</a>
               <div class="meta">${n.source} · ${new Date(n.datetime * 1000).toLocaleDateString()}</div>
             </div>`).join('')
-          : `<div class="news-item"><span style="color:var(--text-dim);font-size:14px;">No recent news found for this symbol.</span></div>`
+          : `<div class="news-item"><span style="color:var(--text-dim);font-size:14px;">No recent news found.</span></div>`
       }</div>
     </div>
   `;
 
   const note = document.getElementById('chartNote');
-  if(d.chart && d.chart.closes && d.chart.closes.length > 1){
+  if(chart && chart.closes && chart.closes.length > 1){
     const ctx = document.getElementById('priceChart').getContext('2d');
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: d.chart.timestamps.map(t => new Date(t * 1000).toLocaleDateString(undefined, {month:'short', day:'numeric'})),
+        labels: chart.dates.map(dt => new Date(dt).toLocaleDateString(undefined, {month:'short', day:'numeric'})),
         datasets: [{
-          data: d.chart.closes,
+          data: chart.closes,
           borderColor: '#D8B876',
           backgroundColor: 'rgba(216,184,118,0.08)',
           fill: true,
@@ -205,7 +238,7 @@ function render(d){
     note.textContent = '90-day price history.';
   } else {
     document.getElementById('priceChart').style.display = 'none';
-    note.innerHTML = 'Historical chart unavailable on the current data plan — showing day and 52-week range instead below.';
+    note.innerHTML = 'Historical chart unavailable right now — showing day and 52-week range instead below.';
   }
 }
 
