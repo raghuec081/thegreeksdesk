@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What is time decay? — TheGreeksDesk</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght..144,400;9..144,500;9..144,600&family=Inter:wght;500;600;700&family=IBM+Plex+Mono:wght;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#D8B876" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#D8B876" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#D8B876" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#D8B876" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#D8B876" stroke-width="7"/>
+    </svg>
+    TheGreeksDesk
+  </a>
+  <a href="learn.html" class="back">← Back to Learn</a>
+</nav>
+
+<main>
+  <div class="lesson-meta">Lesson 1 · Options basics</div>
+  <h1>What is time decay?</h1>
+
+  <article>
+    <p>Every option has an expiry date. As that date gets closer, the option loses value — even if the stock price doesn't move at all. This loss in value, just from time passing, is called <strong>time decay</strong>. In options trading, we use the Greek letter Theta (Θ) to measure it.</p>
+
+    <p>Think of an option like an ice cube. Even sitting still, doing nothing, it slowly melts. The stock price is the room temperature — it affects how fast the ice melts, but the ice melts either way, just from time passing.</p>
+
+    <div class="example">
+      <strong>A simple example.</strong> Say you buy an option for £2.00 with 30 days left until expiry. If the stock price doesn't move at all for two weeks, that option might now be worth only £1.40 — not because anything happened, just because 14 of those 30 days passed. That missing £0.60 is time decay.
+    </div>
+
+    <h2>Why this matters</h2>
+    <p>If you <strong>buy</strong> options, time decay works against you. Every day that passes, your option is worth a little less, all else being equal. You need the stock to move in your favour, and move enough, before time eats away your position.</p>
+
+    <p>If you <strong>sell</strong> options, time decay works for you. You collect a premium upfront, and every day that passes without the stock moving against you, that premium is a little more "locked in." This is why many traders who sell options describe themselves as being "paid to wait."</p>
+
+    <h2>Decay isn't a straight line</h2>
+    <p>Time decay isn't steady. It speeds up as expiry gets closer. An option with 60 days left decays slowly. The same option with 5 days left can lose value very quickly, day by day. This is one reason short-dated options (like the 1-3 day options we often write about here) behave so differently from options with months left on them.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> The last week before expiry is when time decay is strongest. This is exactly why short-dated option sellers pay close attention to the final days of a trade — and why short-dated option buyers need the stock to move fast, not eventually.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean selling options is "free money." You're taking on real risk if the stock moves against you — sometimes a large risk.</li>
+      <li>It doesn't mean buying options is always a bad idea. If you expect a big, fast move, paying for that speed can be worth it.</li>
+      <li>It's one factor among several (the other Greeks matter too) — not the whole picture on its own.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <span></span>
+    <a href="position-sizing.html">Next lesson: Position sizing basics →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>
