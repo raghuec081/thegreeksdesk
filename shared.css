@@ -1,71 +1,73 @@
 :root{
-  --ink:#0B1220; --ink-2:#111B2E; --parchment:#F3EFE7;
-  --gold:#B08D57; --gold-bright:#D8B876;
-  --gain:#3E8E75; --loss:#B5432F;
-  --line: rgba(243,239,231,0.10); --text-dim: rgba(243,239,231,0.62);
+  --cream:#F7F4EE; --card:#FFFFFF;
+  --ink:#1A2233; --ink-dim: #5B6472;
+  --gold:#9C7A46; --gold-bright:#B08D57;
+  --gain:#2F7A5E; --loss:#A8402C;
+  --line: #E4DFD3;
 }
 *{box-sizing:border-box;}
-html,body{margin:0;padding:0;background:var(--ink);color:var(--parchment);
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);
   font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
-h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;margin:0;}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;margin:0;color:var(--ink);}
 a{color:inherit;}
 
 nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:22px 6vw;position:sticky;top:0;z-index:50;
-  background:rgba(11,18,32,0.85);backdrop-filter:blur(10px);
+  background:rgba(247,244,238,0.9);backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
-.brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',Georgia,serif;font-size:20px;text-decoration:none;color:var(--parchment);}
-.back{font-size:13px;color:var(--text-dim);text-decoration:none;}
-.back:hover{color:var(--gold-bright);}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',Georgia,serif;font-size:20px;text-decoration:none;color:var(--ink);}
+.back{font-size:13px;color:var(--ink-dim);text-decoration:none;}
+.back:hover{color:var(--gold);}
 
 main{max-width:760px;margin:0 auto;padding:60px 6vw 40px;}
 main h1{font-size:clamp(32px,5vw,48px);}
-.intro{color:var(--text-dim);font-size:16px;line-height:1.7;margin-top:20px;max-width:600px;}
+.intro{color:var(--ink-dim);font-size:16px;line-height:1.7;margin-top:20px;max-width:600px;}
 
 /* Lesson list on the hub page */
 .lesson-list{margin-top:44px;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);}
 .lesson-card{
-  display:flex;gap:20px;align-items:flex-start;padding:26px;background:var(--ink);
+  display:flex;gap:20px;align-items:flex-start;padding:26px;background:var(--card);
   text-decoration:none;color:inherit;transition:background .15s;
 }
-.lesson-card:hover{background:var(--ink-2);}
-.lesson-card .glyph{font-family:'Fraunces',Georgia,serif;font-size:32px;color:var(--gold-bright);flex-shrink:0;width:40px;}
+.lesson-card:hover{background:var(--cream);}
+.lesson-card .glyph{font-family:'Fraunces',Georgia,serif;font-size:32px;color:var(--gold);flex-shrink:0;width:40px;}
 .lesson-card h3{font-size:18px;}
-.lesson-card p{color:var(--text-dim);font-size:14px;margin-top:8px;line-height:1.6;}
+.lesson-card p{color:var(--ink-dim);font-size:14px;margin-top:8px;line-height:1.6;}
 
 /* Article/lesson pages */
-.lesson-meta{color:var(--text-dim);font-size:13px;margin-top:14px;text-transform:uppercase;letter-spacing:0.06em;}
+.lesson-meta{color:var(--gold);font-size:13px;margin-top:14px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;}
 article{margin-top:36px;}
-article p{font-size:16px;line-height:1.75;color:var(--parchment);margin-bottom:20px;}
+article p{font-size:16px;line-height:1.75;color:var(--ink);margin-bottom:20px;}
 article h2{font-size:22px;margin-top:44px;margin-bottom:16px;}
 article .example{
-  background:var(--ink-2);border-left:3px solid var(--gold-bright);
-  padding:18px 22px;margin:24px 0;font-size:15px;line-height:1.7;color:var(--text-dim);
+  background:var(--card);border-left:3px solid var(--gold);
+  padding:18px 22px;margin:24px 0;font-size:15px;line-height:1.7;color:var(--ink-dim);
+  border-radius:0 6px 6px 0;
 }
-article .example strong{color:var(--parchment);}
+article .example strong{color:var(--ink);}
 article ul{padding-left:20px;margin-bottom:20px;}
-article li{font-size:16px;line-height:1.75;margin-bottom:10px;}
+article li{font-size:16px;line-height:1.75;margin-bottom:10px;color:var(--ink);}
 .next-lesson{
   margin-top:56px;padding-top:28px;border-top:1px solid var(--line);
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
 }
-.next-lesson a{color:var(--gold-bright);text-decoration:none;font-size:14px;}
+.next-lesson a{color:var(--gold);text-decoration:none;font-size:14px;font-weight:500;}
 .next-lesson a:hover{text-decoration:underline;}
 
 /* Footer */
 footer{border-top:1px solid var(--line);padding:34px 6vw;margin-top:60px;}
-.disclaimer{max-width:820px;font-size:12px;line-height:1.7;color:var(--text-dim);margin:0 auto;}
-.disclaimer strong{color:var(--parchment);}
+.disclaimer{max-width:820px;font-size:12px;line-height:1.7;color:var(--ink-dim);margin:0 auto;}
+.disclaimer strong{color:var(--ink);}
 
 /* Track record table */
-.track-table{width:100%;border-collapse:collapse;margin-top:30px;font-size:14px;}
-.track-table th{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);color:var(--text-dim);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;}
-.track-table td{padding:12px 10px;border-bottom:1px solid var(--line);font-family:'IBM Plex Mono',monospace;}
+.track-table{width:100%;border-collapse:collapse;margin-top:30px;font-size:14px;background:var(--card);}
+.track-table th{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);color:var(--ink-dim);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;}
+.track-table td{padding:12px 10px;border-bottom:1px solid var(--line);font-family:'IBM Plex Mono',monospace;color:var(--ink);}
 .track-table .win{color:var(--gain);}
 .track-table .loss{color:var(--loss);}
-.track-note{background:var(--ink-2);border-left:3px solid var(--gold-bright);padding:18px 22px;margin:30px 0;font-size:14px;line-height:1.7;color:var(--text-dim);}
+.track-note{background:var(--card);border-left:3px solid var(--gold);padding:18px 22px;margin:30px 0;font-size:14px;line-height:1.7;color:var(--ink-dim);border-radius:0 6px 6px 0;}
 
 /* About page */
-.about-body p{font-size:16px;line-height:1.8;color:var(--parchment);margin-bottom:20px;}
+.about-body p{font-size:16px;line-height:1.8;color:var(--ink);margin-bottom:20px;}
