@@ -161,8 +161,9 @@
     TheGreeksDesk
   </div>
   <div class="navlinks">
-    <a href="#markets">Markets</a>
-    <a href="#learn">Learn</a>
+    <a href="learn.html">Learn</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
     <a href="#newsletter">Newsletter</a>
   </div>
 </nav>
@@ -174,12 +175,12 @@
 </div>
 
 <div class="hero">
-  <div class="eyebrow"><span class="rule"></span>Options &amp; Risk, Explained Plainly</div>
+  <div class="eyebrow"><span class="rule"></span>Index Options, Explained Simply</div>
   <h1>Patience is <em>a position.</em></h1>
-  <p>Trade breakdowns, risk frameworks, and market structure — read by people who sell premium and manage risk for a living. Educational only, never personalised advice.</p>
+  <p>Plain-English lessons on options and risk, mainly on NDX and SPX spreads. No signals. No "copy my trades." Just how it actually works, and how to manage the risk properly.</p>
   <div class="actions">
     <a href="#newsletter" class="btn primary">Join the newsletter</a>
-    <a href="#markets" class="btn ghost">See today's markets</a>
+    <a href="learn.html" class="btn ghost">Start learning</a>
   </div>
   <div class="letters">
     <div class="col"><span class="g">Δ</span><span class="label">Delta</span></div>
@@ -200,17 +201,6 @@
       <div id="indices"><div class="loading-row">Fetching…</div></div>
     </div>
     <div class="panel">
-      <h3>Magnificent 7</h3>
-      <div id="mag7"><div class="loading-row">Fetching…</div></div>
-    </div>
-    <div class="panel">
-      <h3>Blue Chips</h3>
-      <div id="bluechip"><div class="loading-row">Fetching…</div></div>
-    </div>
-  </div>
-
-  <div class="panels" style="grid-template-columns:1fr 2fr;margin-top:1px;">
-    <div class="panel">
       <h3>Volatility</h3>
       <div id="volatility"><div class="loading-row">Fetching…</div></div>
     </div>
@@ -224,25 +214,51 @@
 <section id="learn">
   <div class="section-head">
     <span class="g">Β</span>
-    <h2>The Greeks, in plain English</h2>
+    <h2>Start here</h2>
   </div>
   <div class="greeks-grid">
-    <div class="gcard"><span class="glyph">Δ</span><h4>Delta</h4><p>How much an option's price moves when the underlying moves $1. The closest thing options have to "directional exposure."</p></div>
-    <div class="gcard"><span class="glyph">Θ</span><h4>Theta</h4><p>Time decay — what a premium seller is paid to wait. The engine behind most of TheGreeksDesk's content.</p></div>
-    <div class="gcard"><span class="glyph">Γ</span><h4>Gamma</h4><p>How fast Delta changes. The reason short-dated options can turn against a position quickly near expiry.</p></div>
-    <div class="gcard"><span class="glyph">Ρ</span><h4>Rho</h4><p>Sensitivity to interest rates — smaller day-to-day, but part of why longer-dated pricing shifts with rate expectations.</p></div>
+    <a href="theta-decay.html" class="gcard" style="text-decoration:none;color:inherit;display:block;">
+      <span class="glyph">Θ</span><h4>What is time decay?</h4>
+      <p>The simple idea behind every option seller's edge, explained without the maths.</p>
+    </a>
+    <a href="position-sizing.html" class="gcard" style="text-decoration:none;color:inherit;display:block;">
+      <span class="glyph">Δ</span><h4>Position sizing basics</h4>
+      <p>How much to risk on one trade, and why most beginners get this part wrong first.</p>
+    </a>
+    <a href="risk-management.html" class="gcard" style="text-decoration:none;color:inherit;display:block;">
+      <span class="glyph">Γ</span><h4>Risk management, simply</h4>
+      <p>The habits that keep one bad trade from becoming a bad month.</p>
+    </a>
+    <a href="learn.html" class="gcard" style="text-decoration:none;color:inherit;display:block;">
+      <span class="glyph">Ρ</span><h4>See all lessons</h4>
+      <p>Everything published so far, in plain English, free.</p>
+    </a>
   </div>
+</section>
+
+<section id="about-teaser">
+  <div class="section-head">
+    <span class="g">Χ</span>
+    <h2>Who's behind this</h2>
+  </div>
+  <p style="max-width:640px;color:var(--text-dim);font-size:15px;line-height:1.7;">
+    Written by someone who spends the day job managing risk data for a major bank, and the
+    evenings trading NDX and SPX spreads. No signals for sale, no "guru" pitch — just plain
+    explanations and an honest, public record of what's actually being traded.
+  </p>
+  <a href="about.html" style="color:var(--gold-bright);font-size:14px;text-decoration:none;">Read more →</a>
 </section>
 
 <section id="newsletter">
   <div class="newsletter">
     <div>
       <h2>One email a week. No signals, no noise.</h2>
-      <p>Trade breakdowns, a market stat worth knowing, and one Greeks concept explained properly. Educational content only.</p>
+      <p>Plain-English lessons, one market stat worth knowing, and what's actually changing in the trades. Free.</p>
     </div>
     <div>
-      <form class="signup" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed ✓';">
-        <input type="email" placeholder="you@email.com" required>
+      <form action="https://buttondown.com/api/emails/embed-subscribe/YOUR-BUTTONDOWN-USERNAME" method="post" class="signup" target="popupwindow" onsubmit="window.open('https://buttondown.com/YOUR-BUTTONDOWN-USERNAME', 'popupwindow')">
+        <input type="email" name="email" placeholder="you@email.com" required>
+        <input type="hidden" value="1" name="embed">
         <button type="submit">Subscribe</button>
       </form>
       <div class="form-note">Free. Unsubscribe anytime.</div>
@@ -265,38 +281,13 @@ const SYMS = {
   indices: [
     {s:'NDX', name:'Nasdaq 100'},
     {s:'SPX', name:'S&P 500'},
-    {s:'DJI', name:'Dow Jones'},
-    {s:'RUT', name:'Russell 2000'},
   ],
-  mag7: [
-    {s:'AAPL', name:'Apple'},
-    {s:'MSFT', name:'Microsoft'},
-    {s:'GOOGL', name:'Alphabet'},
-    {s:'AMZN', name:'Amazon'},
-    {s:'NVDA', name:'Nvidia'},
-    {s:'META', name:'Meta'},
-    {s:'TSLA', name:'Tesla'},
-  ],
-  bluechip: [
-    {s:'JPM', name:'JPMorgan'},
-    {s:'JNJ', name:'Johnson & Johnson'},
-    {s:'PG', name:'Procter & Gamble'},
-    {s:'V', name:'Visa'},
-    {s:'KO', name:'Coca-Cola'},
-    {s:'HD', name:'Home Depot'},
-  ]
 };
 
 // Fallback sample data (used if live fetch fails — clearly labeled as demo)
 const FALLBACK = {
-  'NDX': {price:23108.6, chg:0.61}, 'SPX': {price:6412.3, chg:0.42}, 'DJI': {price:44820.1, chg:-0.12}, 'RUT': {price:2384.7, chg:0.28},
-  'AAPL': {price:231.4, chg:0.8}, 'MSFT': {price:512.2, chg:0.3}, 'GOOGL': {price:198.6, chg:1.2},
-  'AMZN': {price:228.9, chg:-0.4}, 'NVDA': {price:178.3, chg:2.1}, 'META': {price:712.5, chg:0.9}, 'TSLA': {price:322.7, chg:-1.6},
-  'JPM': {price:268.1, chg:0.2}, 'JNJ': {price:162.4, chg:-0.1}, 'PG': {price:171.8, chg:0.15},
-  'V': {price:342.6, chg:0.5}, 'KO': {price:71.2, chg:0.1}, 'HD': {price:398.3, chg:0.6}
+  'NDX': {price:23108.6, chg:0.61}, 'SPX': {price:6412.3, chg:0.42},
 };
-
-const INDEX_SET = new Set(SYMS.indices.map(x => x.s));
 
 function fmtChg(c){
   const sign = c >= 0 ? '+' : '';
@@ -308,32 +299,20 @@ function renderList(elId, list, data){
   el.innerHTML = list.map(item => {
     const d = data[item.s] || FALLBACK[item.s];
     const cls = d.chg >= 0 ? 'up' : 'down';
-    const type = INDEX_SET.has(item.s) ? 'index' : 'stock';
-    return `<a class="row" href="stock.html?symbol=${encodeURIComponent(item.s)}&type=${type}">
-      <span class="name">${item.name}<span class="sub">${item.sub || item.s}</span></span>
+    return `<a class="row" href="stock.html?symbol=${encodeURIComponent(item.s)}&type=index">
+      <span class="name">${item.name}<span class="sub">${item.s}</span></span>
       <span class="right"><span class="price">${d.price.toFixed(2)}</span><span class="chg ${cls}">${fmtChg(d.chg)}</span></span>
     </a>`;
   }).join('');
 }
 
 function renderTicker(data){
-  const all = [...SYMS.indices, ...SYMS.mag7];
-  const items = all.map(item => {
+  const items = SYMS.indices.map(item => {
     const d = data[item.s] || FALLBACK[item.s];
     const cls = d.chg >= 0 ? 'up' : 'down';
     return `<span><span class="sym">${item.s}</span> ${d.price.toFixed(2)} <span class="chg ${cls}">${fmtChg(d.chg)}</span></span>`;
   }).join('');
   document.getElementById('tickerStrip').innerHTML = items + items; // duplicate for seamless scroll
-}
-
-async function fetchQuote(symbol){
-  // Calls our own serverless function (/api/quote.js), which holds the Finnhub
-  // API key server-side and is never exposed to the browser. Used for individual stocks.
-  const res = await fetch(`/api/quote?symbol=${encodeURIComponent(symbol)}`);
-  if(!res.ok) throw new Error('bad response');
-  const json = await res.json();
-  if(json.error) throw new Error(json.error);
-  return {price: json.price, chg: json.chg};
 }
 
 async function fetchIndexQuote(symbol){
@@ -347,29 +326,20 @@ async function fetchIndexQuote(symbol){
 }
 
 async function loadMarketData(){
-  const stockSyms = [...SYMS.mag7, ...SYMS.bluechip].map(x => x.s);
   const indexSyms = SYMS.indices.map(x => x.s);
   const data = {};
   let liveCount = 0;
-  const total = stockSyms.length + indexSyms.length;
 
-  await Promise.all([
-    ...stockSyms.map(async (s) => {
-      try{ data[s] = await fetchQuote(s); liveCount++; }catch(e){ /* fallback used at render */ }
-    }),
-    ...indexSyms.map(async (s) => {
-      try{ data[s] = await fetchIndexQuote(s); liveCount++; }catch(e){ /* fallback used at render */ }
-    }),
-  ]);
+  await Promise.all(indexSyms.map(async (s) => {
+    try{ data[s] = await fetchIndexQuote(s); liveCount++; }catch(e){ /* fallback used at render */ }
+  }));
 
   renderList('indices', SYMS.indices, data);
-  renderList('mag7', SYMS.mag7, data);
-  renderList('bluechip', SYMS.bluechip, data);
   renderTicker(data);
 
   const dot = document.getElementById('statusDot');
   const text = document.getElementById('statusText');
-  if(liveCount > total / 2){
+  if(liveCount > indexSyms.length / 2){
     dot.classList.remove('demo');
     text.textContent = 'Live data';
   } else {
@@ -383,6 +353,7 @@ async function loadVolatility(){
   const el = document.getElementById('volatility');
   try{
     const d = await fetchIndexQuote('VIX');
+
     renderVol(el, d.price, d.chg, false);
   }catch(e){
     renderVol(el, 15.8, -2.1, true);
