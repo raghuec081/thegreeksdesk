@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Today's Chain — The Greeks Desk</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#22242C; --ink-2:#2B2E38; --parchment:#F3EFE7;
+    --gold:#A98C61; --gold-bright:#C4A876;
+    --gain:#3E8E75; --loss:#B5432F;
+    --line: rgba(243,239,231,0.12); --text-dim: rgba(243,239,231,0.65);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--ink);color:var(--parchment);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;margin:0;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 6vw;position:sticky;top:0;z-index:50;
+    background:rgba(34,36,44,0.88);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:20px;text-decoration:none;color:var(--parchment);}
+  .back{font-size:13px;color:var(--text-dim);text-decoration:none;}
+  .back:hover{color:var(--gold-bright);}
+
+  main{max-width:900px;margin:0 auto;padding:56px 6vw;}
+  main h1{font-size:clamp(30px,5vw,42px);}
+  .intro{color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:16px;max-width:640px;}
+
+  .controls{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap;}
+  .controls button{
+    background:transparent;border:1px solid var(--line);color:var(--text-dim);
+    padding:9px 18px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;
+    transition:all .15s;
+  }
+  .controls button.active{border-color:var(--gold-bright);color:var(--gold-bright);}
+  .controls button:hover{border-color:var(--gold-bright);}
+
+  .chain-meta{margin-top:24px;color:var(--text-dim);font-size:13px;}
+  .chain-meta strong{color:var(--parchment);}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px;}
+  th{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line);color:var(--text-dim);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;}
+  th:first-child, td:first-child{text-align:left;}
+  td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line);font-family:'IBM Plex Mono',monospace;}
+  tr.near-money{background:rgba(196,168,118,0.08);}
+
+  .loading, .error-msg{color:var(--text-dim);padding:40px 0;text-align:center;font-size:14px;}
+  footer{border-top:1px solid var(--line);padding:34px 6vw;margin-top:60px;}
+  .disclaimer{max-width:820px;font-size:12px;line-height:1.7;color:var(--text-dim);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#C4A876" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#C4A876" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#C4A876" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#C4A876" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#C4A876" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <a href="index.html" class="back">← Back to markets</a>
+</nav>
+
+<main>
+  <h1>Today's Chain</h1>
+  <p class="intro">Real Greeks on the nearest-expiry, near-the-money strikes — not a demo. Pulled directly from the live options market, not simulated.</p>
+
+  <div class="controls">
+    <button id="btn-spx" class="active" onclick="loadChain('SPX')">SPX</button>
+    <button id="btn-ndx" onclick="loadChain('NDX')">NDX</button>
+    <button id="btn-put" class="active" onclick="setType('put')">Puts</button>
+    <button id="btn-call" onclick="setType('call')">Calls</button>
+  </div>
+
+  <div class="chain-meta" id="chainMeta"></div>
+
+  <div id="chainContent"><div class="loading">Loading chain…</div></div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This shows real market data for illustration. Nothing here is a recommendation to buy or sell any option contract. Options carry substantial risk, including loss of principal. Always do your own research or consult a regulated financial adviser.
+  </div>
+</footer>
+
+<script>
+let currentSymbol = 'SPX';
+let currentType = 'put';
+
+function setType(t){
+  currentType = t;
+  document.getElementById('btn-put').classList.toggle('active', t === 'put');
+  document.getElementById('btn-call').classList.toggle('active', t === 'call');
+  loadChain(currentSymbol);
+}
+
+async function loadChain(symbol){
+  currentSymbol = symbol;
+  document.getElementById('btn-spx').classList.toggle('active', symbol === 'SPX');
+  document.getElementById('btn-ndx').classList.toggle('active', symbol === 'NDX');
+
+  const content = document.getElementById('chainContent');
+  const meta = document.getElementById('chainMeta');
+  content.innerHTML = '<div class="loading">Loading chain…</div>';
+  meta.innerHTML = '';
+
+  try{
+    const res = await fetch(`/api/option-chain?symbol=${symbol}&type=${currentType}`);
+    const data = await res.json();
+    if(data.error) throw new Error(data.error);
+    if(!data.contracts || data.contracts.length === 0) throw new Error('No contracts returned for this expiry/range.');
+
+    meta.innerHTML = `<strong>${data.symbol}</strong> at <strong>${data.underlyingPrice?.toFixed(2) ?? '—'}</strong> &middot; nearest expiry <strong>${data.expiration}</strong> &middot; showing strikes within 5% of spot`;
+
+    const rows = data.contracts.map(c => {
+      const nearMoney = data.underlyingPrice && Math.abs(c.strike - data.underlyingPrice) / data.underlyingPrice < 0.01;
+      return `<tr class="${nearMoney ? 'near-money' : ''}">
+        <td>${c.strike?.toFixed(2) ?? '—'}</td>
+        <td>${c.bid?.toFixed(2) ?? '—'}</td>
+        <td>${c.ask?.toFixed(2) ?? '—'}</td>
+        <td>${c.delta !== null ? c.delta.toFixed(3) : '—'}</td>
+        <td>${c.theta !== null ? c.theta.toFixed(3) : '—'}</td>
+        <td>${c.gamma !== null ? c.gamma.toFixed(4) : '—'}</td>
+        <td>${c.iv !== null ? (c.iv * 100).toFixed(1) + '%' : '—'}</td>
+        <td>${c.openInterest ?? '—'}</td>
+      </tr>`;
+    }).join('');
+
+    content.innerHTML = `<table>
+      <thead><tr>
+        <th>Strike</th><th>Bid</th><th>Ask</th><th>Delta</th><th>Theta</th><th>Gamma</th><th>IV</th><th>OI</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+  }catch(e){
+    content.innerHTML = `<div class="error-msg">Couldn't load the chain right now.<br><span style="font-size:12px;">${e.message}</span></div>`;
+  }
+}
+
+loadChain('SPX');
+</script>
+
+</body>
+</html>
