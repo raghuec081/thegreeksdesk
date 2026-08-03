@@ -22,22 +22,38 @@ export default async function handler(req, res) {
 
   const upperSymbol = symbol.toUpperCase();
   const underlyingTicker = INDEX_SYMBOLS.has(upperSymbol) ? `I:${upperSymbol}` : upperSymbol;
-  const contractType = type === 'call' ? 'call' : 'put'; // default to puts (matches site's put-spread focus)
+  const contractType = type === 'call' ? 'call' : 'put';
 
   try {
     const url = `https://api.massive.com/v3/snapshot/options/${encodeURIComponent(underlyingTicker)}?contract_type=${contractType}&order=asc&sort=strike_price&limit=50&apiKey=${apiKey}`;
     const response = await fetch(url);
-    const data = await response.json();
+    const rawText = await response.text();
 
-    if (data.status === 'ERROR' || !data.results) {
-      return res.status(502).json({ error: data.error || 'No options data returned for this symbol' });
+    let data;
+    try {
+      data = JSON.parse(rawText);
+    } catch (parseErr) {
+      // Massive didn't return JSON at all — show the raw response so we can see what happened
+      return res.status(502).json({
+        error: 'Non-JSON response from Massive',
+        httpStatus: response.status,
+        rawBody: rawText.slice(0, 500),
+      });
+    }
+
+    if (!response.ok || data.status === 'ERROR' || data.status === 'NOT_AUTHORIZED' || !data.results) {
+      // Surface Massive's actual error details instead of hiding them
+      return res.status(502).json({
+        error: 'Massive API did not return usable data',
+        httpStatus: response.status,
+        massiveStatus: data.status ?? null,
+        massiveMessage: data.error ?? data.message ?? null,
+        requestUrl: underlyingTicker,
+      });
     }
 
     const underlyingPrice = data.results[0]?.underlying_asset?.price ?? null;
 
-    // Find the nearest upcoming expiration date present in the results, then keep only
-    // contracts from that date, and only strikes reasonably close to the current price —
-    // this keeps the response small and genuinely useful (not the entire chain).
     const expirations = [...new Set(data.results.map(r => r.details?.expiration_date).filter(Boolean))].sort();
     const nearestExpiry = expirations[0] || null;
 
@@ -45,7 +61,7 @@ export default async function handler(req, res) {
       .filter(r => r.details?.expiration_date === nearestExpiry)
       .filter(r => {
         if (!underlyingPrice || !r.details?.strike_price) return true;
-        return Math.abs(r.details.strike_price - underlyingPrice) / underlyingPrice < 0.05; // within 5%
+        return Math.abs(r.details.strike_price - underlyingPrice) / underlyingPrice < 0.05;
       })
       .map(r => ({
         strike: r.details?.strike_price ?? null,
