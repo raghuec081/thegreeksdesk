@@ -3,65 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Today's Chain — The Greeks Desk</title>
+<title>The Greeks Desk</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#22242C; --ink-2:#2B2E38; --parchment:#F3EFE7;
-    --gold:#A98C61; --gold-bright:#C4A876;
-    --gain:#3E8E75; --loss:#B5432F;
-    --line: rgba(243,239,231,0.12); --text-dim: rgba(243,239,231,0.65);
+    --ink:#22242C;
+    --ink-2:#2B2E38;
+    --parchment:#F3EFE7;
+    --gold:#A98C61;
+    --gold-bright:#C4A876;
+    --gain:#3E8E75;
+    --loss:#B5432F;
+    --line: rgba(243,239,231,0.12);
+    --text-dim: rgba(243,239,231,0.65);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:var(--ink);color:var(--parchment);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
   h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;margin:0;}
   .mono{font-family:'IBM Plex Mono',monospace;}
   a{color:inherit;}
+  ::selection{background:var(--gold);color:var(--ink);}
 
+  /* ---------- Nav ---------- */
   nav{
-    display:flex;align-items:center;justify-content:space-between;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
     padding:22px 6vw;position:sticky;top:0;z-index:50;
     background:rgba(34,36,44,0.88);backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
-  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:20px;text-decoration:none;color:var(--parchment);}
-  .back{font-size:13px;color:var(--text-dim);text-decoration:none;}
-  .back:hover{color:var(--gold-bright);}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:20px;letter-spacing:0.02em;justify-self:start;}
+  .brand .glyph{color:var(--gold-bright);font-size:22px;}
+  .navlinks{display:flex;gap:32px;font-size:16px;color:var(--text-dim);justify-self:center;}
+  .navlinks a{text-decoration:none;transition:color .2s;}
+  .navlinks a:hover{color:var(--gold-bright);}
 
-  main{max-width:900px;margin:0 auto;padding:56px 6vw;}
-  main h1{font-size:clamp(30px,5vw,42px);}
-  .intro{color:var(--text-dim);font-size:15px;line-height:1.7;margin-top:16px;max-width:640px;}
-
-  .controls{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap;}
-  .controls button{
-    background:transparent;border:1px solid var(--line);color:var(--text-dim);
-    padding:9px 18px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;
-    transition:all .15s;
+  /* ---------- Ticker marquee ---------- */
+  .ticker-wrap{
+    border-bottom:1px solid var(--line);
+    overflow:hidden;white-space:nowrap;padding:10px 0;
+    background:var(--ink-2);
   }
-  .controls button.active{border-color:var(--gold-bright);color:var(--gold-bright);}
-  .controls button:hover{border-color:var(--gold-bright);}
+  .ticker{display:inline-block;animation:scroll 32s linear infinite;}
+  .ticker span{display:inline-flex;align-items:center;gap:8px;margin-right:48px;font-size:13px;}
+  .ticker .sym{color:var(--gold-bright);font-weight:600;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-  .chain-meta{margin-top:24px;color:var(--text-dim);font-size:13px;}
-  .chain-meta strong{color:var(--parchment);}
+  /* ---------- Hero ---------- */
+  .hero{padding:120px 6vw 90px;max-width:1180px;margin:0 auto;position:relative;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--gold-bright);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    margin-bottom:28px;
+  }
+  .eyebrow .rule{width:28px;height:1px;background:var(--gold);display:inline-block;}
+  .hero h1{font-size:clamp(38px,6vw,74px);line-height:1.06;max-width:820px;letter-spacing:-0.01em;}
+  .hero h1 em{font-style:italic;color:var(--gold-bright);}
+  .hero p{margin-top:26px;max-width:560px;font-size:17px;line-height:1.6;color:var(--text-dim);}
+  .hero .actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
+  .btn{
+    padding:14px 26px;border-radius:2px;font-size:14px;font-weight:600;
+    text-decoration:none;transition:all .2s;display:inline-block;border:1px solid transparent;
+  }
+  .btn.primary{background:var(--gold-bright);color:var(--ink);}
+  .btn.primary:hover{background:var(--parchment);}
+  .btn.ghost{border-color:var(--line);color:var(--parchment);}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold-bright);}
 
-  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px;}
-  th{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line);color:var(--text-dim);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;}
-  th:first-child, td:first-child{text-align:left;}
-  td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line);font-family:'IBM Plex Mono',monospace;}
-  tr.near-money{background:rgba(196,168,118,0.08);}
+  /* ---------- Greek letter signature strip ---------- */
+  .letters{display:flex;gap:0;position:absolute;right:6vw;top:130px;opacity:0.9;}
+  .letters .col{display:flex;flex-direction:column;align-items:center;margin-left:26px;}
+  .letters .g{font-family:'Fraunces',serif;font-size:44px;color:var(--gold);opacity:0.55;}
+  .letters .label{font-size:10px;letter-spacing:0.12em;color:var(--text-dim);margin-top:4px;text-transform:uppercase;}
+  @media(max-width:900px){.letters{display:none;}}
 
-  .loading, .error-msg{color:var(--text-dim);padding:40px 0;text-align:center;font-size:14px;}
-  footer{border-top:1px solid var(--line);padding:34px 6vw;margin-top:60px;}
+  /* ---------- Section shell ---------- */
+  section{padding:70px 6vw;max-width:1180px;margin:0 auto;}
+  .section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px;border-bottom:1px solid var(--line);padding-bottom:22px;}
+  .section-head .g{font-family:'Fraunces',serif;font-size:26px;color:var(--gold-bright);}
+  .section-head h2{font-size:28px;}
+  .section-head .status{margin-left:auto;font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:6px;}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--gain);}
+  .dot.demo{background:var(--gold);}
+
+  /* ---------- Market panels ---------- */
+  .panels{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:900px){.panels{grid-template-columns:1fr;}}
+  .panel{background:var(--ink);padding:26px 26px 10px;}
+  .panel h3{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:18px;font-family:'Inter',sans-serif;font-weight:600;}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;text-decoration:none;transition:background .15s;}
+  .row:last-child{border-bottom:none;}
+  a.row{display:flex;cursor:pointer;}
+  a.row:hover{background:rgba(216,184,118,0.06);}
+  .row .name{color:var(--parchment);}
+  .row .sub{color:var(--text-dim);font-size:11px;margin-left:8px;}
+  .row .right{text-align:right;}
+  .row .price{font-family:'IBM Plex Mono',monospace;}
+  .chg{font-family:'IBM Plex Mono',monospace;font-size:12px;margin-left:10px;}
+  .chg.up{color:var(--gain);}
+  .chg.down{color:var(--loss);}
+  .loading-row{color:var(--text-dim);font-size:13px;padding:20px 0;}
+  .news-item{padding:11px 0;border-bottom:1px solid var(--line);}
+  .news-item:last-child{border-bottom:none;}
+  .news-item a{color:var(--parchment);text-decoration:none;font-size:13px;line-height:1.4;display:block;}
+  .news-item a:hover{color:var(--gold-bright);}
+  .news-item .meta{color:var(--text-dim);font-size:11px;margin-top:4px;}
+  .vol-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;}
+  .vol-value{font-family:'IBM Plex Mono',monospace;font-size:26px;margin-top:6px;}
+  .vol-tag{display:inline-block;margin-top:10px;font-size:11px;padding:4px 10px;border:1px solid var(--line);color:var(--text-dim);}
+
+  /* ---------- Teach / Greeks section ---------- */
+  .greeks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:900px){.greeks-grid{grid-template-columns:repeat(2,1fr);}}
+  .gcard{background:var(--ink);padding:34px 24px;}
+  .gcard .glyph{font-family:'Fraunces',serif;font-size:42px;color:var(--gold-bright);}
+  .gcard h4{margin-top:14px;font-size:15px;font-weight:600;font-family:'Inter',sans-serif;}
+  .gcard p{margin-top:10px;font-size:13px;line-height:1.55;color:var(--text-dim);}
+
+  /* ---------- Newsletter ---------- */
+  .newsletter{
+    border:1px solid var(--line);padding:56px 6vw;text-align:left;
+    display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+  }
+  .newsletter h2{font-size:30px;max-width:420px;}
+  .newsletter p{color:var(--text-dim);margin-top:10px;font-size:14px;max-width:420px;}
+  form.signup{display:flex;gap:0;border:1px solid var(--line);min-width:340px;}
+  form.signup input{
+    flex:1;background:transparent;border:none;padding:16px;color:var(--parchment);font-size:14px;font-family:'Inter',sans-serif;
+  }
+  form.signup input:focus{outline:none;}
+  form.signup button{
+    background:var(--gold-bright);color:var(--ink);border:none;padding:0 22px;font-weight:600;font-size:13px;cursor:pointer;
+  }
+  form.signup button:hover{background:var(--parchment);}
+  .form-note{font-size:11px;color:var(--text-dim);margin-top:10px;}
+
+  /* ---------- Footer / disclaimer ---------- */
+  footer{border-top:1px solid var(--line);padding:44px 6vw;}
   .disclaimer{max-width:820px;font-size:12px;line-height:1.7;color:var(--text-dim);}
+  .disclaimer strong{color:var(--parchment);}
+  .foot-bottom{display:flex;justify-content:space-between;margin-top:30px;font-size:12px;color:var(--text-dim);flex-wrap:wrap;gap:10px;}
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="brand">
-    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 90 90" style="flex-shrink:0;">
       <line x1="24" y1="20" x2="24" y2="66" stroke="#C4A876" stroke-width="7"/>
       <line x1="45" y1="20" x2="45" y2="66" stroke="#C4A876" stroke-width="7"/>
       <line x1="66" y1="20" x2="66" y2="66" stroke="#C4A876" stroke-width="7"/>
@@ -69,96 +159,242 @@
       <line x1="16" y1="70" x2="74" y2="70" stroke="#C4A876" stroke-width="7"/>
     </svg>
     The Greeks Desk
-  </a>
-  <a href="index.html" class="back">← Back to markets</a>
+  </div>
+  <div class="navlinks">
+    <a href="learn.html">Learn</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="#newsletter">Newsletter</a>
+  </div>
 </nav>
 
-<main>
-  <h1>Today's Chain</h1>
-  <p class="intro">Real Greeks on the nearest-expiry, near-the-money strikes — not a demo. Pulled directly from the live options market, not simulated.</p>
-
-  <div class="controls">
-    <button id="btn-spx" class="active" onclick="loadChain('SPX')">SPX</button>
-    <button id="btn-ndx" onclick="loadChain('NDX')">NDX</button>
-    <button id="btn-put" class="active" onclick="setType('put')">Puts</button>
-    <button id="btn-call" onclick="setType('call')">Calls</button>
+<div class="ticker-wrap">
+  <div class="ticker mono" id="tickerStrip">
+    <span class="loading-row">Loading market strip…</span>
   </div>
+</div>
 
-  <div class="chain-meta" id="chainMeta"></div>
+<div class="hero">
+  <div class="eyebrow"><span class="rule"></span>Index Options, Explained Simply</div>
+  <h1>Patience is <em>a position.</em></h1>
+  <p>Plain-English lessons on options and risk, mainly on NDX and SPX spreads. No signals. No "copy my trades." Just how it actually works, and how to manage the risk properly.</p>
+  <div class="actions">
+    <a href="#newsletter" class="btn primary">Join the newsletter</a>
+    <a href="learn.html" class="btn ghost">Start learning</a>
+  </div>
+  <div class="letters">
+    <div class="col"><span class="g">Δ</span><span class="label">Delta</span></div>
+    <div class="col"><span class="g">Θ</span><span class="label">Theta</span></div>
+    <div class="col"><span class="g">Γ</span><span class="label">Gamma</span></div>
+  </div>
+</div>
 
-  <div id="chainContent"><div class="loading">Loading chain…</div></div>
-</main>
+<section id="markets">
+  <div class="section-head">
+    <span class="g">Α</span>
+    <h2>Live Market Pulse</h2>
+    <span class="status"><span class="dot" id="statusDot"></span><span id="statusText">Connecting…</span></span>
+  </div>
+  <div class="panels">
+    <div class="panel">
+      <h3>Major Indices</h3>
+      <div id="indices"><div class="loading-row">Fetching…</div></div>
+    </div>
+    <div class="panel">
+      <h3>Volatility</h3>
+      <div id="volatility"><div class="loading-row">Fetching…</div></div>
+    </div>
+    <div class="panel">
+      <h3>Market Headlines</h3>
+      <div id="newsPanel"><div class="loading-row">Fetching…</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="learn">
+  <div class="section-head">
+    <span class="g">Β</span>
+    <h2>Start here</h2>
+  </div>
+  <div class="greeks-grid">
+    <a href="theta-decay.html" class="gcard" style="text-decoration:none;color:inherit;display:block;">
+      <span class="glyph">Θ</span><h4>What is time decay?</h4>
+      <p>The simple idea behind every option seller's edge, explained without the maths.</p>
+    </a>
+    <a href="position-sizing.html" class="gcard" style="text-decoration:none;color:inherit;display:block;">
+      <span class="glyph">Δ</span><h4>Position sizing basics</h4>
+      <p>How much to risk on one trade, and why most beginners get this part wrong first.</p>
+    </a>
+    <a href="risk-management.html" class="gcard" style="text-decoration:none;color:inherit;display:block;">
+      <span class="glyph">Γ</span><h4>Risk management, simply</h4>
+      <p>The habits that keep one bad trade from becoming a bad month.</p>
+    </a>
+    <a href="learn.html" class="gcard" style="text-decoration:none;color:inherit;display:block;">
+      <span class="glyph">Ρ</span><h4>See all lessons</h4>
+      <p>Everything published so far, in plain English, free.</p>
+    </a>
+  </div>
+</section>
+
+<section id="about-teaser">
+  <div class="section-head">
+    <span class="g">Χ</span>
+    <h2>Who's behind this</h2>
+  </div>
+  <p style="max-width:640px;color:var(--text-dim);font-size:15px;line-height:1.7;">
+    Written by someone who spends the day job managing risk data for a major bank, and the
+    evenings trading NDX and SPX spreads. No signals for sale, no "guru" pitch — just plain
+    explanations and an honest, public record of what's actually being traded.
+  </p>
+  <a href="about.html" style="color:var(--gold-bright);font-size:14px;text-decoration:none;">Read more →</a>
+</section>
+
+<section id="newsletter">
+  <div class="newsletter">
+    <div>
+      <h2>One email a week. No signals, no noise.</h2>
+      <p>Plain-English lessons, one market stat worth knowing, and what's actually changing in the trades. Free.</p>
+    </div>
+    <div>
+      <form action="https://buttondown.com/api/emails/embed-subscribe/YOUR-BUTTONDOWN-USERNAME" method="post" class="signup" target="popupwindow" onsubmit="window.open('https://buttondown.com/YOUR-BUTTONDOWN-USERNAME', 'popupwindow')">
+        <input type="email" name="email" placeholder="you@email.com" required>
+        <input type="hidden" value="1" name="embed">
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="form-note">Free. Unsubscribe anytime.</div>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="disclaimer">
-    <strong>Educational purposes only.</strong> This shows real market data for illustration. Nothing here is a recommendation to buy or sell any option contract. Options carry substantial risk, including loss of principal. Always do your own research or consult a regulated financial adviser.
+    <strong>Educational purposes only.</strong> The Greeks Desk publishes general market commentary and options education. Nothing here is personalised financial advice, and no content should be read as a recommendation to buy or sell any security or derivative. Trading options carries substantial risk, including loss of principal. Market data shown is delayed/indicative and for illustration only. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 The Greeks Desk</span>
+    <span id="lastUpdated" class="mono"></span>
   </div>
 </footer>
 
 <script>
-let currentSymbol = 'SPX';
-let currentType = 'put';
+const SYMS = {
+  indices: [
+    {s:'NDX', name:'Nasdaq 100'},
+    {s:'SPX', name:'S&P 500'},
+  ],
+};
 
-function setType(t){
-  currentType = t;
-  document.getElementById('btn-put').classList.toggle('active', t === 'put');
-  document.getElementById('btn-call').classList.toggle('active', t === 'call');
-  loadChain(currentSymbol);
+// Fallback sample data (used if live fetch fails — clearly labeled as demo)
+const FALLBACK = {
+  'NDX': {price:23108.6, chg:0.61}, 'SPX': {price:6412.3, chg:0.42},
+};
+
+function fmtChg(c){
+  const sign = c >= 0 ? '+' : '';
+  return `${sign}${c.toFixed(2)}%`;
 }
 
-async function loadChain(symbol){
-  currentSymbol = symbol;
-  document.getElementById('btn-spx').classList.toggle('active', symbol === 'SPX');
-  document.getElementById('btn-ndx').classList.toggle('active', symbol === 'NDX');
+function renderList(elId, list, data){
+  const el = document.getElementById(elId);
+  el.innerHTML = list.map(item => {
+    const d = data[item.s] || FALLBACK[item.s];
+    const cls = d.chg >= 0 ? 'up' : 'down';
+    return `<a class="row" href="stock.html?symbol=${encodeURIComponent(item.s)}&type=index">
+      <span class="name">${item.name}<span class="sub">${item.s}</span></span>
+      <span class="right"><span class="price">${d.price.toFixed(2)}</span><span class="chg ${cls}">${fmtChg(d.chg)}</span></span>
+    </a>`;
+  }).join('');
+}
 
-  const content = document.getElementById('chainContent');
-  const meta = document.getElementById('chainMeta');
-  content.innerHTML = '<div class="loading">Loading chain…</div>';
-  meta.innerHTML = '';
+function renderTicker(data){
+  const items = SYMS.indices.map(item => {
+    const d = data[item.s] || FALLBACK[item.s];
+    const cls = d.chg >= 0 ? 'up' : 'down';
+    return `<span><span class="sym">${item.s}</span> ${d.price.toFixed(2)} <span class="chg ${cls}">${fmtChg(d.chg)}</span></span>`;
+  }).join('');
+  document.getElementById('tickerStrip').innerHTML = items + items; // duplicate for seamless scroll
+}
 
+async function fetchIndexQuote(symbol){
+  // Calls /api/index-quote.js (Twelve Data) — used for real index tickers, since
+  // Finnhub's free tier doesn't reliably support raw index quotes.
+  const res = await fetch(`/api/index-quote?symbol=${encodeURIComponent(symbol)}`);
+  if(!res.ok) throw new Error('bad response');
+  const json = await res.json();
+  if(json.error) throw new Error(json.error);
+  return {price: json.price, chg: json.changePct};
+}
+
+async function loadMarketData(){
+  const indexSyms = SYMS.indices.map(x => x.s);
+  const data = {};
+  let liveCount = 0;
+
+  await Promise.all(indexSyms.map(async (s) => {
+    try{ data[s] = await fetchIndexQuote(s); liveCount++; }catch(e){ /* fallback used at render */ }
+  }));
+
+  renderList('indices', SYMS.indices, data);
+  renderTicker(data);
+
+  const dot = document.getElementById('statusDot');
+  const text = document.getElementById('statusText');
+  if(liveCount > indexSyms.length / 2){
+    dot.classList.remove('demo');
+    text.textContent = 'Live data';
+  } else {
+    dot.classList.add('demo');
+    text.textContent = 'Demo data (live feed unavailable)';
+  }
+  document.getElementById('lastUpdated').textContent = 'Updated ' + new Date().toLocaleTimeString();
+}
+
+async function loadVolatility(){
+  const el = document.getElementById('volatility');
   try{
-    const res = await fetch(`/api/option-chain?symbol=${symbol}&type=${currentType}`);
-    const data = await res.json();
-    if(data.error){
-      const debugParts = [
-        data.httpStatus ? `HTTP ${data.httpStatus}` : null,
-        data.massiveStatus ? `status: ${data.massiveStatus}` : null,
-        data.massiveMessage ? `message: ${data.massiveMessage}` : null,
-        data.requestUrl ? `ticker tried: ${data.requestUrl}` : null,
-        data.rawBody ? `raw: ${data.rawBody}` : null,
-      ].filter(Boolean).join(' | ');
-      throw new Error(debugParts || data.error);
-    }
-    if(!data.contracts || data.contracts.length === 0) throw new Error('No contracts returned for this expiry/range.');
+    const d = await fetchIndexQuote('VIX');
 
-    meta.innerHTML = `<strong>${data.symbol}</strong> at <strong>${data.underlyingPrice?.toFixed(2) ?? '—'}</strong> &middot; nearest expiry <strong>${data.expiration}</strong> &middot; showing strikes within 5% of spot`;
-
-    const rows = data.contracts.map(c => {
-      const nearMoney = data.underlyingPrice && Math.abs(c.strike - data.underlyingPrice) / data.underlyingPrice < 0.01;
-      return `<tr class="${nearMoney ? 'near-money' : ''}">
-        <td>${c.strike?.toFixed(2) ?? '—'}</td>
-        <td>${c.bid?.toFixed(2) ?? '—'}</td>
-        <td>${c.ask?.toFixed(2) ?? '—'}</td>
-        <td>${c.delta !== null ? c.delta.toFixed(3) : '—'}</td>
-        <td>${c.theta !== null ? c.theta.toFixed(3) : '—'}</td>
-        <td>${c.gamma !== null ? c.gamma.toFixed(4) : '—'}</td>
-        <td>${c.iv !== null ? (c.iv * 100).toFixed(1) + '%' : '—'}</td>
-        <td>${c.openInterest ?? '—'}</td>
-      </tr>`;
-    }).join('');
-
-    content.innerHTML = `<table>
-      <thead><tr>
-        <th>Strike</th><th>Bid</th><th>Ask</th><th>Delta</th><th>Theta</th><th>Gamma</th><th>IV</th><th>OI</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>`;
+    renderVol(el, d.price, d.chg, false);
   }catch(e){
-    content.innerHTML = `<div class="error-msg">Couldn't load the chain right now.<br><span style="font-size:12px;">${e.message}</span></div>`;
+    renderVol(el, 15.8, -2.1, true);
   }
 }
 
-loadChain('SPX');
+function renderVol(el, price, chg, isDemo){
+  const cls = chg >= 0 ? 'up' : 'down';
+  const regime = price < 15 ? 'Low' : price < 25 ? 'Elevated' : 'High';
+  el.innerHTML = `
+    <div class="vol-label">VIX ${isDemo ? '(demo)' : ''}</div>
+    <div class="vol-value">${price.toFixed(2)} <span class="chg ${cls}">${fmtChg(chg)}</span></div>
+    <div class="vol-tag">${regime} volatility regime</div>
+  `;
+}
+
+async function loadNews(){
+  const el = document.getElementById('newsPanel');
+  try{
+    const res = await fetch('/api/news');
+    if(!res.ok) throw new Error('bad response');
+    const json = await res.json();
+    if(!json.headlines || json.headlines.length === 0) throw new Error('empty');
+    el.innerHTML = json.headlines.map(n => `
+      <div class="news-item">
+        <a href="${n.url}" target="_blank" rel="noopener">${n.headline}</a>
+        <div class="meta">${n.source} · ${new Date(n.datetime * 1000).toLocaleDateString()}</div>
+      </div>
+    `).join('');
+  }catch(e){
+    el.innerHTML = `<div class="loading-row">Headlines unavailable right now.</div>`;
+  }
+}
+
+loadMarketData();
+loadVolatility();
+loadNews();
+setInterval(loadMarketData, 60000);
+setInterval(loadVolatility, 60000);
+setInterval(loadNews, 120000);
 </script>
 
 </body>
