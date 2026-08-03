@@ -119,7 +119,16 @@ async function loadChain(symbol){
   try{
     const res = await fetch(`/api/option-chain?symbol=${symbol}&type=${currentType}`);
     const data = await res.json();
-    if(data.error) throw new Error(data.error);
+    if(data.error){
+      const debugParts = [
+        data.httpStatus ? `HTTP ${data.httpStatus}` : null,
+        data.massiveStatus ? `status: ${data.massiveStatus}` : null,
+        data.massiveMessage ? `message: ${data.massiveMessage}` : null,
+        data.requestUrl ? `ticker tried: ${data.requestUrl}` : null,
+        data.rawBody ? `raw: ${data.rawBody}` : null,
+      ].filter(Boolean).join(' | ');
+      throw new Error(debugParts || data.error);
+    }
     if(!data.contracts || data.contracts.length === 0) throw new Error('No contracts returned for this expiry/range.');
 
     meta.innerHTML = `<strong>${data.symbol}</strong> at <strong>${data.underlyingPrice?.toFixed(2) ?? '—'}</strong> &middot; nearest expiry <strong>${data.expiration}</strong> &middot; showing strikes within 5% of spot`;
