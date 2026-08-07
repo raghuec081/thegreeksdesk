@@ -42,6 +42,7 @@
       <option value="month-2026-08">August 2026 (ongoing)</option>
       <option value="month-2026-07" selected>July 2026</option>
       <option value="month-2026-06">June 2026</option>
+      <option value="month-2026-05">May 2026</option>
     </select>
   </div>
 
@@ -131,9 +132,9 @@
   <h2 class="month-heading">June 2026 Summary</h2>
   <table class="track-table" style="max-width:500px;">
     <tbody>
-      <tr><td><strong>Trades</strong></td><td>70</td></tr>
-      <tr><td><strong>Win Rate</strong></td><td class="win">57.1%</td></tr>
-      <tr><td><strong>Total P&amp;L</strong></td><td class="loss">-$5,119.69</td></tr>
+      <tr><td><strong>Trades</strong></td><td>74</td></tr>
+      <tr><td><strong>Win Rate</strong></td><td class="win">59.5%</td></tr>
+      <tr><td><strong>Total P&amp;L</strong></td><td class="loss">-$4,580.58</td></tr>
       <tr><td><strong>Largest Win</strong></td><td class="win">+$2,111.67 (NDXP 27,200 long put, 11-12 Jun)</td></tr>
       <tr><td><strong>Largest Loss</strong></td><td class="loss">-$3,403.98 (NDXP 29,440/29,460 put spread, 22-23 Jun)</td></tr>
     </tbody>
@@ -158,6 +159,10 @@
       </tr>
     </thead>
     <tbody>
+      <tr><td>22 May 2026</td><td>IREN</td><td>Call multi-entry (70, 71, 72, 73, 76, 78), exp 29 May 2026 &mdash; opened in May, expired worthless in June</td><td class="win">$+257.45</td></tr>
+      <tr><td>27 May 2026</td><td>META</td><td>Put spread 582/588, exp 29 May 2026 &mdash; opened in May, expired worthless in June</td><td class="win">$+63.66</td></tr>
+      <tr><td>27 May 2026</td><td>NDXP</td><td>Put multi-entry (29,130, 29,150, 29,160, 29,180), exp 29 May 2026 &mdash; opened in May, expired worthless in June</td><td class="win">$+170.34</td></tr>
+      <tr><td>27 May 2026</td><td>TSLA</td><td>Call spread 480/485, exp 29 May 2026 &mdash; opened in May, expired worthless in June</td><td class="win">$+47.66</td></tr>
       <tr><td>29 May 2026</td><td>NDXP</td><td>Put spread 29,450/29,470, exp 1 Jun 2026</td><td class="win">$+77.92</td></tr>
       <tr><td>1 Jun 2026</td><td>IREN</td><td>Call multi-entry (74, 75, 76, 77), exp 5 Jun 2026 &mdash; several re-entries at this expiry, summed</td><td class="win">$+279.27</td></tr>
       <tr><td>1 Jun 2026</td><td>META</td><td>Put multi-entry (580, 585, 588, 592), exp 3 Jun 2026 &mdash; several re-entries at this expiry, summed</td><td class="win">$+243.32</td></tr>
@@ -232,8 +237,79 @@
   </table>
   <p style="font-size:12px;color:var(--ink-dim);margin-top:12px;">
     Two 10-lot NVDA 177.5/182.5 put spreads (exp 2 Jul) were opened 29 Jun and carried open into July &mdash;
-    not included in June's total since the trade wasn't closed within the month.
+    not included in June's total since the trade wasn't closed within the month. Four positions opened in
+    late May (IREN, META, NDXP, TSLA) expired worthless in June with no further cash flow &mdash; their
+    credit is counted here, in June, since that's when they resolved (see May's notes below for the same
+    convention in reverse). A 10-lot IREN 79/81 call spread opened 28 May for a 5 Jun expiry doesn't have
+    a visible closing transaction in either statement &mdash; flagged rather than guessed at.
   </p>
+
+  </section>
+
+  <section class="month-section" id="month-2026-05" style="display:none;">
+  <h2 class="month-heading">May 2026 Summary</h2>
+  <table class="track-table" style="max-width:500px;">
+    <tbody>
+      <tr><td><strong>Trades</strong></td><td>29</td></tr>
+      <tr><td><strong>Win Rate</strong></td><td class="win">72.4%</td></tr>
+      <tr><td><strong>Total P&amp;L</strong></td><td class="win">+$1,671.48</td></tr>
+      <tr><td><strong>Largest Win</strong></td><td class="win">+$297.92 (NDXP 27,600/27,700 put spread, 18-21 May)</td></tr>
+      <tr><td><strong>Largest Loss</strong></td><td class="loss">-$231.96 (LRMR put spread, assigned early)</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);margin-top:16px;">
+    The best month on record so far, and the smallest position sizing &mdash; mostly single NDXP
+    contracts and small multi-lot spreads on META/IREN/TSLA, nothing like June's size. The one real
+    lesson: an LRMR bear put spread got assigned early on the short leg (5 May), forcing a stock
+    purchase at $12.50 that was sold the next day near $4.05 rather than exercising the long put &mdash;
+    a small, avoidable loss from not managing early assignment risk on an ITM short option. A separate
+    IREN $48 covered call was also assigned this month (8 May, $4,799.88 received for the shares) but
+    its opening premium isn't visible in this statement, so it's left out of the total rather than
+    guessed at. Two rows below closed a spread whose opening leg was placed before this statement
+    period; only the visible cash flow is counted.
+  </p>
+
+  <table class="track-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Instrument</th>
+        <th>Strategy</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>30 Apr 2026</td><td>NDXP</td><td>Put spread 26,850/26,870, exp 1 May 2026</td><td class="win">$+87.84</td></tr>
+      <tr><td>30 Apr 2026</td><td>NDXP</td><td>Put spread 26,150/26,170, exp 1 May 2026 &mdash; opening leg from before this statement period, not in this month's data</td><td class="loss">$-14.08</td></tr>
+      <tr><td>1 May 2026</td><td>NDXP</td><td>Put spread 26,900/26,920, exp 4 May 2026</td><td class="win">$+47.92</td></tr>
+      <tr><td>4 May 2026</td><td>LRMR</td><td>Put spread 2/12, exp 15 May 2026 &mdash; short put assigned early; shares bought at strike then sold next day at a loss</td><td class="loss">$-231.96</td></tr>
+      <tr><td>5 May 2026</td><td>NDXP</td><td>Put spread 27,040/27,060, exp 7 May 2026</td><td class="win">$+111.68</td></tr>
+      <tr><td>5 May 2026</td><td>NDXP</td><td>Put spread 27,000/27,020, exp 8 May 2026</td><td class="win">$+96.34</td></tr>
+      <tr><td>5 May 2026</td><td>IREN</td><td>Put single leg 46, exp 8 May 2026 &mdash; opening leg from before this statement period, not in this month's data</td><td class="loss">$-120.54</td></tr>
+      <tr><td>6 May 2026</td><td>NDXP</td><td>Put spread 27,750/27,770, exp 7 May 2026</td><td class="win">$+45.84</td></tr>
+      <tr><td>6 May 2026</td><td>AVTX</td><td>Put spread 5/8, exp 15 May 2026 &mdash; opening leg from before this statement period, not in this month's data</td><td class="loss">$-77.59</td></tr>
+      <tr><td>7 May 2026</td><td>NDXP</td><td>Put multi-entry (27,840, 27,860, 27,870, 27,890), exp 8 May 2026</td><td class="win">$+156.84</td></tr>
+      <tr><td>8 May 2026</td><td>META</td><td>Put single leg 588, exp 11 May 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+35.60</td></tr>
+      <tr><td>8 May 2026</td><td>META</td><td>Put single leg 592, exp 11 May 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-88.34</td></tr>
+      <tr><td>11 May 2026</td><td>IREN</td><td>Call spread 68/70, exp 15 May 2026</td><td class="win">$+159.15</td></tr>
+      <tr><td>11 May 2026</td><td>NDXP</td><td>Put spread 28,460/28,480, exp 12 May 2026</td><td class="loss">$-24.16</td></tr>
+      <tr><td>11 May 2026</td><td>NDXP</td><td>Put spread 28,240/28,260, exp 13 May 2026</td><td class="loss">$-4.16</td></tr>
+      <tr><td>12 May 2026</td><td>META</td><td>Put spread 570/572, exp 13 May 2026</td><td class="win">$+59.57</td></tr>
+      <tr><td>12 May 2026</td><td>NDXP</td><td>Put spread 28,050/28,070, exp 14 May 2026</td><td class="win">$+112.42</td></tr>
+      <tr><td>13 May 2026</td><td>META</td><td>Put spread 568/570, exp 15 May 2026</td><td class="win">$+71.31</td></tr>
+      <tr><td>13 May 2026</td><td>TSLA</td><td>Call multi-entry (480, 485, 500, 502), exp 15 May 2026</td><td class="win">$+128.87</td></tr>
+      <tr><td>14 May 2026</td><td>IREN</td><td>Call spread 70/72, exp 22 May 2026</td><td class="win">$+70.63</td></tr>
+      <tr><td>14 May 2026</td><td>NDXP</td><td>Put spread 28,560/28,580, exp 15 May 2026</td><td class="loss">$-43.16</td></tr>
+      <tr><td>15 May 2026</td><td>IREN</td><td>Put spread 42/43, exp 22 May 2026</td><td class="win">$+98.30</td></tr>
+      <tr><td>15 May 2026</td><td>NDXP</td><td>Put spread 28,430/28,450, exp 18 May 2026</td><td class="win">$+87.92</td></tr>
+      <tr><td>18 May 2026</td><td>NDXP</td><td>Put spread 27,600/27,700, exp 21 May 2026</td><td class="win">$+297.92</td></tr>
+      <tr><td>19 May 2026</td><td>META</td><td>Put spread 582/588, exp 20 May 2026</td><td class="win">$+119.66</td></tr>
+      <tr><td>20 May 2026</td><td>META</td><td>Put multi-entry (572, 578, 580, 585), exp 22 May 2026</td><td class="win">$+131.48</td></tr>
+      <tr><td>20 May 2026</td><td>NDXP</td><td>Put spread 28,050/28,070, exp 22 May 2026</td><td class="win">$+147.42</td></tr>
+      <tr><td>22 May 2026</td><td>NDXP</td><td>Put multi-entry (28,680, 28,700, 28,710, 28,730), exp 26 May 2026</td><td class="win">$+130.84</td></tr>
+      <tr><td>27 May 2026</td><td>NDXP</td><td>Put spread 29,040/29,060, exp 28 May 2026</td><td class="win">$+77.92</td></tr>
+    </tbody>
+  </table>
 
   </section>
 
