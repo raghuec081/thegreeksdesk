@@ -71,3 +71,22 @@ footer{border-top:1px solid var(--line);padding:34px 6vw;margin-top:60px;}
 
 /* About page */
 .about-body p{font-size:16px;line-height:1.8;color:var(--ink);margin-bottom:20px;}
+
+/* Monthly summary stats (Track Record page) */
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:30px 0;}
+@media(max-width:700px){.summary-grid{grid-template-columns:repeat(2,1fr);}}
+.summary-stat{background:var(--card);padding:20px;}
+.summary-stat .label{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-dim);}
+.summary-stat .value{font-family:'IBM Plex Mono',monospace;font-size:22px;margin-top:8px;color:var(--ink);}
+.summary-stat .value.win{color:var(--gain);}
+.summary-stat .value.loss{color:var(--loss);}
+.month-heading{margin-top:50px;font-size:22px;}
+
+/* Month filter dropdown (Track Record page) */
+.month-filter{margin:34px 0 10px;display:flex;align-items:center;gap:12px;}
+.month-filter label{font-size:13px;color:var(--ink-dim);}
+.month-filter select{
+  font-family:'Inter',sans-serif;font-size:14px;padding:8px 14px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink);
+  border-radius:4px;cursor:pointer;
+}
