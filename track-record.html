@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Track Record — TheGreeksDesk</title>
+<title>Track Record — The Greeks Desk</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght..144,400;9..144,500;9..144,600&family=Inter:wght;500;600;700&family=IBM+Plex+Mono:wght;500;600&display=swap" rel="stylesheet">
@@ -14,27 +14,105 @@
 <nav>
   <a href="index.html" class="brand">
     <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
-      <line x1="24" y1="20" x2="24" y2="66" stroke="#D8B876" stroke-width="7"/>
-      <line x1="45" y1="20" x2="45" y2="66" stroke="#D8B876" stroke-width="7"/>
-      <line x1="66" y1="20" x2="66" y2="66" stroke="#D8B876" stroke-width="7"/>
-      <line x1="16" y1="20" x2="74" y2="20" stroke="#D8B876" stroke-width="7"/>
-      <line x1="16" y1="70" x2="74" y2="70" stroke="#D8B876" stroke-width="7"/>
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
     </svg>
-    TheGreeksDesk
+    The Greeks Desk
   </a>
   <a href="index.html" class="back">← Back to markets</a>
 </nav>
 
 <main style="max-width:900px;">
   <h1>Track Record</h1>
-  <p class="intro">Every trade logged here, win or loss, with real position sizing. Nothing hidden, nothing cherry-picked. This is the honest record behind everything written on this site.</p>
+  <p class="intro">Every trade logged here, win or loss, with real strikes and real P&amp;L. Nothing hidden, nothing cherry-picked. This is the honest record behind everything written on this site.</p>
 
   <div class="track-note">
-    <strong>This page is a template.</strong> No real trades have been added yet. Replace the example row
-    below with your actual trade history as you go — this note and the example row should be deleted
-    once real entries are added. Never show trades that didn't happen.
+    Figures below are reconstructed from actual broker statements, with opening and closing
+    legs paired into full spread trades. Two positions couldn't be cleanly paired (one carried
+    over from before the statement period, one was a 3-strike position) &mdash; they're listed
+    separately rather than force-fit into a spread they weren't part of.
   </div>
 
+  <h2 class="month-heading">July 2026 Summary</h2>
+  <div class="summary-grid">
+    <div class="summary-stat"><div class="label">Trades</div><div class="value">49</div></div>
+    <div class="summary-stat"><div class="label">Win Rate</div><div class="value win">81.6%</div></div>
+    <div class="summary-stat"><div class="label">Total P&amp;L</div><div class="value loss">-$226.40</div></div>
+    <div class="summary-stat"><div class="label">Largest Loss</div><div class="value loss">-$3,751.94</div></div>
+  </div>
+  <p style="font-size:13px;color:var(--ink-dim);margin-top:-10px;">
+    Largest win: <strong style="color:var(--gain);">+$968.26</strong> (AMD 615/620 call spread).
+    Two large losses on 27 Jul (AMD put spread, NVDA put spread) outweighed a high win rate on
+    everything else &mdash; a real example of why win rate alone doesn't tell the whole story;
+    position sizing on the losers is what matters.
+  </p>
+
+  <table class="track-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Instrument</th>
+        <th>Strategy</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1 Jul 2026</td><td>NDXP</td><td>Put spread 28830/28850, exp 2 Jul 2026</td><td class="win">$+239.60</td></tr>
+      <tr><td>2 Jul 2026</td><td>NDXP</td><td>Put spread 28720/28740, exp 6 Jul 2026</td><td class="win">$+173.76</td></tr>
+      <tr><td>6 Jul 2026</td><td>SNDK</td><td>Put spread 1375/1385, exp 10 Jul 2026</td><td class="loss">$-22.09</td></tr>
+      <tr><td>7 Jul 2026</td><td>NVDA</td><td>Put spread 180/185, exp 8 Jul 2026</td><td class="win">$+189.16</td></tr>
+      <tr><td>8 Jul 2026</td><td>NDXP</td><td>Put spread 27700/27800, exp 9 Jul 2026</td><td class="win">$+215.84</td></tr>
+      <tr><td>9 Jul 2026</td><td>AMD</td><td>Call spread 620/625, exp 13 Jul 2026</td><td class="win">$+158.27</td></tr>
+      <tr><td>9 Jul 2026</td><td>NVDA</td><td>Put spread 185/190, exp 13 Jul 2026</td><td class="win">$+118.32</td></tr>
+      <tr><td>10 Jul 2026</td><td>AMD</td><td>Call spread 597.5/602.5, exp 13 Jul 2026</td><td class="win">$+208.29</td></tr>
+      <tr><td>10 Jul 2026</td><td>NVDA</td><td>Call spread 215/220, exp 13 Jul 2026</td><td class="win">$+207.48</td></tr>
+      <tr><td>13 Jul 2026</td><td>AMD</td><td>Put spread 470/475, exp 15 Jul 2026</td><td class="win">$+178.28</td></tr>
+      <tr><td>13 Jul 2026</td><td>NVDA</td><td>Put spread 190/195, exp 15 Jul 2026</td><td class="win">$+108.32</td></tr>
+      <tr><td>14 Jul 2026</td><td>AMD</td><td>Call spread 600/605, exp 15 Jul 2026</td><td class="win">$+178.31</td></tr>
+      <tr><td>14 Jul 2026</td><td>AMD</td><td>Call spread 620/625, exp 15 Jul 2026</td><td class="win">$+148.24</td></tr>
+      <tr><td>14 Jul 2026</td><td>NVDA</td><td>Call spread 220/225, exp 17 Jul 2026</td><td class="win">$+168.32</td></tr>
+      <tr><td>15 Jul 2026</td><td>AMD</td><td>Call spread 615/620, exp 17 Jul 2026</td><td class="win">$+968.26</td></tr>
+      <tr><td>15 Jul 2026</td><td>AMD</td><td>Put spread 447.5/452.5, exp 17 Jul 2026</td><td class="win">$+118.30</td></tr>
+      <tr><td>15 Jul 2026</td><td>NVDA</td><td>Put spread 190/195, exp 17 Jul 2026</td><td class="win">$+78.29</td></tr>
+      <tr><td>16 Jul 2026</td><td>AMD</td><td>Put spread 447.5/452.5, exp 20 Jul 2026</td><td class="win">$+188.30</td></tr>
+      <tr><td>16 Jul 2026</td><td>NVDA</td><td>Put spread 190/195, exp 20 Jul 2026</td><td class="win">$+118.30</td></tr>
+      <tr><td>20 Jul 2026</td><td>AMD</td><td>Put spread 452.5/457.5, exp 22 Jul 2026</td><td class="win">$+208.28</td></tr>
+      <tr><td>20 Jul 2026</td><td>NDXP</td><td>Put spread 27675/27725, exp 21 Jul 2026</td><td class="win">$+155.84</td></tr>
+      <tr><td>20 Jul 2026</td><td>NVDA</td><td>Put spread 190/195, exp 22 Jul 2026</td><td class="win">$+158.32</td></tr>
+      <tr><td>21 Jul 2026</td><td>AMD</td><td>Call spread 580/585, exp 22 Jul 2026</td><td class="win">$+249.14</td></tr>
+      <tr><td>21 Jul 2026</td><td>AMD</td><td>Call spread 587.5/592.5, exp 22 Jul 2026</td><td class="win">$+106.93</td></tr>
+      <tr><td>21 Jul 2026</td><td>AVGO</td><td>Call spread 407.5/412.5, exp 22 Jul 2026</td><td class="win">$+228.31</td></tr>
+      <tr><td>21 Jul 2026</td><td>NDXP</td><td>Put spread 27900/27920, exp 22 Jul 2026</td><td class="win">$+71.68</td></tr>
+      <tr><td>22 Jul 2026</td><td>AMD</td><td>Call spread 620/627.5, exp 24 Jul 2026</td><td class="win">$+278.80</td></tr>
+      <tr><td>22 Jul 2026</td><td>AVGO</td><td>Call spread 412.5/420, exp 24 Jul 2026</td><td class="win">$+306.81</td></tr>
+      <tr><td>22 Jul 2026</td><td>NVDA</td><td>Call spread 222.5/227.5, exp 24 Jul 2026</td><td class="win">$+278.32</td></tr>
+      <tr><td>23 Jul 2026</td><td>AMD</td><td>Put spread 475/485, exp 24 Jul 2026</td><td class="win">$+344.56</td></tr>
+      <tr><td>23 Jul 2026</td><td>AVGO</td><td>Call spread 420/425, exp 27 Jul 2026</td><td class="win">$+268.31</td></tr>
+      <tr><td>23 Jul 2026</td><td>AVGO</td><td>Put spread 347.5/365, exp 27 Jul 2026</td><td class="loss">$-4.36</td></tr>
+      <tr><td>23 Jul 2026</td><td>NDXP</td><td>Put spread 27400/27450, exp 24 Jul 2026</td><td class="win">$+147.92</td></tr>
+      <tr><td>24 Jul 2026</td><td>AMD</td><td>Put spread 465/472.5, exp 27 Jul 2026</td><td class="loss">$-694.21</td></tr>
+      <tr><td>24 Jul 2026</td><td>AVGO</td><td>Put spread 355/362.5, exp 27 Jul 2026</td><td class="win">$+159.82</td></tr>
+      <tr><td>24 Jul 2026</td><td>NDXP</td><td>Put spread 27175/27200, exp 27 Jul 2026</td><td class="win">$+120.92</td></tr>
+      <tr><td>27 Jul 2026</td><td>AMD</td><td>Put spread 417.5/422.5, exp 29 Jul 2026</td><td class="win">$+208.30</td></tr>
+      <tr><td>27 Jul 2026</td><td>AMD</td><td>Put spread 447.5/452.5, exp 29 Jul 2026</td><td class="loss">$-3,751.94</td></tr>
+      <tr><td>27 Jul 2026</td><td>NDXP</td><td>Put spread 27275/27300, exp 28 Jul 2026</td><td class="win">$+155.84</td></tr>
+      <tr><td>27 Jul 2026</td><td>NVDA</td><td>Put spread 190/195, exp 29 Jul 2026</td><td class="loss">$-2,451.70</td></tr>
+      <tr><td>29 Jul 2026</td><td>AMD</td><td>Put spread 395/400, exp 31 Jul 2026</td><td class="loss">$-301.73</td></tr>
+      <tr><td>29 Jul 2026</td><td>NDXP</td><td>Put spread 26425/26475, exp 30 Jul 2026</td><td class="win">$+215.84</td></tr>
+      <tr><td>29 Jul 2026</td><td>NDXP</td><td>Put spread 26500/26550, exp 30 Jul 2026</td><td class="win">$+285.59</td></tr>
+      <tr><td>29 Jul 2026</td><td>NDXP</td><td>Put spread 26990/27010, exp 30 Jul 2026</td><td class="win">$+353.76</td></tr>
+      <tr><td>30 Jun 2026</td><td>AMD</td><td>Call spread 620/625, exp 2 Jul 2026</td><td class="win">$+168.31</td></tr>
+      <tr><td>30 Jun 2026</td><td>IREN</td><td>Put spread 40.5/41.5, exp 2 Jul 2026</td><td class="loss">$-858.53</td></tr>
+      <tr><td>30 Jul 2026</td><td>NDXP</td><td>Put spread 26840/26860, exp 31 Jul 2026</td><td class="win">$+314.60</td></tr>
+      <tr><td>30/06-01/07</td><td>NVDA</td><td>P 177.5/182.5, exp 2 Jul 2026 — Position opened before July (prior-period leg not in this statement)</td><td class="loss">$-30.84</td></tr>
+      <tr><td>15 Jul 2026</td><td>AMD</td><td>C 625 (single leg), exp 17 Jul 2026 — Third leg of a 3-strike AMD call position (615/620/625) — shown separately rather than force-paired</td><td class="loss">$-660.84</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="month-heading">August 2026 (ongoing)</h2>
   <table class="track-table">
     <thead>
       <tr>
@@ -48,12 +126,12 @@
     </thead>
     <tbody>
       <tr>
-        <td>EXAMPLE</td>
-        <td>NDX</td>
-        <td>Put credit spread</td>
-        <td>£000</td>
-        <td class="win">+£00</td>
-        <td>Replace this row with a real trade</td>
+        <td>3 Aug 2026</td>
+        <td>NVDA</td>
+        <td>Call credit spread (217.5/222.5, 5 Aug exp)</td>
+        <td>$4,800 max risk &middot; $189.20 credit</td>
+        <td>Pending</td>
+        <td>10 contracts each leg, sold 217.5C @ $0.31 / bought 222.5C @ $0.11</td>
       </tr>
     </tbody>
   </table>
