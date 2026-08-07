@@ -43,6 +43,8 @@
       <option value="month-2026-07" selected>July 2026</option>
       <option value="month-2026-06">June 2026</option>
       <option value="month-2026-05">May 2026</option>
+      <option value="month-2026-04">April 2026</option>
+      <option value="month-2026-03">March 2026</option>
     </select>
   </div>
 
@@ -308,6 +310,117 @@
       <tr><td>20 May 2026</td><td>NDXP</td><td>Put spread 28,050/28,070, exp 22 May 2026</td><td class="win">$+147.42</td></tr>
       <tr><td>22 May 2026</td><td>NDXP</td><td>Put multi-entry (28,680, 28,700, 28,710, 28,730), exp 26 May 2026</td><td class="win">$+130.84</td></tr>
       <tr><td>27 May 2026</td><td>NDXP</td><td>Put spread 29,040/29,060, exp 28 May 2026</td><td class="win">$+77.92</td></tr>
+    </tbody>
+  </table>
+
+  </section>
+
+  <section class="month-section" id="month-2026-04" style="display:none;">
+  <h2 class="month-heading">April 2026 Summary</h2>
+  <table class="track-table" style="max-width:500px;">
+    <tbody>
+      <tr><td><strong>Trades</strong></td><td>32</td></tr>
+      <tr><td><strong>Win Rate</strong></td><td class="win">68.8%</td></tr>
+      <tr><td><strong>Total P&amp;L</strong></td><td class="loss">-$1,374.95</td></tr>
+      <tr><td><strong>Largest Win</strong></td><td class="win">+$655.83 (SPXW 7,015 put, 0DTE, 23 Apr)</td></tr>
+      <tr><td><strong>Largest Loss</strong></td><td class="loss">-$956.26 (SPXW 6,515/6,525 call spread, 0DTE, assigned)</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);margin-top:16px;">
+    First month trading SPXW/VIXW 0DTE iron-condor-style spreads alongside NDXP and the IREN wheel.
+    High win rate, but 0DTE index spreads that finish ITM settle in cash at the full width of the
+    spread rather than a typical stop-loss amount &mdash; the 31 Mar call spread is a clean example:
+    a $43.74 credit turned into a $956.26 loss because both legs settled deep in the money. This is
+    the structural risk of selling short-dated index spreads: small, frequent wins against occasional
+    losses that can run to the full defined-risk amount. The 100 IREN shares from a February put
+    assignment were carried as a covered-call position through March and sold in April for a small
+    loss on the stock itself, separate from the option premium collected along the way.
+  </p>
+
+  <table class="track-table">
+    <thead>
+      <tr><th>Date</th><th>Instrument</th><th>Strategy</th><th>Result</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>27 Feb 2026</td><td>IREN</td><td>100 shares (assigned via short put, opening premium not in this statement) bought $50.00, sold 20 Apr at $48.37 &mdash; equity leg, not an option trade</td><td class="loss">$-163.12</td></tr>
+      <tr><td>30 Mar 2026</td><td>VIXW</td><td>Call spread 32/33, exp 1 Apr 2026 &mdash; expired worthless, resolved in April</td><td class="win">$+26.45</td></tr>
+      <tr><td>30 Mar 2026</td><td>VIXW</td><td>Put spread 26/27, exp 1 Apr 2026 (0DTE) &mdash; short leg assigned, long leg exercised; cash-settled at max loss on the spread width</td><td class="loss">$-84.42</td></tr>
+      <tr><td>31 Mar 2026</td><td>SPXW</td><td>Put spread 6,305/6,315, exp 31 Mar 2026</td><td class="win">$+31.74</td></tr>
+      <tr><td>31 Mar 2026</td><td>SPXW</td><td>Call spread 6,515/6,525, exp 31 Mar 2026 (0DTE) &mdash; short leg assigned, long leg exercised; cash-settled at max loss on the spread width</td><td class="loss">$-956.26</td></tr>
+      <tr><td>1 Apr 2026</td><td>SPXW</td><td>Put spread 6,445/6,455, exp 1 Apr 2026</td><td class="win">$+27.74</td></tr>
+      <tr><td>2 Apr 2026</td><td>SPXW</td><td>Call multi-entry (6,580, 6,590, 6,665, 6,675), exp 2 Apr 2026</td><td class="loss">$-165.78</td></tr>
+      <tr><td>2 Apr 2026</td><td>SPXW</td><td>Put spread 6,460/6,470, exp 2 Apr 2026</td><td class="win">$+36.74</td></tr>
+      <tr><td>6 Apr 2026</td><td>SPXW</td><td>Put spread 6,520/6,530, exp 6 Apr 2026</td><td class="win">$+37.74</td></tr>
+      <tr><td>7 Apr 2026</td><td>SPXW</td><td>Call spread 6,640/6,650, exp 7 Apr 2026</td><td class="win">$+37.74</td></tr>
+      <tr><td>8 Apr 2026</td><td>SPXW</td><td>Put spread 6,650/6,660, exp 8 Apr 2026</td><td class="win">$+37.74</td></tr>
+      <tr><td>9 Apr 2026</td><td>SPXW</td><td>Call single leg 6,800, exp 9 Apr 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-858.26</td></tr>
+      <tr><td>9 Apr 2026</td><td>SPXW</td><td>Call single leg 6,810, exp 9 Apr 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+555.74</td></tr>
+      <tr><td>9 Apr 2026</td><td>SPXW</td><td>Put single leg 6,680, exp 9 Apr 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-75.08</td></tr>
+      <tr><td>9 Apr 2026</td><td>SPXW</td><td>Put single leg 6,690, exp 9 Apr 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+88.83</td></tr>
+      <tr><td>10 Apr 2026</td><td>IREN</td><td>Call single leg 45, exp 17 Apr 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-11.10</td></tr>
+      <tr><td>10 Apr 2026</td><td>NDXP</td><td>Put spread 24,690/24,710, exp 10 Apr 2026</td><td class="win">$+17.92</td></tr>
+      <tr><td>13 Apr 2026</td><td>IREN</td><td>Call single leg 46, exp 1 May 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-329.10</td></tr>
+      <tr><td>13 Apr 2026</td><td>SPXW</td><td>Put spread 6,715/6,725, exp 13 Apr 2026</td><td class="win">$+25.66</td></tr>
+      <tr><td>15 Apr 2026</td><td>SPXW</td><td>Put spread 6,880/6,890, exp 15 Apr 2026</td><td class="win">$+35.66</td></tr>
+      <tr><td>16 Apr 2026</td><td>SPXW</td><td>Put spread 6,925/6,935, exp 16 Apr 2026</td><td class="win">$+25.84</td></tr>
+      <tr><td>17 Apr 2026</td><td>SPXW</td><td>Put multi-entry (6,985, 6,995, 7,015, 7,025), exp 17 Apr 2026</td><td class="win">$+60.48</td></tr>
+      <tr><td>20 Apr 2026</td><td>IREN</td><td>Call single leg 48, exp 8 May 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+1.89</td></tr>
+      <tr><td>20 Apr 2026</td><td>SPXW</td><td>Call multi-entry (7,180, 7,185, 7,190, 7,195), exp 20 Apr 2026</td><td class="win">$+35.84</td></tr>
+      <tr><td>21 Apr 2026</td><td>NDXP</td><td>Put spread 25,680/25,700, exp 24 Apr 2026</td><td class="win">$+172.34</td></tr>
+      <tr><td>21 Apr 2026</td><td>SPXW</td><td>Put single leg 7,015, exp 21 Apr 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-44.16</td></tr>
+      <tr><td>21 Apr 2026</td><td>SPXW</td><td>Put single leg 7,025, exp 21 Apr 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+35.66</td></tr>
+      <tr><td>22 Apr 2026</td><td>SPXW</td><td>Put spread 7,010/7,020, exp 22 Apr 2026</td><td class="win">$+22.74</td></tr>
+      <tr><td>23 Apr 2026</td><td>SPXW</td><td>Put single leg 7,015, exp 23 Apr 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+655.83</td></tr>
+      <tr><td>23 Apr 2026</td><td>SPXW</td><td>Put single leg 7,025, exp 23 Apr 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-840.17</td></tr>
+      <tr><td>24 Apr 2026</td><td>NDXP</td><td>Put spread 26,570/26,590, exp 27 Apr 2026</td><td class="win">$+86.84</td></tr>
+      <tr><td>28 Apr 2026</td><td>NDXP</td><td>Put spread 26,030/26,050, exp 30 Apr 2026</td><td class="win">$+95.34</td></tr>
+    </tbody>
+  </table>
+
+  </section>
+
+  <section class="month-section" id="month-2026-03" style="display:none;">
+  <h2 class="month-heading">March 2026 Summary</h2>
+  <table class="track-table" style="max-width:500px;">
+    <tbody>
+      <tr><td><strong>Trades</strong></td><td>18</td></tr>
+      <tr><td><strong>Win Rate</strong></td><td class="win">66.7%</td></tr>
+      <tr><td><strong>Total P&amp;L</strong></td><td class="win">+$964.28</td></tr>
+      <tr><td><strong>Largest Win</strong></td><td class="win">+$361.83 (IREN 48 call, 16-19 Mar)</td></tr>
+      <tr><td><strong>Largest Loss</strong></td><td class="loss">-$198.26 (SPXW 6,550 put, 0DTE, 25 Mar)</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);margin-top:16px;">
+    The earliest month on record. Mostly IREN covered calls written against 100 shares assigned via
+    a short put in late February (opening premium from that put isn't in this statement), plus the
+    start of same-day SPXW index spreads. A late-March iron condor (30 Mar, expiring 31 Mar) carried
+    two legs into April, where they settled for a large loss &mdash; see April's summary for the
+    resolution.
+  </p>
+
+  <table class="track-table">
+    <thead>
+      <tr><th>Date</th><th>Instrument</th><th>Strategy</th><th>Result</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2 Mar 2026</td><td>IREN</td><td>Call spread 46/48, exp 13 Mar 2026</td><td class="win">$+200.82</td></tr>
+      <tr><td>2 Mar 2026</td><td>IREN</td><td>Call single leg 50, exp 6 Mar 2026 &mdash; opening leg from before this statement period</td><td class="loss">$-14.54</td></tr>
+      <tr><td>12 Mar 2026</td><td>IREN</td><td>Call single leg 48, exp 20 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-114.18</td></tr>
+      <tr><td>16 Mar 2026</td><td>IREN</td><td>Call single leg 48, exp 27 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+361.83</td></tr>
+      <tr><td>20 Mar 2026</td><td>IREN</td><td>Call single leg 46, exp 27 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+75.83</td></tr>
+      <tr><td>25 Mar 2026</td><td>IREN</td><td>Call single leg 46, exp 2 Apr 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+145.83</td></tr>
+      <tr><td>25 Mar 2026</td><td>SPXW</td><td>Call single leg 6,650, exp 25 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+272.83</td></tr>
+      <tr><td>25 Mar 2026</td><td>SPXW</td><td>Call single leg 6,660, exp 25 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-175.17</td></tr>
+      <tr><td>25 Mar 2026</td><td>SPXW</td><td>Put single leg 6,550, exp 25 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-198.26</td></tr>
+      <tr><td>25 Mar 2026</td><td>SPXW</td><td>Put single leg 6,560, exp 25 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+241.74</td></tr>
+      <tr><td>26 Mar 2026</td><td>SPXW</td><td>Call spread 6,640/6,650, exp 26 Mar 2026</td><td class="win">$+39.83</td></tr>
+      <tr><td>26 Mar 2026</td><td>SPXW</td><td>Put spread 6,450/6,460, exp 26 Mar 2026</td><td class="win">$+10.92</td></tr>
+      <tr><td>27 Mar 2026</td><td>SPXW</td><td>Call spread 6,525/6,535, exp 27 Mar 2026</td><td class="win">$+45.74</td></tr>
+      <tr><td>27 Mar 2026</td><td>SPXW</td><td>Put spread 6,320/6,330, exp 27 Mar 2026</td><td class="win">$+34.74</td></tr>
+      <tr><td>30 Mar 2026</td><td>SPXW</td><td>Call single leg 6,515, exp 30 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+113.83</td></tr>
+      <tr><td>30 Mar 2026</td><td>SPXW</td><td>Call single leg 6,525, exp 30 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-96.17</td></tr>
+      <tr><td>30 Mar 2026</td><td>SPXW</td><td>Put single leg 6,295, exp 30 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="loss">$-124.17</td></tr>
+      <tr><td>30 Mar 2026</td><td>SPXW</td><td>Put single leg 6,305, exp 30 Mar 2026 &mdash; opened/closed independently of its intended pair leg</td><td class="win">$+142.83</td></tr>
     </tbody>
   </table>
 
