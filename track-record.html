@@ -36,6 +36,15 @@
     separately rather than force-fit into a spread they weren't part of.
   </div>
 
+  <div class="month-filter">
+    <label for="monthSelect">Jump to month:</label>
+    <select id="monthSelect" onchange="document.getElementById(this.value).scrollIntoView({behavior:'smooth'}); document.querySelectorAll('.month-section').forEach(s => s.style.display = (s.id === this.value ? 'block' : 'none'));">
+      <option value="month-2026-08">August 2026 (ongoing)</option>
+      <option value="month-2026-07" selected>July 2026</option>
+    </select>
+  </div>
+
+  <section class="month-section" id="month-2026-07">
   <h2 class="month-heading">July 2026 Summary</h2>
   <div class="summary-grid">
     <div class="summary-stat"><div class="label">Trades</div><div class="value">49</div></div>
@@ -112,6 +121,10 @@
     </tbody>
   </table>
 
+  
+  </section>
+
+  <section class="month-section" id="month-2026-08" style="display:none;">
   <h2 class="month-heading">August 2026 (ongoing)</h2>
   <table class="track-table">
     <thead>
@@ -135,6 +148,8 @@
       </tr>
     </tbody>
   </table>
+
+  </section>
 </main>
 
 <footer>
