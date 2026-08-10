@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Today's Chain — The Greeks Desk</title>
+<title>Today's Chain | The Greeks Desk</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -21,14 +21,16 @@
   a{color:inherit;}
 
   nav{
-    display:flex;align-items:center;justify-content:space-between;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
     padding:22px 6vw;position:sticky;top:0;z-index:50;
     background:rgba(34,36,44,0.88);backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
-  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:20px;text-decoration:none;color:var(--parchment);}
-  .back{font-size:13px;color:var(--text-dim);text-decoration:none;}
-  .back:hover{color:var(--gold-bright);}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:20px;text-decoration:none;color:var(--parchment);white-space:nowrap;flex-shrink:0;}
+  .navlinks{display:flex;gap:32px;font-size:15px;color:var(--text-dim);flex-wrap:wrap;}
+  .navlinks a{text-decoration:none;transition:color .2s;white-space:nowrap;}
+  .navlinks a:hover{color:var(--gold-bright);}
+  .navlinks a.active{color:var(--gold-bright);font-weight:600;}
 
   main{max-width:900px;margin:0 auto;padding:56px 6vw;}
   main h1{font-size:clamp(30px,5vw,42px);}
@@ -70,12 +72,18 @@
     </svg>
     The Greeks Desk
   </a>
-  <a href="index.html" class="back">← Back to markets</a>
+  <div class="navlinks">
+    <a href="learn.html">Modules</a>
+    <a href="options-chain.html" class="active">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
 </nav>
 
 <main>
   <h1>Today's Chain</h1>
-  <p class="intro">Real Greeks on the nearest-expiry, near-the-money strikes — not a demo. Pulled directly from the live options market, not simulated.</p>
+  <p class="intro">Real Greeks on the nearest-expiry, near-the-money strikes, not a demo. Pulled directly from the live options market, not simulated.</p>
 
   <div class="controls">
     <button id="btn-spx" class="active" onclick="loadChain('SPX')">SPX</button>
@@ -131,19 +139,19 @@ async function loadChain(symbol){
     }
     if(!data.contracts || data.contracts.length === 0) throw new Error('No contracts returned for this expiry/range.');
 
-    meta.innerHTML = `<strong>${data.symbol}</strong> at <strong>${data.underlyingPrice?.toFixed(2) ?? '—'}</strong> &middot; nearest expiry <strong>${data.expiration}</strong> &middot; showing strikes within 5% of spot`;
+    meta.innerHTML = `<strong>${data.symbol}</strong> at <strong>${data.underlyingPrice?.toFixed(2) ?? '-'}</strong> &middot; nearest expiry <strong>${data.expiration}</strong> &middot; showing strikes within 5% of spot`;
 
     const rows = data.contracts.map(c => {
       const nearMoney = data.underlyingPrice && Math.abs(c.strike - data.underlyingPrice) / data.underlyingPrice < 0.01;
       return `<tr class="${nearMoney ? 'near-money' : ''}">
-        <td>${c.strike?.toFixed(2) ?? '—'}</td>
-        <td>${c.bid?.toFixed(2) ?? '—'}</td>
-        <td>${c.ask?.toFixed(2) ?? '—'}</td>
-        <td>${c.delta !== null ? c.delta.toFixed(3) : '—'}</td>
-        <td>${c.theta !== null ? c.theta.toFixed(3) : '—'}</td>
-        <td>${c.gamma !== null ? c.gamma.toFixed(4) : '—'}</td>
-        <td>${c.iv !== null ? (c.iv * 100).toFixed(1) + '%' : '—'}</td>
-        <td>${c.openInterest ?? '—'}</td>
+        <td>${c.strike?.toFixed(2) ?? '-'}</td>
+        <td>${c.bid?.toFixed(2) ?? '-'}</td>
+        <td>${c.ask?.toFixed(2) ?? '-'}</td>
+        <td>${c.delta !== null ? c.delta.toFixed(3) : '-'}</td>
+        <td>${c.theta !== null ? c.theta.toFixed(3) : '-'}</td>
+        <td>${c.gamma !== null ? c.gamma.toFixed(4) : '-'}</td>
+        <td>${c.iv !== null ? (c.iv * 100).toFixed(1) + '%' : '-'}</td>
+        <td>${c.openInterest ?? '-'}</td>
       </tr>`;
     }).join('');
 

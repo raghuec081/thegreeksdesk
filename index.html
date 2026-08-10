@@ -28,16 +28,17 @@
 
   /* ---------- Nav ---------- */
   nav{
-    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
     padding:22px 6vw;position:sticky;top:0;z-index:50;
     background:rgba(34,36,44,0.88);backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
-  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:20px;letter-spacing:0.02em;justify-self:start;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:20px;letter-spacing:0.02em;white-space:nowrap;flex-shrink:0;}
   .brand .glyph{color:var(--gold-bright);font-size:22px;}
-  .navlinks{display:flex;gap:32px;font-size:16px;color:var(--text-dim);justify-self:center;}
-  .navlinks a{text-decoration:none;transition:color .2s;}
+  .navlinks{display:flex;gap:32px;font-size:16px;color:var(--text-dim);flex-wrap:wrap;}
+  .navlinks a{text-decoration:none;transition:color .2s;white-space:nowrap;}
   .navlinks a:hover{color:var(--gold-bright);}
+  .navlinks a.active{color:var(--gold-bright);font-weight:600;}
 
   /* ---------- Ticker marquee ---------- */
   .ticker-wrap{
@@ -218,7 +219,7 @@
     <h2>Start here</h2>
   </div>
   <p style="max-width:640px;color:var(--text-dim);font-size:15px;line-height:1.7;">
-    Short, plain-English lessons on options and risk — no jargon unless we explain it first. Options basics, the Greeks, position sizing, credit spreads, trade management. New lessons get added over time, and they all live in one place.
+    Short, plain-English lessons on options and risk. No jargon unless we explain it first. Options basics, the Greeks, position sizing, credit spreads, trade management. New lessons get added over time, and they all live in one place.
   </p>
   <a href="learn.html" class="btn ghost" style="margin-top:24px;">Browse all modules →</a>
 </section>
@@ -230,7 +231,7 @@
   </div>
   <p style="max-width:640px;color:var(--text-dim);font-size:15px;line-height:1.7;">
     Written by someone who spends the day job managing risk data for a major bank, and the
-    evenings trading NDX and SPX spreads. No signals for sale, no "guru" pitch — just plain
+    evenings trading NDX and SPX spreads. No signals for sale, no "guru" pitch. Just plain
     explanations and an honest, public record of what's actually being traded.
   </p>
   <a href="about.html" style="color:var(--gold-bright);font-size:14px;text-decoration:none;">Read more →</a>
@@ -271,7 +272,7 @@ const SYMS = {
   ],
 };
 
-// Fallback sample data (used if live fetch fails — clearly labeled as demo)
+// Fallback sample data, used if live fetch fails (clearly labeled as demo)
 const FALLBACK = {
   'NDX': {price:23108.6, chg:0.61}, 'SPX': {price:6412.3, chg:0.42},
 };
@@ -303,7 +304,7 @@ function renderTicker(data){
 }
 
 async function fetchIndexQuote(symbol){
-  // Calls /api/index-quote.js (Twelve Data) — used for real index tickers, since
+  // Calls /api/index-quote.js (Twelve Data), used for real index tickers, since
   // Finnhub's free tier doesn't reliably support raw index quotes.
   const res = await fetch(`/api/index-quote?symbol=${encodeURIComponent(symbol)}`);
   if(!res.ok) throw new Error('bad response');

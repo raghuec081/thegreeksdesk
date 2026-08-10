@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What is an option? — TheGreeksDesk</title>
+<title>What is an option? | TheGreeksDesk</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght..144,400;9..144,500;9..144,600&family=Inter:wght;500;600;700&family=IBM+Plex+Mono:wght;500;600&display=swap" rel="stylesheet">
@@ -22,7 +22,13 @@
     </svg>
     TheGreeksDesk
   </a>
-  <a href="learn.html" class="back">← Back to Modules</a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
 </nav>
 
 <main>
@@ -30,12 +36,12 @@
   <h1>What is an option?</h1>
 
   <article>
-    <p>An option is a contract between two people. It gives the buyer the <strong>right</strong> — but not the obligation — to buy or sell 100 shares of a stock at an agreed price, by an agreed date. The seller of that contract takes on the other side of that obligation, in exchange for getting paid upfront.</p>
+    <p>An option is a contract between two people. It gives the buyer the <strong>right</strong>, but not the obligation, to buy or sell 100 shares of a stock at an agreed price, by an agreed date. The seller of that contract takes on the other side of that obligation, in exchange for getting paid upfront.</p>
 
-    <p>That's the whole idea. Everything else — Greeks, strategies, spreads — is built on top of this one contract.</p>
+    <p>That's the whole idea. Everything else (Greeks, strategies, spreads) is built on top of this one contract.</p>
 
     <div class="example">
-      <strong>A simple analogy.</strong> Imagine you want to buy a house priced at £300,000, but you're not ready to commit yet. You pay the seller a £3,000 deposit for the right to buy that house at £300,000 any time in the next 30 days, even if the market price rises. If house prices jump to £320,000, your deposit just secured you a great deal. If prices fall to £280,000, you can walk away — you only lose the £3,000 deposit, not the full price. That deposit is the option's <strong>premium</strong>. The agreed price is the <strong>strike price</strong>. The 30-day window is the <strong>expiry</strong>.
+      <strong>A simple analogy.</strong> Imagine you want to buy a house priced at £300,000, but you're not ready to commit yet. You pay the seller a £3,000 deposit for the right to buy that house at £300,000 any time in the next 30 days, even if the market price rises. If house prices jump to £320,000, your deposit just secured you a great deal. If prices fall to £280,000, you can walk away. You only lose the £3,000 deposit, not the full price. That deposit is the option's <strong>premium</strong>. The agreed price is the <strong>strike price</strong>. The 30-day window is the <strong>expiry</strong>.
     </div>
 
     <h2>Calls and puts</h2>
@@ -49,13 +55,13 @@
     <h2>Two sides to every contract</h2>
     <p>For every option that exists, there's a buyer on one side and a seller on the other. They want opposite things:</p>
     <ul>
-      <li>The <strong>buyer</strong> pays the premium upfront and has limited, known risk — they can only lose what they paid. Their potential gain, especially on calls, can be large.</li>
+      <li>The <strong>buyer</strong> pays the premium upfront and has limited, known risk: they can only lose what they paid. Their potential gain, especially on calls, can be large.</li>
       <li>The <strong>seller</strong> ("writer") collects the premium upfront and takes on the obligation to follow through if the buyer exercises their right. Their potential gain is capped at the premium collected, but the risk on the other side can be significant.</li>
     </ul>
-    <p>Neither side is automatically the "smart" side — they're different trades with different risk shapes. We'll go into why a risk-first trader might prefer one side over the other in the next lesson.</p>
+    <p>Neither side is automatically the "smart" side. They're different trades with different risk shapes. We'll go into why a risk-first trader might prefer one side over the other in the next lesson.</p>
 
     <h2>Why the size is "100 shares"</h2>
-    <p>One standard listed option contract almost always represents 100 shares of the underlying stock (or, for an index, 100× the index's cash value). So when you see an option quoted at, say, £2.00, the actual cost to buy one contract is £2.00 × 100 = £200 — not £2.00.</p>
+    <p>One standard listed option contract almost always represents 100 shares of the underlying stock (or, for an index, 100× the index's cash value). So when you see an option quoted at, say, £2.00, the actual cost to buy one contract is £2.00 × 100 = £200, not £2.00.</p>
 
     <div class="example">
       <strong>Why this trips people up.</strong> A quoted option premium always looks small next to the stock price. It isn't. Multiply by 100 before you compare it to anything, or the size of the position you're actually taking on will surprise you.
@@ -63,9 +69,9 @@
 
     <h2>What this doesn't mean</h2>
     <ul>
-      <li>It doesn't mean options are inherently "risky" or "safe" — the risk depends entirely on which side of the contract you're on, and how the position is sized.</li>
+      <li>It doesn't mean options are inherently "risky" or "safe". The risk depends entirely on which side of the contract you're on, and how the position is sized.</li>
       <li>It doesn't mean you have to hold to expiry. Most option positions are closed early, not exercised.</li>
-      <li>This page isn't a recommendation to trade calls, puts, or anything else — it's the vocabulary you need before any of the later lessons make sense.</li>
+      <li>This page isn't a recommendation to trade calls, puts, or anything else. It's the vocabulary you need before any of the later lessons make sense.</li>
     </ul>
   </article>
 
