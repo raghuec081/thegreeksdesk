@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rolling a position | The Greeks Desk</title>
+<meta name="description" content="What rolling actually means, why it can help a threatened position, and why it doesn't erase the underlying risk.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Greeks Desk">
+<meta property="og:url" content="https://thegreeksdesk.com/rolling-a-position.html">
+<meta property="og:title" content="Rolling a position | The Greeks Desk">
+<meta property="og:description" content="What rolling actually means, why it can help a threatened position, and why it doesn't erase the underlying risk.">
+<meta property="og:image" content="https://thegreeksdesk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegreeksdesk6">
+<meta name="twitter:title" content="Rolling a position | The Greeks Desk">
+<meta name="twitter:description" content="What rolling actually means, why it can help a threatened position, and why it doesn't erase the underlying risk.">
+<meta name="twitter:image" content="https://thegreeksdesk.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<main>
+  <div class="lesson-meta">Module 5 · Trade Management · Lesson 2</div>
+  <h1>Rolling a position</h1>
+
+  <article>
+    <p>When a spread is under pressure and you'd like more room for it to work out, closing it outright isn't the only option. Rolling is the other common path: you close the current position and open a new one, usually further out in time, and sometimes at different strikes, in the same underlying.</p>
+
+    <p>In practice, rolling is just two trades executed together: buy back the spread you're in, sell a new spread further out. It's most often used on a position that's moved against you and is at risk of a loss, though it can also be used on a position that's working, simply to extend a winning trade for more premium.</p>
+
+    <div class="example">
+      <strong>A simple example.</strong> You're short an NDX call spread that's now uncomfortably close to being tested, with a week left to expiry. You buy back that spread and sell a new call spread, further out in time and at higher strikes, giving the position more room and more time for the underlying to settle down before the new expiry arrives.
+    </div>
+
+    <h2>What rolling actually changes</h2>
+    <p>Rolling out in time typically buys the position more time to be right, and rolling the strikes further from the current price can improve your buffer relative to where the underlying is trading now. That's the appeal: a threatened position gets a bit more breathing room without an outright loss being realised today.</p>
+
+    <h2>What rolling doesn't change</h2>
+    <p>Rolling doesn't erase the underlying risk. It's still a defined-risk spread with its own max loss, on the same underlying, just at a later date. If the move against you continues, a small loss can become a larger one, because you've effectively stayed in the trade rather than stepped away from it. Rolling delays a decision more than it removes the reason the decision needed making in the first place.</p>
+
+    <h2>Credit rolls vs debit rolls</h2>
+    <p>A roll for a net credit means the new spread you sell brings in more premium than it costs to close the old one, so cash comes into your account on the roll. A roll for a net debit means the opposite: you pay out to make the roll happen, on top of whatever premium you'd already collected or lost on the original position. A debit roll is worth noticing in particular, since it means you're paying for more time and hoping the position recovers, not simply banking more credit for taking on more time.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> Rolling should be a deliberate decision based on a plan made in advance, not a reflexive way to avoid realising a loss you're not ready to accept. If the only reason to roll is discomfort with the loss, that's worth noticing before you do it.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean rolling is a mistake or a sign of a bad trade. It's a normal, deliberate management tool used by many traders.</li>
+      <li>It doesn't mean rolling always improves a position. A continued move against you after a roll can leave you worse off than simply closing would have.</li>
+      <li>It doesn't mean you have to roll rather than close. Closing and accepting a defined, known loss is just as legitimate a choice.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <a href="closing-early-vs-expiry.html">← Previous: Closing early vs holding to expiry</a>
+    <a href="fast-moving-against-you.html">Next lesson: When a trade moves against you fast →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>

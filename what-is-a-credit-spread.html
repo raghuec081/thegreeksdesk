@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What is a credit spread, and why sell one? | The Greeks Desk</title>
+<meta name="description" content="The mechanics of a credit spread: selling one option and buying another for protection, and why it caps both sides of the trade.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Greeks Desk">
+<meta property="og:url" content="https://thegreeksdesk.com/what-is-a-credit-spread.html">
+<meta property="og:title" content="What is a credit spread, and why sell one? | The Greeks Desk">
+<meta property="og:description" content="The mechanics of a credit spread: selling one option and buying another for protection, and why it caps both sides of the trade.">
+<meta property="og:image" content="https://thegreeksdesk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegreeksdesk6">
+<meta name="twitter:title" content="What is a credit spread, and why sell one? | The Greeks Desk">
+<meta name="twitter:description" content="The mechanics of a credit spread: selling one option and buying another for protection, and why it caps both sides of the trade.">
+<meta name="twitter:image" content="https://thegreeksdesk.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<main>
+  <div class="lesson-meta">Module 4 · Credit Spreads · Lesson 1</div>
+  <h1>What is a credit spread, and why sell one?</h1>
+
+  <article>
+    <p>A credit spread is two option trades placed at the same time, on the same underlying, with the same expiry. You sell one option and buy another option that's further out of the money, as protection. Because the option you sell is worth more than the option you buy, you receive money upfront, a net credit, when you open the trade.</p>
+
+    <p>That protection is the entire point. Selling a single option on its own, often called a "naked" option, exposes you to a loss that grows the further the market moves against you. Buying the further-out option caps that: no matter how far the underlying moves, your loss can't exceed a fixed, known amount. In exchange for that protection, you give up some of the premium you'd have collected by selling alone.</p>
+
+    <div class="example">
+      <strong>A simple example.</strong> Say you sell a put with a 100 strike and buy a put with a 95 strike, same expiry, on the same underlying. You collect a net credit of £1.20, or £120 per contract, since each contract represents 100 shares' worth of value. The width of the spread, the distance between the two strikes, is £5, or £500 per contract. Your max profit is the £120 credit, kept in full if the underlying stays above £100 at expiry. Your max loss is the width minus the credit: £500 minus £120, or £380 per contract, if the underlying falls to or below £95.
+    </div>
+
+    <h2>Why sell one instead of buying an option outright</h2>
+    <p>Selling options gives you an edge that buying doesn't: time works for you rather than against you, a dynamic covered in more detail in <a href="theta-decay.html">theta decay</a> and <a href="why-sell-vs-buy.html">why sell an option instead of buying one</a>. A credit spread lets you keep that seller's edge while trading away part of the premium for a hard ceiling on your risk. You know your max loss the moment you open the trade, which makes position sizing and risk management, covered elsewhere on this site, much more straightforward than with an undefined-risk position.</p>
+
+    <h2>Two basic types</h2>
+    <p>A put credit spread is built from puts, and it profits if the underlying stays flat or rises, a bullish-to-neutral bet. A call credit spread is built from calls, and it profits if the underlying stays flat or falls, a bearish-to-neutral bet. Both work the same way structurally: sell the closer strike, buy the further strike, collect a credit, and let the spread expire worthless if the underlying cooperates. Choosing between them, and picking exactly where to place the strikes, is covered in the next lesson.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> Before you think about which strikes to choose, make sure you can state your max loss on any credit spread in one sentence: the width of the strikes minus the credit received, per contract. If you can't do that instantly, don't place the trade yet.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean a credit spread is risk-free. The max loss can still be several times the credit collected, and it's a real loss if it happens.</li>
+      <li>It doesn't mean wider spreads or closer strikes are automatically better. Every choice trades premium against probability, which the next two lessons cover.</li>
+      <li>It doesn't mean this is a signal to place any specific trade. This is general education on how the structure works, not a recommendation.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <a href="win-rate-vs-max-loss.html">← Previous: Win rate vs max loss</a>
+    <a href="strike-selection.html">Next lesson: Strike selection →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>

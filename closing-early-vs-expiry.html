@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Closing early vs holding to expiry | The Greeks Desk</title>
+<meta name="description" content="The tradeoff between capturing full theta and avoiding the sharpest gamma risk in the final stretch before expiry.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Greeks Desk">
+<meta property="og:url" content="https://thegreeksdesk.com/closing-early-vs-expiry.html">
+<meta property="og:title" content="Closing early vs holding to expiry | The Greeks Desk">
+<meta property="og:description" content="The tradeoff between capturing full theta and avoiding the sharpest gamma risk in the final stretch before expiry.">
+<meta property="og:image" content="https://thegreeksdesk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegreeksdesk6">
+<meta name="twitter:title" content="Closing early vs holding to expiry | The Greeks Desk">
+<meta name="twitter:description" content="The tradeoff between capturing full theta and avoiding the sharpest gamma risk in the final stretch before expiry.">
+<meta name="twitter:image" content="https://thegreeksdesk.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<main>
+  <div class="lesson-meta">Module 5 · Trade Management · Lesson 1</div>
+  <h1>Closing early vs holding to expiry</h1>
+
+  <article>
+    <p>Every credit spread you open has to end somehow: closed early, held to expiry, or in rarer cases, assigned or exercised (covered in an earlier lesson, <a href="assignment-and-exercise.html">assignment and exercise</a>). Between the first two, there's a genuine tradeoff, and it's one you'll face on nearly every trade you place.</p>
+
+    <p>As covered in an earlier lesson on <a href="theta-decay.html">time decay</a>, theta doesn't erode a credit spread's value at a steady pace. Most of the total decay happens in the final days or week before expiry, as the option's remaining time value collapses toward zero. That's exactly when the reward for staying in the trade is smallest, and, as it turns out, exactly when the risk is largest too.</p>
+
+    <div class="example">
+      <strong>A simple example.</strong> Say you sell an NDX put spread for a £300 credit with three weeks to expiry. By the last week, you might have £250 of that credit already locked in, with only £50 of theoretical profit left to capture. That final £50 comes with a disproportionate amount of remaining risk attached to it.
+    </div>
+
+    <h2>Why the final stretch feels different</h2>
+    <p>An option's gamma, the rate at which its delta changes as the underlying moves, is highest when the option is near the money and close to expiry. That's a concept worth revisiting from earlier in the curriculum. In practical terms, it means a position that felt stable a week earlier can swing in value far more sharply in its last few days, on a move in the underlying that wouldn't have mattered much before. Less time to react compounds the problem: there are fewer sessions left for a position to recover if it goes against you.</p>
+
+    <h2>The case for closing early</h2>
+    <p>Many traders close a spread once they've captured a large share of the maximum possible profit, commonly somewhere in the 50-75% range of the credit received. The logic is straightforward: once most of the available reward is already banked, holding on for the last sliver of it means accepting the sharpest, fastest gamma risk of the trade's life for a shrinking payoff. Closing early trades some upside for a cleaner, more predictable outcome.</p>
+
+    <h2>The case for holding to expiry</h2>
+    <p>Holding all the way to expiry captures the full credit, and for a position that's comfortably away from the money, the extra risk of those last few days may be small in practice. Commissions and the time spent managing a position are real costs too, and some traders would rather let time decay finish the job than pay to exit early on a trade that still looks fine. Neither approach is right in every case, it depends on the position, how close it is to the strikes, and your own tolerance for that last stretch of risk.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> Decide your profit-taking plan before you enter the trade, not once you're already sitting on a gain and have to decide in the moment. A plan made in advance is a lot steadier than a decision made while watching the position move.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean closing early is always the better choice. Plenty of positions are held to expiry without incident, especially ones with a comfortable buffer to the strikes.</li>
+      <li>It doesn't mean a fixed percentage, like 50%, is a rule that applies to every trade. It's a common starting point, not a law.</li>
+      <li>It doesn't mean gamma risk only exists in the final week. It's simply more concentrated there, not exclusive to it.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <a href="index-vs-single-stock.html">← Previous: Index spreads vs single-stock spreads</a>
+    <a href="rolling-a-position.html">Next lesson: Rolling a position →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>

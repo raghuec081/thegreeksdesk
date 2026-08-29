@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gamma: how delta itself changes | The Greeks Desk</title>
+<meta name="description" content="Why delta isn't fixed, what gamma measures, and why short-dated near-the-money options can move risk quickly.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Greeks Desk">
+<meta property="og:url" content="https://thegreeksdesk.com/gamma.html">
+<meta property="og:title" content="Gamma: how delta itself changes | The Greeks Desk">
+<meta property="og:description" content="Why delta isn't fixed, what gamma measures, and why short-dated near-the-money options can move risk quickly.">
+<meta property="og:image" content="https://thegreeksdesk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegreeksdesk6">
+<meta name="twitter:title" content="Gamma: how delta itself changes | The Greeks Desk">
+<meta name="twitter:description" content="Why delta isn't fixed, what gamma measures, and why short-dated near-the-money options can move risk quickly.">
+<meta name="twitter:image" content="https://thegreeksdesk.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<main>
+  <div class="lesson-meta">Module 2 · The Greeks · Lesson 3</div>
+  <h1>Gamma: how delta itself changes</h1>
+
+  <article>
+    <p>The <a href="delta.html">delta lesson</a> ended on a loose thread: delta isn't fixed. It moves as the underlying moves. Gamma is the Greek that measures exactly how much. If delta tells you how fast your option's price moves relative to the underlying, gamma tells you how fast that speed itself is changing.</p>
+
+    <p>Gamma is quoted as the change in delta for a £1 move in the underlying. It applies to both calls and puts, and unlike delta, it's always a positive number for a long option position. A long call and a long put on the same strike and expiry will have roughly the same gamma, even though their deltas point in opposite directions.</p>
+
+    <div class="example">
+      <strong>A simple example.</strong> You hold a call with a delta of 0.50 and a gamma of 0.05. The underlying rises by £1. Your new delta is roughly 0.55, not 0.50 anymore. If the stock rises another £1, delta moves again, maybe to around 0.60. The option is behaving more and more like the stock itself as it moves further into the money.
+    </div>
+
+    <h2>Gamma is highest at the money, near expiry</h2>
+    <p>Gamma isn't evenly spread across strikes or across time. It peaks for options that are at the money, right around the current underlying price, and it grows sharply as expiry approaches. A 30-day at-the-money option has meaningfully lower gamma than the same strike with just a day or two left. That combination, at the money and close to expiry, is where delta can shift the fastest.</p>
+
+    <h2>Why this matters for short-dated trades</h2>
+    <p>This site spends a fair amount of time on short-dated NDX and SPX trades, and gamma is exactly why those need closer attention than a position with weeks left on the clock. A spread that looks comfortably out of the money in the morning can see its delta, and therefore its risk, shift substantially with a single sharp move in the underlying, especially inside the last day or two before expiry. The position itself hasn't changed, but how sensitive it is to the next move in price has.</p>
+
+    <p>This is also part of why <a href="risk-management.html">risk management</a> and <a href="position-sizing.html">position sizing</a> matter more, not less, as expiry gets close. High gamma doesn't make a trade automatically bad, but it does mean the range of outcomes can widen faster than it would earlier in the option's life.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> High gamma means a position's risk profile can change quickly, sometimes within minutes on a fast move. Size positions with that in mind, and keep a closer eye on anything at the money in the final day or two before expiry, rather than checking in once and stepping away.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean gamma is dangerous by itself. It's a measurement of sensitivity, not a signal that something is wrong with a trade.</li>
+      <li>It doesn't mean every short-dated option carries the same gamma risk. It's concentrated around the at-the-money strikes, not spread evenly across the whole chain.</li>
+      <li>It doesn't mean you need to calculate gamma by hand before every trade. Knowing the underlying idea, that delta accelerates near the money close to expiry, is usually enough to trade around it sensibly.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <a href="theta-greek.html">← Previous: Theta, the number behind time decay</a>
+    <a href="vega-and-iv.html">Next lesson: Vega and implied volatility →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What happens at assignment or exercise? | The Greeks Desk</title>
+<meta name="description" content="What assignment and exercise actually mean for an option seller and buyer, and why most positions never get there.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Greeks Desk">
+<meta property="og:url" content="https://thegreeksdesk.com/assignment-and-exercise.html">
+<meta property="og:title" content="What happens at assignment or exercise? | The Greeks Desk">
+<meta property="og:description" content="What assignment and exercise actually mean for an option seller and buyer, and why most positions never get there.">
+<meta property="og:image" content="https://thegreeksdesk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegreeksdesk6">
+<meta name="twitter:title" content="What happens at assignment or exercise? | The Greeks Desk">
+<meta name="twitter:description" content="What assignment and exercise actually mean for an option seller and buyer, and why most positions never get there.">
+<meta name="twitter:image" content="https://thegreeksdesk.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<main>
+  <div class="lesson-meta">Module 1 · Options Basics · Lesson 4</div>
+  <h1>What happens at assignment or exercise?</h1>
+
+  <article>
+    <p>Every option contract ends one of three ways: it expires worthless, it gets closed early by a trade, or it results in assignment or exercise. The first two are the most common outcomes for most traders. This lesson covers the third, because it's the one that surprises people who haven't seen it before.</p>
+
+    <p><strong>Exercise</strong> is what the buyer does: using their right to buy, for a call, or sell, for a put, at the strike price. <strong>Assignment</strong> is what happens to the seller on the other side of that contract: they're obligated to fulfil it. You can't be exercised, only assigned. The two words describe the same event from opposite sides of the trade.</p>
+
+    <div class="example">
+      <strong>A simple example.</strong> You sell a put with a strike of £50 on a stock now trading at £45. At expiry, the put is in the money, so the buyer exercises their right to sell you the stock at £50. You get assigned: 100 shares land in your account, and £5,000 leaves it, £50 a share, even though the stock is only worth £45 in the market. That's the mechanism, not a guess about whether it will happen. It's what the contract obligates you to do.
+    </div>
+
+    <h2>Index options work differently</h2>
+    <p>NDX and SPX options, the ones this site focuses on most, are European-style and cash-settled. European-style means they can only be exercised at expiry, not any time before it. Cash-settled means no shares change hands at all: if the option finishes in the money, you simply receive or pay the cash difference between the strike and the index's settlement value. Most single-stock options, including names like AMD and NVDA that we also write about, are American-style and physically settled, so shares actually move, and assignment can technically happen on any day the option is in the money, not just at expiry.</p>
+
+    <h2>Early assignment is the real risk to know about</h2>
+    <p>Because American-style options can be assigned early, a short option that's deep in the money can get assigned before expiry, sometimes days or weeks early. This is more likely on short calls right before a stock pays a dividend, and on deep in-the-money short puts. It's not common, and it's not something to fear on every trade, but it's worth understanding before you sell single-stock options, so it isn't a surprise if it happens.</p>
+
+    <h2>Why most positions never get here</h2>
+    <p>In practice, most option positions, especially defined-risk spreads, get closed before expiry rather than run into assignment or exercise. Closing early avoids the mechanics entirely: you simply buy back what you sold, or sell what you bought, and the position is done. Letting a spread run all the way to expiry, especially one with any chance of finishing in the money, adds a layer of settlement risk and complexity that most traders would rather manage by closing early instead.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> If you're not comfortable with what happens should a short option get assigned, whether that's owning shares you didn't plan for or a cash settlement you didn't expect, close the position before expiry instead of finding out.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean assignment is dangerous or something to panic about. It's a normal, mechanical part of how options work, not a sign anything went wrong.</li>
+      <li>It doesn't mean every in-the-money position gets assigned early. Early assignment is the exception, not the rule, for most option types.</li>
+      <li>It doesn't mean you have to hold to expiry to see what happens. Closing early is a completely normal, often preferable, way to end a trade.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <a href="why-sell-vs-buy.html">← Previous: Why sell an option instead of buying one?</a>
+    <a href="delta.html">Next lesson: Delta: direction and probability →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index spreads vs single-stock spreads | The Greeks Desk</title>
+<meta name="description" content="How trading NDX or SPX spreads differs from trading spreads on individual names like AMD or NVDA.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Greeks Desk">
+<meta property="og:url" content="https://thegreeksdesk.com/index-vs-single-stock.html">
+<meta property="og:title" content="Index spreads vs single-stock spreads | The Greeks Desk">
+<meta property="og:description" content="How trading NDX or SPX spreads differs from trading spreads on individual names like AMD or NVDA.">
+<meta property="og:image" content="https://thegreeksdesk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegreeksdesk6">
+<meta name="twitter:title" content="Index spreads vs single-stock spreads | The Greeks Desk">
+<meta name="twitter:description" content="How trading NDX or SPX spreads differs from trading spreads on individual names like AMD or NVDA.">
+<meta name="twitter:image" content="https://thegreeksdesk.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<main>
+  <div class="lesson-meta">Module 4 · Credit Spreads · Lesson 4</div>
+  <h1>Index spreads vs single-stock spreads</h1>
+
+  <article>
+    <p>Everything covered so far in this module applies whether the underlying is an index like NDX or SPX, or a single stock like AMD, NVDA, AVGO, or SNDK. The mechanics of the spread don't change. What changes is the character of the risk sitting underneath it, and that's worth understanding before you trade either type.</p>
+
+    <p>NDX and SPX options are cash-settled and European-style, a mechanic covered in more detail in <a href="assignment-and-exercise.html">assignment and exercise</a>. There are no shares to deliver, and the option can only be exercised at expiry, not early. Because an index is made up of many companies rather than one, it's also less exposed to any single company's earnings report or news surprise moving the price sharply overnight.</p>
+
+    <div class="example">
+      <strong>A simple example.</strong> A surprise earnings miss from one company in an index might move that index a fraction of a percent, since it's only one constituent among many. The same surprise from that company, if you're trading a spread on its stock directly, could move the stock itself by a large percentage in a single session, well beyond what the spread's width was built to absorb.
+    </div>
+
+    <h2>What single-stock spreads carry that index spreads don't</h2>
+    <p>Single-stock spreads on names like AMD, NVDA, AVGO, or SNDK carry company-specific risk stacked on top of general market risk. Earnings dates, guidance updates, product announcements, and other company news can move an individual stock far more sharply than the broad market moves on an average day. That's risk an index spread simply doesn't carry in the same way, because no single headline about one company can move an entire index nearly as much.</p>
+
+    <h2>What single-stock spreads offer in return</h2>
+    <p>That extra risk isn't the whole story. Single-stock options can offer different premium and liquidity characteristics worth knowing about: implied volatility on individual names often runs higher than on the index, particularly around earnings, which can mean richer credits for sellers. Liquidity varies by name too, and it's worth checking a stock's options volume and bid-ask spreads before trading it the same way you'd trade NDX or SPX.</p>
+
+    <h2>Correlation risk doesn't disappear with single stocks</h2>
+    <p>It's easy to think that trading spreads across several different single-stock names spreads out risk the way diversification is supposed to. But correlation risk, covered elsewhere on this site, still applies: several single-stock spreads can move together if they're exposed to the same broad market or sector driver, even though they're nominally "different stocks." A basket of chip-sector spreads, for example, can behave like one large position on a day the whole sector moves, not like several independent trades.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> Treat single-stock spreads as carrying market risk plus company risk, and treat several single-stock spreads together as still potentially correlated, not automatically diversified, when sizing positions.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean single-stock spreads are always riskier than index spreads. The risks are different in character, not simply larger or smaller in every case.</li>
+      <li>It doesn't mean index spreads carry no risk. Broad market moves still affect NDX and SPX spreads; they're just not exposed to any one company's news.</li>
+      <li>It doesn't mean this is a recommendation to trade any specific underlying. This is general education on how the risk differs, not trade guidance.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <a href="expiry-selection.html">← Previous: Expiry selection</a>
+    <a href="closing-early-vs-expiry.html">Next lesson: Closing early vs holding to expiry →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>

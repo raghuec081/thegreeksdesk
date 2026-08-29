@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correlation risk | The Greeks Desk</title>
+<meta name="description" content="When your trades aren't really diversified: how to spot hidden correlation between positions that look independent but aren't.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Greeks Desk">
+<meta property="og:url" content="https://thegreeksdesk.com/correlation-risk.html">
+<meta property="og:title" content="Correlation risk | The Greeks Desk">
+<meta property="og:description" content="When your trades aren't really diversified: how to spot hidden correlation between positions that look independent but aren't.">
+<meta property="og:image" content="https://thegreeksdesk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegreeksdesk6">
+<meta name="twitter:title" content="Correlation risk | The Greeks Desk">
+<meta name="twitter:description" content="When your trades aren't really diversified: how to spot hidden correlation between positions that look independent but aren't.">
+<meta name="twitter:image" content="https://thegreeksdesk.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<main>
+  <div class="lesson-meta">Module 3 · Risk & Position Sizing · Lesson 3</div>
+  <h1>Correlation risk</h1>
+
+  <article>
+    <p><a href="risk-management.html">The risk management lesson</a> touched on this briefly: ten trades that all depend on the same outcome aren't really ten independent risks, they're one risk wearing ten different tickers. This lesson goes deeper into what that looks like in practice and how to spot it before it costs you.</p>
+
+    <p>Correlation risk is the risk that positions you think of as separate will win or lose together, because they share the same underlying driver. The number of open positions tells you almost nothing about this on its own. Five positions that are all exposed to the same move can be riskier than one position sized properly.</p>
+
+    <div class="example">
+      <strong>A simple example.</strong> Say you have short put spreads open on NDX, SPX, AMD, and NVDA at the same time. On paper, that's four different trades on four different tickers. But all four are short premium, all four benefit from calm markets, and all four lose money together in a sharp, broad selloff, because a single macro shock, a rate surprise, a bad inflation print, a geopolitical event, tends to hit the whole market at once, not just one name. You don't have four independent risks. You have one risk, "what happens if markets drop hard this week," expressed four times.
+    </div>
+
+    <h2>Where hidden correlation comes from</h2>
+    <p>A few common patterns worth checking for:</p>
+    <ul>
+      <li><strong>Same direction, different tickers.</strong> Several short put spreads across different stocks are all really the same bet: that the market doesn't fall sharply.</li>
+      <li><strong>Same expiry week.</strong> Positions expiring in the same window are all exposed to whatever happens in the market during that exact stretch of time, including one bad day that hits everything at once.</li>
+      <li><strong>Same macro driver.</strong> Tech-heavy names like AMD, NVDA, and AVGO often move together with NDX itself, since the index is largely made up of the same kind of stock. A move in one is frequently a move in all of them.</li>
+    </ul>
+
+    <h2>A simple check before you add a new position</h2>
+    <p>Before opening a new trade, ask one question: if the broad market dropped sharply tomorrow, would this new position lose money at the same time as positions you already have open? If the answer is yes for most of your book, you don't have as much diversification as the number of tickers suggests, and your real risk per bad day is larger than any single position size implies.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> Count your open risk by scenario, not by position. Ask what a single sharp, broad market move would do to your whole book at once, not just to one trade.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean you can't trade multiple positions at once. It means sizing each one with the others in mind, not in isolation.</li>
+      <li>It doesn't mean every position on a similar ticker is correlated risk. Different strategies, directions, or expiries on the same name can genuinely offset each other.</li>
+      <li>It doesn't mean correlation is always avoidable. Some of it is unavoidable in a concentrated watchlist. The goal is knowing it's there, not eliminating it entirely.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <a href="risk-management.html">← Previous: Risk management, simply</a>
+    <a href="win-rate-vs-max-loss.html">Next lesson: Win rate vs max loss →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>

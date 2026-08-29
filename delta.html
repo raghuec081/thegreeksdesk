@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delta: direction and probability | The Greeks Desk</title>
+<meta name="description" content="What delta measures, how it behaves for calls and puts, and why sellers use it as a rough probability gauge.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Greeks Desk">
+<meta property="og:url" content="https://thegreeksdesk.com/delta.html">
+<meta property="og:title" content="Delta: direction and probability | The Greeks Desk">
+<meta property="og:description" content="What delta measures, how it behaves for calls and puts, and why sellers use it as a rough probability gauge.">
+<meta property="og:image" content="https://thegreeksdesk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegreeksdesk6">
+<meta name="twitter:title" content="Delta: direction and probability | The Greeks Desk">
+<meta name="twitter:description" content="What delta measures, how it behaves for calls and puts, and why sellers use it as a rough probability gauge.">
+<meta name="twitter:image" content="https://thegreeksdesk.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<main>
+  <div class="lesson-meta">Module 2 · The Greeks · Lesson 1</div>
+  <h1>Delta: direction and probability</h1>
+
+  <article>
+    <p>Delta is the first Greek most traders learn, and probably the most useful day to day. In plain terms, it tells you how much an option's price should move for a £1 move in the underlying stock or index. It's the most direct link between what the underlying does and what your option position does.</p>
+
+    <p>Every option has a delta value, and it's quoted per share, so it gets multiplied by 100 for the standard contract size most brokers use. A call option with a delta of 0.50 should gain roughly £0.50 in value, or £50 per contract, if the underlying rises by £1. That relationship isn't perfectly precise in the real world, other factors move at the same time, but it's a solid working estimate.</p>
+
+    <div class="example">
+      <strong>A simple example.</strong> You hold a call option on a stock trading at £100, and its delta is 0.30. If the stock moves up to £101, you'd expect the option's price to rise by about £0.30, or £30 on a single contract. If the stock instead drops to £99, you'd expect it to lose roughly the same amount.
+    </div>
+
+    <h2>Calls and puts move in opposite directions</h2>
+    <p>Call options have positive delta, somewhere between 0 and 1. They gain value as the underlying rises. Put options have negative delta, between -1 and 0. They gain value as the underlying falls. That sign is worth internalising early, because it's easy to mix up when you're new: a long put with a delta of -0.40 goes up in value when the stock goes down, not the other way round.</p>
+
+    <p>Deep in-the-money options have delta close to 1 or -1, moving almost dollar for dollar with the underlying. Deep out-of-the-money options have delta close to 0, barely moving at all. At-the-money options tend to sit near 0.50 or -0.50, right in the middle.</p>
+
+    <h2>Delta as a rough probability gauge</h2>
+    <p>Traders also use delta informally as an approximate proxy for the probability an option finishes in the money at expiry. A 0.20 delta option is loosely read as "roughly a 20% chance" of finishing in the money, and a 0.50 delta option as close to a coin flip. This is an approximation, not a precise statistical probability. It comes from the same pricing model that produces delta in the first place, and it ignores plenty of real-world factors, so treat it as a useful shortcut for gauging risk, not a guaranteed number.</p>
+
+    <h2>Delta isn't fixed</h2>
+    <p>One thing worth flagging before the next lesson: delta itself changes as the underlying moves and as time passes. An option that starts at 0.30 delta doesn't stay at 0.30 delta if the stock runs 5% in your favour, or against you. How fast delta changes is itself measured by another Greek, which the next lesson in this module covers in detail.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> When you're selling options, a quick glance at delta gives you a rough read on your odds. Selling a 0.15-0.20 delta spread means you're roughly betting the underlying stays away from that strike most of the time, while a 0.40-0.50 delta sale is a much closer call, worth sizing accordingly.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean delta is an exact probability. It's a model-derived estimate that traders use as a shortcut, not a guarantee of outcome.</li>
+      <li>It doesn't mean a high-delta option always makes more money. Higher delta usually comes with a higher price and different risk, not simply "better."</li>
+      <li>It doesn't mean delta stays constant through the life of a trade. It moves with the underlying and with time, which is exactly what the next lesson covers.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <a href="assignment-and-exercise.html">← Previous: What happens at assignment or exercise?</a>
+    <a href="theta-greek.html">Next lesson: Theta, the number behind time decay →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>

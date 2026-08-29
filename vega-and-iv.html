@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vega and implied volatility | The Greeks Desk</title>
+<meta name="description" content="What vega measures, what implied volatility actually represents, and why it matters most around scheduled events.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Greeks Desk">
+<meta property="og:url" content="https://thegreeksdesk.com/vega-and-iv.html">
+<meta property="og:title" content="Vega and implied volatility | The Greeks Desk">
+<meta property="og:description" content="What vega measures, what implied volatility actually represents, and why it matters most around scheduled events.">
+<meta property="og:image" content="https://thegreeksdesk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegreeksdesk6">
+<meta name="twitter:title" content="Vega and implied volatility | The Greeks Desk">
+<meta name="twitter:description" content="What vega measures, what implied volatility actually represents, and why it matters most around scheduled events.">
+<meta name="twitter:image" content="https://thegreeksdesk.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<main>
+  <div class="lesson-meta">Module 2 · The Greeks · Lesson 4</div>
+  <h1>Vega and implied volatility</h1>
+
+  <article>
+    <p>The last three lessons covered how an option's price reacts to the underlying moving (delta), to time passing (theta), and to delta's own sensitivity (gamma). Vega covers a different input entirely: how much an option's price changes when the market's expectation of future volatility changes, even if the underlying itself hasn't moved at all.</p>
+
+    <p>Vega is quoted as the change in an option's price for a 1 percentage point change in implied volatility (IV). An option with a vega of 0.10 would be expected to gain about £0.10 in value, or £10 per contract, if IV rises by one percentage point, and lose roughly the same if IV falls by one point.</p>
+
+    <div class="example">
+      <strong>A simple example.</strong> An option is priced at £3.00 with a vega of 0.08, and IV sits at 25%. If IV jumps to 28%, a three-point rise, you'd expect the option's price to rise by roughly £0.24, to about £3.24, even if the underlying stock hasn't moved a penny.
+    </div>
+
+    <h2>What implied volatility actually is</h2>
+    <p>Implied volatility is easy to misread as a prediction. It isn't one. IV is the market's current estimate, baked into an option's price, of how much the underlying might move over the life of that option. It's derived from the price itself, working backwards through an option pricing model, rather than measured directly. Higher IV means the market is pricing in a wider range of possible outcomes; lower IV means it's pricing in a calmer, narrower range. Either way, it's a forecast embedded in a price, not a guarantee of what will actually happen.</p>
+
+    <h2>What high and low IV mean for a trade</h2>
+    <p>Because vega links option prices to IV, the level of IV directly affects how expensive options are. High IV means richer premiums: more for a seller to collect, but also a market that's pricing in a bigger expected move, which usually means wider expected price swings to manage. Low IV means cheaper premiums and, generally, a market pricing in calmer conditions. Neither is inherently good or bad; it's context that changes how a given strike or spread should be sized and read.</p>
+
+    <h2>IV around scheduled events</h2>
+    <p>IV often rises heading into a known event on the calendar, an earnings announcement being the clearest example, something covered in more detail later in this curriculum. The market prices in extra uncertainty ahead of the event because a genuinely uncertain, binary outcome is coming. Once the event passes and that uncertainty resolves, IV frequently drops sharply, sometimes called "IV crush." That pattern will come up again in a later module in more practical detail, but it's worth knowing the term and the shape of it now.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> Before sizing a trade, get a rough sense of whether IV is elevated or subdued relative to where it's typically been. Selling into unusually high IV, particularly right before a known event, carries different risk to selling into calm, low IV conditions, even on an otherwise identical-looking spread.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean high IV guarantees a big move, or that low IV guarantees a quiet one. IV is a market estimate, not a forecast that always plays out.</li>
+      <li>It doesn't mean vega acts alone. In a live market, delta, theta, gamma and vega are all moving the price at once, not one at a time in isolation.</li>
+      <li>It doesn't mean IV crush happens on every event. It's a common pattern around scheduled announcements, not a rule that applies to every single one.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <a href="gamma.html">← Previous: Gamma: how delta itself changes</a>
+    <a href="position-sizing.html">Next lesson: Position sizing basics →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>

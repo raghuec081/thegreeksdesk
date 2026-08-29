@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Win rate vs max loss | The Greeks Desk</title>
+<meta name="description" content="Why win rate alone can lie, illustrated with a real month from the track record: an 81.6% win rate that still lost money.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Greeks Desk">
+<meta property="og:url" content="https://thegreeksdesk.com/win-rate-vs-max-loss.html">
+<meta property="og:title" content="Win rate vs max loss | The Greeks Desk">
+<meta property="og:description" content="Why win rate alone can lie, illustrated with a real month from the track record: an 81.6% win rate that still lost money.">
+<meta property="og:image" content="https://thegreeksdesk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegreeksdesk6">
+<meta name="twitter:title" content="Win rate vs max loss | The Greeks Desk">
+<meta name="twitter:description" content="Why win rate alone can lie, illustrated with a real month from the track record: an 81.6% win rate that still lost money.">
+<meta name="twitter:image" content="https://thegreeksdesk.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <svg width="24" height="24" viewBox="0 0 90 90" style="flex-shrink:0;">
+      <line x1="24" y1="20" x2="24" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="45" y1="20" x2="45" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="66" y1="20" x2="66" y2="66" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="20" x2="74" y2="20" stroke="#9C7A46" stroke-width="7"/>
+      <line x1="16" y1="70" x2="74" y2="70" stroke="#9C7A46" stroke-width="7"/>
+    </svg>
+    The Greeks Desk
+  </a>
+  <div class="navlinks">
+    <a href="learn.html" class="active">Modules</a>
+    <a href="options-chain.html">Today's Chain</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="about.html">About</a>
+    <a href="index.html#newsletter">Newsletter</a>
+  </div>
+</nav>
+
+<main>
+  <div class="lesson-meta">Module 3 · Risk & Position Sizing · Lesson 4</div>
+  <h1>Win rate vs max loss</h1>
+
+  <article>
+    <p>Ask a trader how they're doing, and the first thing many will say is a win rate. "I'm winning 80% of my trades." It sounds like the whole story. It isn't. A high win rate can still lose you money, and a low win rate can still make you money. What actually matters is the size of your wins against the size of your losses, not how often you win.</p>
+
+    <div class="example">
+      <strong>A real example, not a hypothetical.</strong> Look at <a href="track-record.html">July 2026 on the track record page</a>: 49 trades, an 81.6% win rate, forty of forty-nine trades closed as winners. And the month still finished at -$226.40. Two losing trades, an AMD put spread and an NVDA put spread on 27 July, were large enough to outweigh a high win rate on everything else. That's not a hypothetical built to make a point. It's the real, published month.
+    </div>
+
+    <h2>Why this happens</h2>
+    <p>Every trade has two numbers that matter: how often it wins, and how much it wins or loses when it does. A strategy that wins 80% of the time but loses several times as much on the rare losers as it gains on the frequent winners can still lose money overall, because the size of the rare loss swamps the frequency of the small wins. This is especially relevant for credit spread sellers, since selling premium tends to produce a lot of small, frequent wins and occasional larger losses, the opposite shape to buying options, which tends to produce frequent small losses and occasional large wins.</p>
+
+    <h2>Think in expectancy, not percentage</h2>
+    <p>A more honest question than "what's my win rate" is: "on average, across all my trades, am I making money once I account for the size of both wins and losses?" That's expectancy, and it's why position sizing, covered earlier in this module, matters as much as, or more than, win rate. A strategy with a lower win rate but tightly controlled losses can easily out-earn a strategy with a higher win rate but occasional oversized losses.</p>
+
+    <div class="example">
+      <strong>Rule of thumb.</strong> Before trusting a win rate, ask what the largest loss in the sample looked like relative to the average win. If one or two bad trades could erase weeks of small wins, the win rate is telling you less than it sounds like it is.
+    </div>
+
+    <h2>What this doesn't mean</h2>
+    <ul>
+      <li>It doesn't mean win rate is meaningless. A very low win rate strategy is genuinely harder to sit through, even if the maths works out.</li>
+      <li>It doesn't mean high win rate strategies are bad. It means the loss side needs just as much attention as the win side, which is exactly what defined-risk spreads and position sizing are for.</li>
+      <li>It doesn't mean one bad month invalidates a strategy. It means judging a strategy by win rate alone, over any period, misses the part that actually determines whether it's profitable.</li>
+    </ul>
+  </article>
+
+  <div class="next-lesson">
+    <a href="correlation-risk.html">← Previous: Correlation risk</a>
+    <a href="what-is-a-credit-spread.html">Next lesson: What is a credit spread? →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Educational purposes only.</strong> This is general education, not personalised financial advice. Trading options carries real risk, including loss of principal. Always do your own research or consult a regulated financial adviser before making investment decisions.
+  </div>
+</footer>
+
+</body>
+</html>
