@@ -132,6 +132,9 @@
   .vol-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;}
   .vol-value{font-family:'IBM Plex Mono',monospace;font-size:26px;margin-top:6px;}
   .vol-tag{display:inline-block;margin-top:10px;font-size:11px;padding:4px 10px;border:1px solid var(--line);color:var(--text-dim);}
+  .tv-embed{display:flex;flex-direction:column;gap:10px;min-height:64px;}
+  .tv-embed .tradingview-widget-container{min-height:52px;}
+  .tv-note{font-size:10px;color:var(--text-dim);margin-top:10px;letter-spacing:0.02em;line-height:1.5;}
 
   /* ---------- Teach / Greeks section ---------- */
   .greeks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
@@ -224,11 +227,50 @@
   <div class="panels">
     <div class="panel">
       <h3>Major Indices</h3>
-      <div id="indices"><div class="loading-row">Fetching…</div></div>
+      <div id="tvIndices" class="tv-embed">
+        <div class="tradingview-widget-container">
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async onerror="tvIndicesFailed()">
+          {
+            "symbol": "AMEX:SPY",
+            "width": "100%",
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "locale": "en"
+          }
+          </script>
+        </div>
+        <div class="tradingview-widget-container">
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async onerror="tvIndicesFailed()">
+          {
+            "symbol": "NASDAQ:QQQ",
+            "width": "100%",
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "locale": "en"
+          }
+          </script>
+        </div>
+      </div>
+      <div class="tv-note" id="tvIndicesNote">SPY / QQQ shown as S&amp;P 500 / Nasdaq 100 proxies via TradingView, delayed ~15 min.</div>
+      <div id="indices" style="display:none;"><div class="loading-row">Fetching…</div></div>
     </div>
     <div class="panel">
       <h3>Volatility</h3>
-      <div id="volatility"><div class="loading-row">Fetching…</div></div>
+      <div id="tvVolatility" class="tv-embed">
+        <div class="tradingview-widget-container">
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async onerror="tvVolatilityFailed()">
+          {
+            "symbol": "AMEX:VIXY",
+            "width": "100%",
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "locale": "en"
+          }
+          </script>
+        </div>
+      </div>
+      <div class="tv-note" id="tvVolatilityNote">VIXY (VIX futures ETF proxy) via TradingView, delayed ~15 min. Not the VIX index level itself.</div>
+      <div id="volatility" style="display:none;"><div class="loading-row">Fetching…</div></div>
     </div>
     <div class="panel">
       <h3>Market Headlines</h3>
@@ -397,6 +439,42 @@ function renderVol(el, price, chg, isDemo){
     <div class="vol-tag">${regime} volatility regime</div>
   `;
 }
+
+// TradingView widgets replace the Major Indices / Volatility panels, but the
+// underlying Twelve Data fetch (loadMarketData/loadVolatility) stays running
+// in the background: the hero "Live snapshot" box and the top ticker strip
+// still depend on it, and keeping it warm here means the fallback below has
+// current (real index/VIX) data ready immediately, not a "Fetching..." flash,
+// if TradingView fails partway through the session.
+function tvIndicesFailed(){
+  const embed = document.getElementById('tvIndices');
+  const note = document.getElementById('tvIndicesNote');
+  const fallback = document.getElementById('indices');
+  if(embed) embed.style.display = 'none';
+  if(note) note.style.display = 'none';
+  if(fallback) fallback.style.display = '';
+}
+
+function tvVolatilityFailed(){
+  const embed = document.getElementById('tvVolatility');
+  const note = document.getElementById('tvVolatilityNote');
+  const fallback = document.getElementById('volatility');
+  if(embed) embed.style.display = 'none';
+  if(note) note.style.display = 'none';
+  if(fallback) fallback.style.display = '';
+}
+
+// onerror on the script tags catches the widget failing to load at all (ad
+// blocker, CDN down). This timeout check catches it loading but failing to
+// actually render an iframe (bad config, TradingView-side issue).
+setTimeout(() => {
+  const embed = document.getElementById('tvIndices');
+  if(!embed || embed.querySelectorAll('iframe').length < 2) tvIndicesFailed();
+}, 4000);
+setTimeout(() => {
+  const embed = document.getElementById('tvVolatility');
+  if(!embed || !embed.querySelector('iframe')) tvVolatilityFailed();
+}, 4000);
 
 async function loadNews(){
   const el = document.getElementById('newsPanel');
