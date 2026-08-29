@@ -135,6 +135,7 @@
   .tv-embed{display:flex;flex-direction:column;gap:10px;min-height:64px;}
   .tv-embed .tradingview-widget-container{min-height:52px;}
   .tv-note{font-size:10px;color:var(--text-dim);margin-top:10px;letter-spacing:0.02em;line-height:1.5;}
+  .x-embed{min-height:64px;}
 
   /* ---------- Teach / Greeks section ---------- */
   .greeks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
@@ -273,8 +274,12 @@
       <div id="volatility" style="display:none;"><div class="loading-row">Fetching…</div></div>
     </div>
     <div class="panel">
-      <h3>Market Headlines</h3>
-      <div id="newsPanel"><div class="loading-row">Fetching…</div></div>
+      <h3>Latest from X</h3>
+      <div id="xEmbed" class="x-embed">
+        <a class="twitter-timeline" data-theme="dark" data-tweet-limit="1" data-chrome="noheader nofooter noborders transparent" data-dnt="true" href="https://twitter.com/thegreeksdesk6">Tweets by @thegreeksdesk6</a>
+      </div>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8" onerror="xEmbedFailed()"></script>
+      <div id="newsPanel" style="display:none;"><div class="loading-row">Fetching…</div></div>
     </div>
   </div>
 </section>
@@ -475,6 +480,29 @@ setTimeout(() => {
   const embed = document.getElementById('tvVolatility');
   if(!embed || !embed.querySelector('iframe')) tvVolatilityFailed();
 }, 4000);
+
+// X's Embedded Timeline widget replaces the old Finnhub Market Headlines
+// panel. Same pattern as the TradingView panels above: the old fetch
+// (loadNews) stays running in the background so the fallback is warm and
+// ready, hidden unless the X widget fails to load or render.
+function xEmbedFailed(){
+  const embed = document.getElementById('xEmbed');
+  const fallback = document.getElementById('newsPanel');
+  if(embed) embed.style.display = 'none';
+  if(fallback) fallback.style.display = '';
+}
+
+// X's widget can be slower to swap the <a> tag for an iframe than
+// TradingView's, so this gets a longer timeout before assuming failure.
+// Checking rendered height, not just iframe presence, matters here: X's
+// syndication endpoint (what the iframe loads) is prone to rate-limiting
+// and account/no-tweets errors that still leave an iframe in the DOM, just
+// collapsed to 0 height with nothing in it.
+setTimeout(() => {
+  const embed = document.getElementById('xEmbed');
+  const iframe = embed ? embed.querySelector('iframe') : null;
+  if(!iframe || iframe.getBoundingClientRect().height < 10) xEmbedFailed();
+}, 8000);
 
 async function loadNews(){
   const el = document.getElementById('newsPanel');
