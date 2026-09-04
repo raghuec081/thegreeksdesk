@@ -59,8 +59,8 @@
   <div class="month-filter">
     <label for="monthSelect">Jump to month:</label>
     <select id="monthSelect" onchange="document.getElementById(this.value).scrollIntoView({behavior:'smooth'}); document.querySelectorAll('.month-section').forEach(s => s.style.display = (s.id === this.value ? 'block' : 'none'));">
-      <option value="month-2026-08">August 2026 (ongoing)</option>
-      <option value="month-2026-07" selected>July 2026</option>
+      <option value="month-2026-08" selected>August 2026</option>
+      <option value="month-2026-07">July 2026</option>
       <option value="month-2026-06">June 2026</option>
       <option value="month-2026-05">May 2026</option>
       <option value="month-2026-04">April 2026</option>
@@ -68,7 +68,7 @@
     </select>
   </div>
 
-  <section class="month-section" id="month-2026-07">
+  <section class="month-section" id="month-2026-07" style="display:none;">
   <h2 class="month-heading">July 2026 Summary</h2>
   <table class="track-table" style="max-width:500px;">
     <tbody>
@@ -446,28 +446,119 @@
 
   </section>
 
-  <section class="month-section" id="month-2026-08" style="display:none;">
-  <h2 class="month-heading">August 2026 (ongoing)</h2>
+  <section class="month-section" id="month-2026-08">
+  <h2 class="month-heading">August 2026 Summary</h2>
+  <table class="track-table" style="max-width:500px;">
+    <tbody>
+      <tr><td><strong>Trades</strong></td><td>76</td></tr>
+      <tr><td><strong>Win Rate</strong></td><td class="win">72.4%</td></tr>
+      <tr><td><strong>Total P&amp;L</strong></td><td class="loss">-$10,457.48</td></tr>
+      <tr><td><strong>Largest Win</strong></td><td class="win">+$509.14 (MSFT 520/525 call spread)</td></tr>
+      <tr><td><strong>Largest Loss</strong></td><td class="loss">-$4,652.28 (AVGO 377.5/382.5 put spread, 17 Aug)</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);margin-top:16px;">
+    A losing month driven almost entirely by AVGO: three separate AVGO spreads between 13 and 28
+    Aug lost a combined -$8,176.36, more than the month's entire net loss. Everything else was a
+    fairly ordinary mix of small wins, plus one bad NVDA spread and one bad MSFT spread. A high
+    win rate (72.4%) again didn't prevent a losing month, the same pattern flagged in the
+    <a href="win-rate-vs-max-loss.html">win rate vs max loss lesson</a>.
+  </p>
+  <div class="track-note" style="margin:24px 0;">
+    Four positions this month have no closing trade or expiration anywhere in the statement,
+    despite their expiry falling within August (SPCX 73/80 puts, NVDA $215 put, AMD $522.5/$527.5
+    calls, AMD $450/$455 puts). Rather than guess an outcome, they're excluded from the total
+    below entirely. Several other positions were opened before this statement (their opening leg
+    isn't shown) or were still open at month-end carrying into September; those are either flagged
+    in the table or excluded the same way earlier months handle it.
+  </div>
+
   <table class="track-table">
     <thead>
       <tr>
         <th>Date</th>
         <th>Instrument</th>
         <th>Strategy</th>
-        <th>Size (risk)</th>
         <th>Result</th>
-        <th>Notes</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>3 Aug 2026</td>
-        <td>NVDA</td>
-        <td>Call credit spread (217.5/222.5, 5 Aug exp)</td>
-        <td>$4,800 max risk &middot; $189.20 credit</td>
-        <td>Pending</td>
-        <td>10 contracts each leg, sold 217.5C @ $0.31 / bought 222.5C @ $0.11</td>
-      </tr>
+      <tr><td>31/07-03/08</td><td>NDXP</td><td>Put spread 27290/27320, exp 3 Aug 2026</td><td class="win">$+175.68</td></tr>
+      <tr><td>3 Aug 2026</td><td>SPCX</td><td>Put spread 73/80, exp 14 Aug 2026: Position opened before August (prior-period leg not in this statement)</td><td class="loss">$-550.86</td></tr>
+      <tr><td>3 Aug 2026</td><td>AMD</td><td>Call spread 582.5/587.5, exp 5 Aug 2026</td><td class="win">$+158.27</td></tr>
+      <tr><td>3 Aug 2026</td><td>NVDA</td><td>Call spread 217.5/222.5, exp 5 Aug 2026</td><td class="loss">$-1,721.69</td></tr>
+      <tr><td>4 Aug 2026</td><td>AMD</td><td>Call spread 602.5/607.5, exp 5 Aug 2026</td><td class="win">$+178.23</td></tr>
+      <tr><td>4 Aug 2026</td><td>AMD</td><td>Call spread 620/625, exp 5 Aug 2026</td><td class="win">$+89.13</td></tr>
+      <tr><td>5 Aug 2026</td><td>AMD</td><td>Put spread 437.5/442.5, exp 14 Aug 2026</td><td class="win">$+84.25</td></tr>
+      <tr><td>6 Aug 2026</td><td>MSFT</td><td>Call spread 515/522.5, exp 7 Aug 2026</td><td class="win">$+114.14</td></tr>
+      <tr><td>6 Aug 2026</td><td>NDXP</td><td>Put spread 28640/28660, exp 7 Aug 2026</td><td class="win">$+155.84</td></tr>
+      <tr><td>7 Aug 2026</td><td>MU</td><td>Put spread 775/785, exp 10 Aug 2026</td><td class="win">$+152.28</td></tr>
+      <tr><td>10 Aug 2026</td><td>NVDA</td><td>Put single leg 210, exp 12 Aug 2026: opened/closed independently of its intended pair leg</td><td class="loss">$-30.84</td></tr>
+      <tr><td>10 Aug 2026</td><td>NVDA</td><td>Put single leg 215, exp 12 Aug 2026: Position opened before August (prior-period leg not in this statement)</td><td class="loss">$-525.40</td></tr>
+      <tr><td>10 Aug 2026</td><td>AMD</td><td>Put spread 435/440, exp 12 Aug 2026</td><td class="win">$+188.31</td></tr>
+      <tr><td>10 Aug 2026</td><td>MSFT</td><td>Call spread 520/525, exp 12 Aug 2026</td><td class="win">$+509.14</td></tr>
+      <tr><td>10 Aug 2026</td><td>MSFT</td><td>Put spread 480/485, exp 12 Aug 2026</td><td class="win">$+149.16</td></tr>
+      <tr><td>11 Aug 2026</td><td>NVDA</td><td>Call spread 230/235, exp 12 Aug 2026</td><td class="win">$+39.16</td></tr>
+      <tr><td>11 Aug 2026</td><td>NVDA</td><td>Put spread 207.5/212.5, exp 12 Aug 2026</td><td class="win">$+199.16</td></tr>
+      <tr><td>12 Aug 2026</td><td>MU</td><td>Call spread 990/1000, exp 14 Aug 2026</td><td class="loss">$-283.95</td></tr>
+      <tr><td>12 Aug 2026</td><td>MU</td><td>Put spread 787.5/792.5, exp 14 Aug 2026</td><td class="win">$+12.09</td></tr>
+      <tr><td>13 Aug 2026</td><td>AVGO</td><td>Call spread 440/445, exp 14 Aug 2026</td><td class="win">$+348.31</td></tr>
+      <tr><td>13 Aug 2026</td><td>AVGO</td><td>Put spread 395/400, exp 14 Aug 2026</td><td class="loss">$-3,281.72</td></tr>
+      <tr><td>13 Aug 2026</td><td>MSFT</td><td>Call spread 515/520, exp 14 Aug 2026</td><td class="win">$+57.98</td></tr>
+      <tr><td>13 Aug 2026</td><td>MSFT</td><td>Put spread 485/490, exp 14 Aug 2026</td><td class="win">$+369.97</td></tr>
+      <tr><td>14 Aug 2026</td><td>AVGO</td><td>Put spread 372.5/377.5, exp 17 Aug 2026</td><td class="win">$+387.47</td></tr>
+      <tr><td>14 Aug 2026</td><td>MSFT</td><td>Put spread 477.5/482.5, exp 24 Aug 2026: closed early 17 Aug</td><td class="loss">$-1,772.70</td></tr>
+      <tr><td>17 Aug 2026</td><td>MSFT</td><td>Put single leg 460, exp 21 Aug 2026: opened/closed independently of its intended pair leg</td><td class="loss">$-56.68</td></tr>
+      <tr><td>17 Aug 2026</td><td>MSFT</td><td>Put single leg 467.5, exp 21 Aug 2026: Position opened before August (prior-period leg not in this statement)</td><td class="loss">$-844.32</td></tr>
+      <tr><td>17 Aug 2026</td><td>AVGO</td><td>Call spread 417.5-420/422.5-425, exp 19 Aug 2026</td><td class="win">$+307.87</td></tr>
+      <tr><td>17 Aug 2026</td><td>AVGO</td><td>Put spread 377.5/382.5, exp 19 Aug 2026</td><td class="loss">$-4,652.28</td></tr>
+      <tr><td>18 Aug 2026</td><td>AVGO</td><td>Put spread 355/360, exp 19 Aug 2026</td><td class="loss">$-21.06</td></tr>
+      <tr><td>18 Aug 2026</td><td>AMD</td><td>Call spread 510/515, exp 19 Aug 2026</td><td class="win">$+29.57</td></tr>
+      <tr><td>18 Aug 2026</td><td>AMD</td><td>Call spread 522.5/527.5, exp 19 Aug 2026: Position opened before August (prior-period leg not in this statement)</td><td class="loss">$-27.76</td></tr>
+      <tr><td>18 Aug 2026</td><td>AMD</td><td>Put spread 445/450, exp 19 Aug 2026</td><td class="win">$+59.57</td></tr>
+      <tr><td>18 Aug 2026</td><td>AMD</td><td>Put spread 450/455, exp 19 Aug 2026: Position opened before August (prior-period leg not in this statement)</td><td class="loss">$-351.76</td></tr>
+      <tr><td>19 Aug 2026</td><td>AMD</td><td>Put spread 430/435, exp 21 Aug 2026</td><td class="win">$+79.13</td></tr>
+      <tr><td>19 Aug 2026</td><td>NDXP</td><td>Put single leg 28690, exp 20 Aug 2026: opened/closed independently of its intended pair leg</td><td class="win">$+199.92</td></tr>
+      <tr><td>19 Aug 2026</td><td>NDXP</td><td>Put single leg 28710, exp 20 Aug 2026: Position opened before August (prior-period leg not in this statement)</td><td class="loss">$-1,421.04</td></tr>
+      <tr><td>19 Aug 2026</td><td>NDXP</td><td>Put spread 28575/28600, exp 20 Aug 2026</td><td class="win">$+92.84</td></tr>
+      <tr><td>20 Aug 2026</td><td>MSFT</td><td>Call spread 495/500, exp 21 Aug 2026</td><td class="win">$+35.82</td></tr>
+      <tr><td>20 Aug 2026</td><td>MSFT</td><td>Put spread 462.5/467.5, exp 21 Aug 2026</td><td class="win">$+11.82</td></tr>
+      <tr><td>20 Aug 2026</td><td>NVDA</td><td>Call spread 222.5/227.5, exp 21 Aug 2026</td><td class="win">$+53.82</td></tr>
+      <tr><td>20 Aug 2026</td><td>NVDA</td><td>Put spread 205/210, exp 21 Aug 2026</td><td class="win">$+17.82</td></tr>
+      <tr><td>20 Aug 2026</td><td>SNDK</td><td>Put spread 1440/1450, exp 21 Aug 2026</td><td class="win">$+87.82</td></tr>
+      <tr><td>21 Aug 2026</td><td>AMD</td><td>Call spread 507.5/512.5, exp 24 Aug 2026</td><td class="win">$+1.82</td></tr>
+      <tr><td>21 Aug 2026</td><td>AMD</td><td>Put spread 440/445, exp 24 Aug 2026</td><td class="win">$+83.82</td></tr>
+      <tr><td>21 Aug 2026</td><td>MSFT</td><td>Put spread 467.5/472.5, exp 24 Aug 2026</td><td class="win">$+75.62</td></tr>
+      <tr><td>24 Aug 2026</td><td>AMD</td><td>Put spread 410/420, exp 26 Aug 2026</td><td class="win">$+71.62</td></tr>
+      <tr><td>24 Aug 2026</td><td>AVGO</td><td>Put spread 342.5/347.5, exp 26 Aug 2026</td><td class="win">$+87.82</td></tr>
+      <tr><td>24 Aug 2026</td><td>MSFT</td><td>Call spread 500/505, exp 26 Aug 2026</td><td class="win">$+76.74</td></tr>
+      <tr><td>24 Aug 2026</td><td>NVDA</td><td>Put spread 197.5/202.5, exp 28 Aug 2026: closed early 26 Aug</td><td class="loss">$-34.20</td></tr>
+      <tr><td>25 Aug 2026</td><td>AMD</td><td>Call spread 502.5/507.5, exp 26 Aug 2026</td><td class="win">$+23.82</td></tr>
+      <tr><td>25 Aug 2026</td><td>AMD</td><td>Put spread 445/450, exp 26 Aug 2026</td><td class="win">$+57.82</td></tr>
+      <tr><td>25 Aug 2026</td><td>BE</td><td>Call spread 245/250, exp 28 Aug 2026</td><td class="win">$+63.82</td></tr>
+      <tr><td>25 Aug 2026</td><td>BE</td><td>Put spread 177.5/182.5, exp 28 Aug 2026</td><td class="win">$+31.82</td></tr>
+      <tr><td>25 Aug 2026</td><td>MSFT</td><td>Call spread 520/525, exp 28 Aug 2026</td><td class="win">$+7.82</td></tr>
+      <tr><td>25 Aug 2026</td><td>MSFT</td><td>Put spread 470/475, exp 28 Aug 2026</td><td class="win">$+111.82</td></tr>
+      <tr><td>26 Aug 2026</td><td>AVGO</td><td>Call spread 377.5/382.5, exp 28 Aug 2026</td><td class="loss">$-242.36</td></tr>
+      <tr><td>26 Aug 2026</td><td>AVGO</td><td>Put spread 332.5/337.5, exp 28 Aug 2026</td><td class="win">$+81.64</td></tr>
+      <tr><td>26 Aug 2026</td><td>GS</td><td>Call spread 1095/1105, exp 28 Aug 2026</td><td class="win">$+39.90</td></tr>
+      <tr><td>26 Aug 2026</td><td>GS</td><td>Put spread 995/1005, exp 28 Aug 2026</td><td class="win">$+47.90</td></tr>
+      <tr><td>26 Aug 2026</td><td>JPM</td><td>Call spread 365/370, exp 28 Aug 2026</td><td class="win">$+35.64</td></tr>
+      <tr><td>26 Aug 2026</td><td>JPM</td><td>Put spread 340/345, exp 28 Aug 2026</td><td class="win">$+27.82</td></tr>
+      <tr><td>27 Aug 2026</td><td>JPM</td><td>Call spread 360/362.5, exp 28 Aug 2026</td><td class="win">$+55.82</td></tr>
+      <tr><td>27 Aug 2026</td><td>JPM</td><td>Put spread 347.5/350, exp 28 Aug 2026</td><td class="win">$+47.82</td></tr>
+      <tr><td>27 Aug 2026</td><td>QCOM</td><td>Call spread 170/175, exp 28 Aug 2026</td><td class="win">$+39.82</td></tr>
+      <tr><td>27 Aug 2026</td><td>QCOM</td><td>Put spread 152.5/157.5, exp 28 Aug 2026</td><td class="win">$+55.82</td></tr>
+      <tr><td>28 Aug 2026</td><td>AMD</td><td>Call spread 502.5/507.5, exp 31 Aug 2026</td><td class="loss">$-0.18</td></tr>
+      <tr><td>28 Aug 2026</td><td>AMD</td><td>Put spread 447.5/452.5, exp 31 Aug 2026</td><td class="win">$+85.82</td></tr>
+      <tr><td>28 Aug 2026</td><td>GOOG</td><td>Call spread 360/365, exp 4 Sep 2026: Position opened before August (prior-period leg not in this statement)</td><td class="loss">$-78.18</td></tr>
+      <tr><td>28 Aug 2026</td><td>GOOG</td><td>Put spread 320/325, exp 4 Sep 2026: Position opened before August (prior-period leg not in this statement)</td><td class="loss">$-40.18</td></tr>
+      <tr><td>28 Aug 2026</td><td>INTC</td><td>Call spread 96/98, exp 31 Aug 2026</td><td class="win">$+71.66</td></tr>
+      <tr><td>28 Aug 2026</td><td>INTC</td><td>Put spread 84/86, exp 31 Aug 2026</td><td class="win">$+23.66</td></tr>
+      <tr><td>28 Aug 2026</td><td>MSFT</td><td>Call spread 525/530, exp 31 Aug 2026</td><td class="win">$+65.82</td></tr>
+      <tr><td>28 Aug 2026</td><td>MSFT</td><td>Put spread 487.5/492.5, exp 31 Aug 2026</td><td class="win">$+9.82</td></tr>
+      <tr><td>31 Aug 2026</td><td>AVGO</td><td>Call spread 392.5/397.5, exp 4 Sep 2026: Position opened before August (prior-period leg not in this statement)</td><td class="loss">$-122.11</td></tr>
+      <tr><td>31 Aug 2026</td><td>AVGO</td><td>Put spread 340/345, exp 4 Sep 2026: Position opened before August (prior-period leg not in this statement)</td><td class="loss">$-126.10</td></tr>
     </tbody>
   </table>
 
